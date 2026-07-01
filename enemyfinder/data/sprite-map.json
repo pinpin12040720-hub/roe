@@ -1,0 +1,327 @@
+{
+  "cols": 10,
+  "rows": 8,
+  "cellSize": 180,
+  "sprites": {
+    "char_tex_10001.png": {
+      "col": 0,
+      "row": 0
+    },
+    "char_tex_10002.png": {
+      "col": 1,
+      "row": 0
+    },
+    "char_tex_10003.png": {
+      "col": 2,
+      "row": 0
+    },
+    "char_tex_10004.png": {
+      "col": 3,
+      "row": 0
+    },
+    "char_tex_10005.png": {
+      "col": 4,
+      "row": 0
+    },
+    "char_tex_10006.png": {
+      "col": 5,
+      "row": 0
+    },
+    "char_tex_10007.png": {
+      "col": 6,
+      "row": 0
+    },
+    "char_tex_10008.png": {
+      "col": 7,
+      "row": 0
+    },
+    "char_tex_10011.png": {
+      "col": 8,
+      "row": 0
+    },
+    "char_tex_10111.png": {
+      "col": 9,
+      "row": 0
+    },
+    "char_tex_10112.png": {
+      "col": 0,
+      "row": 1
+    },
+    "char_tex_10113.png": {
+      "col": 1,
+      "row": 1
+    },
+    "char_tex_20001.png": {
+      "col": 2,
+      "row": 1
+    },
+    "char_tex_20002.png": {
+      "col": 3,
+      "row": 1
+    },
+    "char_tex_20003.png": {
+      "col": 4,
+      "row": 1
+    },
+    "char_tex_20004.png": {
+      "col": 5,
+      "row": 1
+    },
+    "char_tex_20005.png": {
+      "col": 6,
+      "row": 1
+    },
+    "char_tex_20006.png": {
+      "col": 7,
+      "row": 1
+    },
+    "char_tex_20007.png": {
+      "col": 8,
+      "row": 1
+    },
+    "char_tex_20008.png": {
+      "col": 9,
+      "row": 1
+    },
+    "char_tex_20009.png": {
+      "col": 0,
+      "row": 2
+    },
+    "char_tex_20010.png": {
+      "col": 1,
+      "row": 2
+    },
+    "char_tex_20011.png": {
+      "col": 2,
+      "row": 2
+    },
+    "char_tex_20012.png": {
+      "col": 3,
+      "row": 2
+    },
+    "char_tex_20013.png": {
+      "col": 4,
+      "row": 2
+    },
+    "char_tex_20014.png": {
+      "col": 5,
+      "row": 2
+    },
+    "char_tex_20015.png": {
+      "col": 6,
+      "row": 2
+    },
+    "char_tex_20016.png": {
+      "col": 7,
+      "row": 2
+    },
+    "char_tex_20017.png": {
+      "col": 8,
+      "row": 2
+    },
+    "char_tex_20018.png": {
+      "col": 9,
+      "row": 2
+    },
+    "char_tex_20019.png": {
+      "col": 0,
+      "row": 3
+    },
+    "char_tex_20020.png": {
+      "col": 1,
+      "row": 3
+    },
+    "char_tex_20021.png": {
+      "col": 2,
+      "row": 3
+    },
+    "char_tex_20022.png": {
+      "col": 3,
+      "row": 3
+    },
+    "char_tex_20023.png": {
+      "col": 4,
+      "row": 3
+    },
+    "char_tex_20024.png": {
+      "col": 5,
+      "row": 3
+    },
+    "char_tex_20025.png": {
+      "col": 6,
+      "row": 3
+    },
+    "char_tex_20026.png": {
+      "col": 7,
+      "row": 3
+    },
+    "char_tex_20027.png": {
+      "col": 8,
+      "row": 3
+    },
+    "char_tex_20028.png": {
+      "col": 9,
+      "row": 3
+    },
+    "char_tex_20029.png": {
+      "col": 0,
+      "row": 4
+    },
+    "char_tex_20030.png": {
+      "col": 1,
+      "row": 4
+    },
+    "char_tex_20031.png": {
+      "col": 2,
+      "row": 4
+    },
+    "char_tex_20032.png": {
+      "col": 3,
+      "row": 4
+    },
+    "char_tex_20033.png": {
+      "col": 4,
+      "row": 4
+    },
+    "char_tex_20034.png": {
+      "col": 5,
+      "row": 4
+    },
+    "char_tex_20035.png": {
+      "col": 6,
+      "row": 4
+    },
+    "char_tex_20036.png": {
+      "col": 7,
+      "row": 4
+    },
+    "char_tex_20037.png": {
+      "col": 8,
+      "row": 4
+    },
+    "char_tex_20038.png": {
+      "col": 9,
+      "row": 4
+    },
+    "char_tex_20039.png": {
+      "col": 0,
+      "row": 5
+    },
+    "char_tex_20040.png": {
+      "col": 1,
+      "row": 5
+    },
+    "char_tex_20041.png": {
+      "col": 2,
+      "row": 5
+    },
+    "char_tex_20042.png": {
+      "col": 3,
+      "row": 5
+    },
+    "char_tex_20043.png": {
+      "col": 4,
+      "row": 5
+    },
+    "char_tex_20044.png": {
+      "col": 5,
+      "row": 5
+    },
+    "char_tex_20045.png": {
+      "col": 6,
+      "row": 5
+    },
+    "char_tex_20046.png": {
+      "col": 7,
+      "row": 5
+    },
+    "char_tex_20047.png": {
+      "col": 8,
+      "row": 5
+    },
+    "char_tex_20048.png": {
+      "col": 9,
+      "row": 5
+    },
+    "char_tex_20049.png": {
+      "col": 0,
+      "row": 6
+    },
+    "char_tex_20050.png": {
+      "col": 1,
+      "row": 6
+    },
+    "char_tex_20051.png": {
+      "col": 2,
+      "row": 6
+    },
+    "char_tex_20052.png": {
+      "col": 3,
+      "row": 6
+    },
+    "char_tex_20053.png": {
+      "col": 4,
+      "row": 6
+    },
+    "char_tex_20054.png": {
+      "col": 5,
+      "row": 6
+    },
+    "char_tex_20055.png": {
+      "col": 6,
+      "row": 6
+    },
+    "char_tex_20056.png": {
+      "col": 7,
+      "row": 6
+    },
+    "char_tex_20057.png": {
+      "col": 8,
+      "row": 6
+    },
+    "char_tex_20058.png": {
+      "col": 9,
+      "row": 6
+    },
+    "char_tex_20059.png": {
+      "col": 0,
+      "row": 7
+    },
+    "char_tex_20060.png": {
+      "col": 1,
+      "row": 7
+    },
+    "char_tex_20061.png": {
+      "col": 2,
+      "row": 7
+    },
+    "char_tex_20062.png": {
+      "col": 3,
+      "row": 7
+    },
+    "char_tex_20063.png": {
+      "col": 4,
+      "row": 7
+    },
+    "char_tex_20064.png": {
+      "col": 5,
+      "row": 7
+    },
+    "char_tex_20065.png": {
+      "col": 6,
+      "row": 7
+    },
+    "char_tex_20066.png": {
+      "col": 7,
+      "row": 7
+    },
+    "char_tex_20067.png": {
+      "col": 8,
+      "row": 7
+    },
+    "char_tex_20068.png": {
+      "col": 9,
+      "row": 7
+    }
+  }
+}

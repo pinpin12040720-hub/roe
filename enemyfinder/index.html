@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enemy Finder</title>
+  <link rel="icon" href="../assets/img/image360.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=721b656b">
+<meta name="asset-version" content="721b656b"></head>
+<body>
+
+  <style>
+  .game-switch{position:sticky;top:0;z-index:200;background:rgba(18,16,28,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .gs-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:7px 16px;font-family:'Outfit',system-ui,sans-serif}
+  .gs-label{font-size:11px;color:#9a92b0;font-weight:700;letter-spacing:1px}
+  .game-switch .gs{padding:6px 15px;border-radius:999px;font-weight:700;font-size:14px;color:#c9c2dc;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);cursor:pointer;text-decoration:none;transition:.2s;white-space:nowrap}
+  .game-switch .gs.active{background:linear-gradient(120deg,#e8743c,#c23b8a);color:#fff;border-color:transparent}
+  .game-switch a.gs:hover{color:#fff;border-color:#c23b8a;transform:translateY(-1px)}
+  </style>
+  <div class="game-switch"><div class="gs-inner"><span class="gs-label">GAME</span><a class="gs" href="../" title="Rise of Eros / 慾神幻想 攻略">慾神幻想</a><span class="gs active" title="Ero Dorado / 愛慾轉生">愛慾轉生</span></div></div>
+
+  <style>
+  .ef-adtag{font-size:10px;letter-spacing:2px;color:#8a83a0;text-transform:uppercase;text-align:center;margin-bottom:4px}
+  .ef-ad{position:relative;overflow:hidden;width:100%;min-height:0}
+  .ef-ad iframe{display:block;border:0;background:transparent}
+  .ef-ad-slot{position:relative;z-index:5}
+  .ef-ad-top{position:sticky;top:39px;z-index:100;background:rgba(12,10,20,.9);backdrop-filter:blur(8px);padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .ef-ad-top .ef-ad{max-width:760px;margin:0 auto}
+  .ef-ad-rail{display:none}
+  @media(min-width:1200px){body{padding-right:332px}.ef-ad-rail{display:block;position:fixed;right:16px;top:50%;transform:translateY(-50%);width:300px;max-height:92vh;overflow-y:auto;z-index:120}.ef-ad-rail .ef-ad+.ef-ad{margin-top:10px}}
+  .ef-ad-bottom{display:none}
+  @media(max-width:1119px){
+    .ef-ad-bottom{display:block;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(18,16,28,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.1);padding:4px 0 6px}
+    .ef-ad-bottom.closed{display:none}
+    body.ef-has-bottom{padding-bottom:108px}
+  }
+  .ef-adclose{position:absolute;right:8px;top:3px;width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.4);color:#fff;font-size:12px;cursor:pointer;z-index:3}
+</style>
+<div class="ef-ad-slot ef-ad-top"><div class="ef-adtag">贊助廣告 Sponsored</div><div class="ef-ad" data-ad='[{"w": 728, "h": 90, "src": "https://www.ero-labs.com/adIframe/?code=promotion&amp;lang=zh&amp;adType=6&amp;gameId=189&amp;url=https://game.erolabsshare.live/app/70f4ab49/Ero_Dorado&amp;type=ad"}, {"w": 500, "h": 500, "src": "https://www.ero-labs.com/adIframe/?code=promotion&amp;lang=zh&amp;adType=5&amp;gameId=189&amp;url=https://game.erolabsshare.live/app/70f4ab49/Ero_Dorado&amp;type=ad"}, {"w": 300, "h": 250, "src": "https://www.ero-labs.com/adIframe/?code=promotion&amp;lang=zh&amp;adType=4&amp;gameId=189&amp;url=https://game.erolabsshare.live/app/70f4ab49/Ero_Dorado&amp;type=ad"}]'></div></div><div class="ef-ad-slot ef-ad-rail"><div class="ef-adtag">贊助 Sponsored</div><div class="ef-ad" data-ad='[{"w": 300, "h": 250, "src": "https://www.ero-labs.com/adIframe/?code=promotion&amp;lang=zh&amp;adType=4&amp;gameId=27&amp;url=https://game.erolabsshare.live/app/70f4ab49/Cherry_Tale&amp;type=ad"}]'></div><div class="ef-ad" data-ad='[{"w": 300, "h": 250, "src": "https://www.ero-labs.com/adIframe/?code=promotion&amp;lang=zh&amp;adType=4&amp;gameId=16&amp;url=https://game.erolabsshare.live/app/70f4ab49/Rise_of_Eros&amp;type=ad"}]'></div></div><div class="ef-ad-slot ef-ad-bottom" id="efAdBottom"><button class="ef-adclose" id="efAdClose" aria-label="close">✕</button><div class="ef-ad" data-ad='[{"w": 728, "h": 90, "src": "https://www.ero-labs.com/adIframe/?code=promotion&amp;lang=zh&amp;adType=6&amp;gameId=27&amp;url=https://game.erolabsshare.live/app/70f4ab49/Cherry_Tale&amp;type=ad"}]'></div></div>
+<script>(function(){
+  function renderAd(el){
+    var list;try{list=JSON.parse(el.getAttribute("data-ad"));}catch(e){return;}
+    if(!list||!list.length)return;
+    var cw=el.clientWidth||(el.parentNode&&el.parentNode.clientWidth)||300;
+    list=list.slice().sort(function(a,b){return b.w-a.w;});
+    var pick=null,i;for(i=0;i<list.length;i++){if(list[i].w<=cw){pick=list[i];break;}}
+    if(!pick)pick=list[list.length-1];
+    var scale=Math.min(1,cw/pick.w);
+    if(el._w===pick.w&&Math.abs((el._s||0)-scale)<0.01)return;
+    el._w=pick.w;el._s=scale;
+    el.style.height=Math.round(pick.h*scale)+"px";
+    el.innerHTML='<iframe loading="lazy" frameborder="0" scrolling="no" src="'+pick.src+'" width="'+pick.w+'" height="'+pick.h+'" style="position:absolute;left:50%;top:0;transform:translateX(-50%) scale('+scale+');transform-origin:top center;border:0"></iframe>';
+  }
+  function renderAll(){[].slice.call(document.querySelectorAll(".ef-ad")).forEach(renderAd);}
+  if(document.readyState==="complete")renderAll();else window.addEventListener("load",renderAll);
+  var t;window.addEventListener("resize",function(){clearTimeout(t);t=setTimeout(renderAll,160);},{passive:true});
+  var bottom=document.getElementById("efAdBottom"),close=document.getElementById("efAdClose");
+  function syncBottom(){var on=window.matchMedia("(max-width:1119px)").matches&&bottom&&!bottom.classList.contains("closed");document.body.classList.toggle("ef-has-bottom",!!on);}
+  syncBottom();window.addEventListener("resize",syncBottom,{passive:true});
+  if(close)close.addEventListener("click",function(){bottom.classList.add("closed");document.body.classList.remove("ef-has-bottom");});
+})();</script>
+
+
+  <div class="backdrop" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <header>
+    <a href="/" class="home-link">Freesol</a>
+    <h1 data-i18n="title">Enemy Finder</h1>
+    <nav>
+      <button class="tab active" data-tab="collections" data-i18n="tabCollections">Collections</button>
+      <button class="tab" data-tab="search" data-i18n="tabSearch">Search</button>
+      <button class="tab" data-tab="stages" data-i18n="tabStages">All Stages</button>
+    </nav>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en"><span class="flag">🇺🇸</span></button>
+      <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span></button>
+      <button class="lang-btn" data-lang="ko"><span class="flag">🇰🇷</span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- SEARCH TAB -->
+    <section id="tab-search" class="tab-content">
+      <div class="search-bar">
+        <input type="text" id="enemy-search" placeholder="Search by name or #id..." data-i18n-placeholder="searchPlaceholder">
+      </div>
+      <div id="enemy-grid" class="enemy-grid"></div>
+      <div id="enemy-detail" class="enemy-detail hidden">
+        <button class="back-btn" onclick="closeDetail()" data-i18n="back">&larr; Back</button>
+        <div class="detail-header">
+          <img id="detail-img" src="" alt="">
+          <div>
+            <h2 id="detail-name"></h2>
+            <span id="detail-id" class="muted"></span>
+          </div>
+        </div>
+        <h3 data-i18n="appearsInStages">Appears in stages:</h3>
+        <div id="detail-stages" class="stage-list"></div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS TAB -->
+    <section id="tab-collections" class="tab-content active">
+      <div id="collections-list" class="collections-list"></div>
+    </section>
+
+    <!-- STAGES TAB -->
+    <section id="tab-stages" class="tab-content">
+      <div id="stages-list" class="stages-table"></div>
+    </section>
+  </main>
+
+  <div id="mode-toggle" class="mode-toggle">
+    <button class="mode-btn active" data-mode="collect" data-i18n="modeCollect">Collect</button>
+    <button class="mode-btn" data-mode="finder" data-i18n="modeFinder">Find</button>
+  </div>
+
+  <div id="selection-bar" class="selection-bar hidden">
+    <div class="selection-header">
+      <div class="selection-thumbs" id="selection-thumbs"></div>
+      <div class="selection-actions">
+        <span id="selection-count" class="selection-count"></span>
+        <button class="clear-all-btn" onclick="clearSelection()" data-i18n="clearAll">Clear All</button>
+      </div>
+    </div>
+    <div class="selection-stages" id="selection-stages"></div>
+  </div>
+
+  <script src="app.js?v=721b656b"></script>
+</body>
+</html>
