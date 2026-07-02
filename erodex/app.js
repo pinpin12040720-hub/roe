@@ -1395,3 +1395,6 @@ function edSetupBilingual(){
     bar.appendChild(btn);
   }
 }
+
+// 未鏡像 Spine 動畫資產 → 清空 SPINE_DATA，一律用靜態立繪，避免 spine/*/b.bin 404 輪詢
+try { Object.keys(SPINE_DATA).forEach(function(k){ delete SPINE_DATA[k]; }); } catch(e){}
