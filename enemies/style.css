@@ -1,0 +1,174 @@
+/* -------------------------------------------------- */
+/*  Design tokens (shared with rest of site)           */
+/* -------------------------------------------------- */
+:root {
+  --bg: #0a0c12;
+  --surface: #12151e;
+  --border: #1f2436;
+  --text: #c8cee0;
+  --text-dim: #6b7394;
+  --blue: #5b8af5;
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------------------------------------- */
+/*  Backdrop                                           */
+/* -------------------------------------------------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #1a1f30 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.3;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--blue), transparent 70%);
+  top: -10%; left: -5%;
+}
+
+.orb-2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #a06ef5, transparent 70%);
+  bottom: 10%; right: -5%;
+  animation-delay: -10s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(25px, -15px) scale(1.04); }
+  66%       { transform: translate(-15px, 10px) scale(0.96); }
+}
+
+/* -------------------------------------------------- */
+/*  Header                                             */
+/* -------------------------------------------------- */
+header {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(22, 26, 38, 0.95), rgba(18, 21, 30, 0.9));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.home-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+.home-link:visited { color: var(--text-dim); }
+.home-link:hover   { color: var(--blue); }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* -------------------------------------------------- */
+/*  Main                                               */
+/* -------------------------------------------------- */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* -------------------------------------------------- */
+/*  Portrait grid                                      */
+/* -------------------------------------------------- */
+.portrait-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+  padding: 12px;
+  align-items: end;
+}
+
+/* -------------------------------------------------- */
+/*  Portrait card                                      */
+/* -------------------------------------------------- */
+.portrait-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.portrait-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+.portrait-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 6px 6px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.82));
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+/* -------------------------------------------------- */
+/*  Responsive                                         */
+/* -------------------------------------------------- */
+@media (max-width: 480px) {
+  header { padding: 12px 16px; gap: 12px; }
+  h1 { font-size: 16px; }
+  .portrait-grid { gap: 6px; padding: 8px; }
+  .portrait-name { font-size: 11px; padding: 20px 4px 5px; }
+}

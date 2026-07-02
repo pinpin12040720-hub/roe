@@ -1,0 +1,4994 @@
+[
+  {
+    "id": 1,
+    "nameIndex": 880001,
+    "descIndex": 890001,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "valueMaxs": [
+      20.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ]
+  },
+  {
+    "id": 2,
+    "nameIndex": 880002,
+    "descIndex": 890002,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      10.0,
+      10.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      20.0,
+      20.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 3,
+    "nameIndex": 880003,
+    "descIndex": 890003,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "valueMaxs": [
+      20.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ]
+  },
+  {
+    "id": 4,
+    "nameIndex": 880004,
+    "descIndex": 890004,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      10.0,
+      10.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      20.0,
+      20.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 5,
+    "nameIndex": 880005,
+    "descIndex": 890005,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      20.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 6,
+    "nameIndex": 880006,
+    "descIndex": 890006,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      20.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 7,
+    "nameIndex": 880007,
+    "descIndex": 890007,
+    "type": "BlockDebuff",
+    "typeId": 7,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 8,
+    "nameIndex": 880008,
+    "descIndex": 890008,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      3.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      5.0
+    ]
+  },
+  {
+    "id": 9,
+    "nameIndex": 880009,
+    "descIndex": 890009,
+    "type": "BlockResurrection",
+    "typeId": 9,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 10,
+    "nameIndex": 880010,
+    "descIndex": 890010,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 101,
+    "nameIndex": 880101,
+    "descIndex": 890101,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 102,
+    "nameIndex": 880102,
+    "descIndex": 890102,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 103,
+    "nameIndex": 880103,
+    "descIndex": 890103,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 104,
+    "nameIndex": 880104,
+    "descIndex": 890104,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 105,
+    "nameIndex": 880105,
+    "descIndex": 890105,
+    "type": "Poison",
+    "typeId": 105,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 106,
+    "nameIndex": 880106,
+    "descIndex": 890106,
+    "type": "MechanicTargeting",
+    "typeId": 106,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 107,
+    "nameIndex": 880107,
+    "descIndex": 890107,
+    "type": "Charm",
+    "typeId": 107,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 108,
+    "nameIndex": 880108,
+    "descIndex": 890108,
+    "type": "AttributeCurseFire",
+    "typeId": 108,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 109,
+    "nameIndex": 880109,
+    "descIndex": 890109,
+    "type": "AttributeCurseWater",
+    "typeId": 109,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 110,
+    "nameIndex": 880110,
+    "descIndex": 890110,
+    "type": "AttributeCurseWind",
+    "typeId": 110,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 111,
+    "nameIndex": 880111,
+    "descIndex": 890111,
+    "type": "AttributeCurseLight",
+    "typeId": 111,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 112,
+    "nameIndex": 880112,
+    "descIndex": 890112,
+    "type": "AttributeCurseDark",
+    "typeId": 112,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 113,
+    "nameIndex": 880113,
+    "descIndex": 890113,
+    "type": "StrongTaunt",
+    "typeId": 113,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 114,
+    "nameIndex": 880114,
+    "descIndex": 890114,
+    "type": "WeakTaunt",
+    "typeId": 114,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 115,
+    "nameIndex": 880115,
+    "descIndex": 890115,
+    "type": "Chastisement",
+    "typeId": 115,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 116,
+    "nameIndex": 880116,
+    "descIndex": 890116,
+    "type": "116",
+    "typeId": 116,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      3.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      5.0
+    ]
+  },
+  {
+    "id": 117,
+    "nameIndex": 880117,
+    "descIndex": 890117,
+    "type": "117",
+    "typeId": 117,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ]
+  },
+  {
+    "id": 118,
+    "nameIndex": 880118,
+    "descIndex": 890118,
+    "type": "SkillGaugeGainUp",
+    "typeId": 118,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ]
+  },
+  {
+    "id": 1001,
+    "nameIndex": 881001,
+    "descIndex": 891001,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      7.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1002,
+    "nameIndex": 881002,
+    "descIndex": 891002,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      7.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1003,
+    "nameIndex": 881003,
+    "descIndex": 891003,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      3.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      7.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1004,
+    "nameIndex": 881004,
+    "descIndex": 891004,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1005,
+    "nameIndex": 881005,
+    "descIndex": 891005,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      9.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1006,
+    "nameIndex": 881006,
+    "descIndex": 891006,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      9.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1007,
+    "nameIndex": 881007,
+    "descIndex": 891007,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1008,
+    "nameIndex": 881008,
+    "descIndex": 891008,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1009,
+    "nameIndex": 881009,
+    "descIndex": 891009,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      9.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1010,
+    "nameIndex": 881010,
+    "descIndex": 891010,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1011,
+    "nameIndex": 881011,
+    "descIndex": 891011,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      4.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      6.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1012,
+    "nameIndex": 881012,
+    "descIndex": 891012,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1013,
+    "nameIndex": 881013,
+    "descIndex": 891013,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1014,
+    "nameIndex": 881014,
+    "descIndex": 891014,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1015,
+    "nameIndex": 881015,
+    "descIndex": 891015,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1016,
+    "nameIndex": 881016,
+    "descIndex": 891016,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1017,
+    "nameIndex": 881017,
+    "descIndex": 891017,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1018,
+    "nameIndex": 881018,
+    "descIndex": 891018,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      25.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1019,
+    "nameIndex": 881019,
+    "descIndex": 891019,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1020,
+    "nameIndex": 881020,
+    "descIndex": 891020,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1021,
+    "nameIndex": 881021,
+    "descIndex": 891021,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      9.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1022,
+    "nameIndex": 881022,
+    "descIndex": 891022,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      0.0,
+      30.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      50.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1023,
+    "nameIndex": 881023,
+    "descIndex": 891023,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      5.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      7.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1024,
+    "nameIndex": 881024,
+    "descIndex": 891024,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1025,
+    "nameIndex": 881025,
+    "descIndex": 891025,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      5.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      9.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1026,
+    "nameIndex": 881026,
+    "descIndex": 891026,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1027,
+    "nameIndex": 881027,
+    "descIndex": 891027,
+    "type": "BlockResurrection",
+    "typeId": 9,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1028,
+    "nameIndex": 881028,
+    "descIndex": 891028,
+    "type": "BlockDebuff",
+    "typeId": 7,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1029,
+    "nameIndex": 881029,
+    "descIndex": 891029,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      2.0
+    ]
+  },
+  {
+    "id": 1030,
+    "nameIndex": 881030,
+    "descIndex": 891030,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      5.0,
+      5.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      10.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1031,
+    "nameIndex": 881031,
+    "descIndex": 891031,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1032,
+    "nameIndex": 881032,
+    "descIndex": 891032,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      5.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1033,
+    "nameIndex": 881033,
+    "descIndex": 891033,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      80.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1034,
+    "nameIndex": 881034,
+    "descIndex": 891034,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      101.0,
+      102.0,
+      103.0,
+      3.0,
+      2.0
+    ],
+    "valueMaxs": [
+      101.0,
+      102.0,
+      103.0,
+      3.0,
+      4.0
+    ]
+  },
+  {
+    "id": 1035,
+    "nameIndex": 881035,
+    "descIndex": 891035,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      3.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      5.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1036,
+    "nameIndex": 881036,
+    "descIndex": 891036,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1037,
+    "nameIndex": 881037,
+    "descIndex": 891037,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      2.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      2.0
+    ]
+  },
+  {
+    "id": 1038,
+    "nameIndex": 881038,
+    "descIndex": 891038,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 9,
+    "valueMins": [
+      80.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1039,
+    "nameIndex": 881039,
+    "descIndex": 891039,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1040,
+    "nameIndex": 881040,
+    "descIndex": 891040,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      3.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1041,
+    "nameIndex": 881041,
+    "descIndex": 891041,
+    "type": "BlockDebuff",
+    "typeId": 7,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1042,
+    "nameIndex": 881042,
+    "descIndex": 891042,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 7,
+    "valueMins": [
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1043,
+    "nameIndex": 881043,
+    "descIndex": 891043,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      5.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      7.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1044,
+    "nameIndex": 881044,
+    "descIndex": 891044,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1045,
+    "nameIndex": 881045,
+    "descIndex": 891045,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      5.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1046,
+    "nameIndex": 881046,
+    "descIndex": 891046,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      20.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1047,
+    "nameIndex": 881047,
+    "descIndex": 891047,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      70.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      150.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1048,
+    "nameIndex": 881048,
+    "descIndex": 891048,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      6.0,
+      20.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      10.0,
+      40.0
+    ]
+  },
+  {
+    "id": 1049,
+    "nameIndex": 881049,
+    "descIndex": 891049,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      6.0,
+      0.0,
+      0.0,
+      0.0,
+      3.0
+    ],
+    "valueMaxs": [
+      6.0,
+      0.0,
+      0.0,
+      0.0,
+      3.0
+    ]
+  },
+  {
+    "id": 1050,
+    "nameIndex": 881050,
+    "descIndex": 891050,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1051,
+    "nameIndex": 881051,
+    "descIndex": 891051,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      7.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1052,
+    "nameIndex": 881052,
+    "descIndex": 891052,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      70.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1053,
+    "nameIndex": 881053,
+    "descIndex": 891053,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      101.0,
+      102.0,
+      103.0,
+      3.0,
+      1.0
+    ],
+    "valueMaxs": [
+      101.0,
+      102.0,
+      103.0,
+      3.0,
+      1.0
+    ]
+  },
+  {
+    "id": 1054,
+    "nameIndex": 881054,
+    "descIndex": 891054,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      6.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      9.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1055,
+    "nameIndex": 881055,
+    "descIndex": 891055,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1056,
+    "nameIndex": 881056,
+    "descIndex": 891056,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      6.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1057,
+    "nameIndex": 881057,
+    "descIndex": 891057,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1058,
+    "nameIndex": 881058,
+    "descIndex": 891058,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      30.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      50.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1059,
+    "nameIndex": 881059,
+    "descIndex": 891059,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      500.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      700.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1060,
+    "nameIndex": 881060,
+    "descIndex": 891060,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 7,
+    "valueMins": [
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1061,
+    "nameIndex": 881061,
+    "descIndex": 891061,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      20.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      30.0
+    ]
+  },
+  {
+    "id": 1062,
+    "nameIndex": 881062,
+    "descIndex": 891062,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      6.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1063,
+    "nameIndex": 881063,
+    "descIndex": 891063,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      7.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1064,
+    "nameIndex": 881064,
+    "descIndex": 891064,
+    "type": "BlockDebuff",
+    "typeId": 7,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1065,
+    "nameIndex": 881065,
+    "descIndex": 891065,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1066,
+    "nameIndex": 881066,
+    "descIndex": 891066,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      8.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1067,
+    "nameIndex": 881067,
+    "descIndex": 891067,
+    "type": "BlockResurrection",
+    "typeId": 9,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1068,
+    "nameIndex": 881068,
+    "descIndex": 891068,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  {
+    "id": 1069,
+    "nameIndex": 881069,
+    "descIndex": 891069,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      3.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1070,
+    "nameIndex": 881070,
+    "descIndex": 891070,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      6.0,
+      6.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      10.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1071,
+    "nameIndex": 881071,
+    "descIndex": 891071,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      4.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1072,
+    "nameIndex": 881072,
+    "descIndex": 891072,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 9,
+    "valueMins": [
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1073,
+    "nameIndex": 881073,
+    "descIndex": 891073,
+    "type": "Poison",
+    "typeId": 105,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      60.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1074,
+    "nameIndex": 881074,
+    "descIndex": 891074,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      36.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      44.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1075,
+    "nameIndex": 881075,
+    "descIndex": 891075,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      80.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1076,
+    "nameIndex": 881076,
+    "descIndex": 891076,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      1.0,
+      0.0,
+      2.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      3.0,
+      0.0,
+      4.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1077,
+    "nameIndex": 881077,
+    "descIndex": 891077,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1078,
+    "nameIndex": 881078,
+    "descIndex": 891078,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      8.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1079,
+    "nameIndex": 881079,
+    "descIndex": 891079,
+    "type": "BlockResurrection",
+    "typeId": 9,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1080,
+    "nameIndex": 881080,
+    "descIndex": 891080,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      60.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1081,
+    "nameIndex": 881081,
+    "descIndex": 891081,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1082,
+    "nameIndex": 881082,
+    "descIndex": 891082,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      25.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1083,
+    "nameIndex": 881083,
+    "descIndex": 891083,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      20.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1084,
+    "nameIndex": 881084,
+    "descIndex": 891084,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      120.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1085,
+    "nameIndex": 881085,
+    "descIndex": 891085,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      25.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1086,
+    "nameIndex": 881086,
+    "descIndex": 891086,
+    "type": "MechanicTargeting",
+    "typeId": 106,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1087,
+    "nameIndex": 881087,
+    "descIndex": 891087,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1088,
+    "nameIndex": 881088,
+    "descIndex": 891088,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      80.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1089,
+    "nameIndex": 881089,
+    "descIndex": 891089,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      80.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1090,
+    "nameIndex": 881090,
+    "descIndex": 891090,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      26.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      39.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1091,
+    "nameIndex": 881091,
+    "descIndex": 891091,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      25.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1092,
+    "nameIndex": 881092,
+    "descIndex": 891092,
+    "type": "Poison",
+    "typeId": 105,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      110.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1093,
+    "nameIndex": 881093,
+    "descIndex": 891093,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 7,
+    "valueMins": [
+      0.0,
+      0.0,
+      6.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      12.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1094,
+    "nameIndex": 881094,
+    "descIndex": 891094,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 7,
+    "valueMins": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      70.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1095,
+    "nameIndex": 881095,
+    "descIndex": 891095,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 3,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1096,
+    "nameIndex": 881096,
+    "descIndex": 891096,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      30.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1097,
+    "nameIndex": 881097,
+    "descIndex": 891097,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      200.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      400.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1098,
+    "nameIndex": 881098,
+    "descIndex": 891098,
+    "type": "AttributeCurseWater",
+    "typeId": 109,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      25.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1099,
+    "nameIndex": 881099,
+    "descIndex": 891099,
+    "type": "Charm",
+    "typeId": 107,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1100,
+    "nameIndex": 881100,
+    "descIndex": 891100,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1101,
+    "nameIndex": 881101,
+    "descIndex": 891101,
+    "type": "WeakTaunt",
+    "typeId": 114,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1102,
+    "nameIndex": 881102,
+    "descIndex": 891102,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      75.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      125.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1103,
+    "nameIndex": 881103,
+    "descIndex": 891103,
+    "type": "Chastisement",
+    "typeId": 115,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1104,
+    "nameIndex": 881104,
+    "descIndex": 891104,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 3,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1105,
+    "nameIndex": 881105,
+    "descIndex": 891105,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      3.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      5.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1106,
+    "nameIndex": 881106,
+    "descIndex": 891106,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      5.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      11.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1107,
+    "nameIndex": 881107,
+    "descIndex": 891107,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1108,
+    "nameIndex": 881108,
+    "descIndex": 891108,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      6.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      12.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1109,
+    "nameIndex": 881109,
+    "descIndex": 891109,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1110,
+    "nameIndex": 881110,
+    "descIndex": 891110,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      150.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      200.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1111,
+    "nameIndex": 881111,
+    "descIndex": 891111,
+    "type": "MechanicTargeting",
+    "typeId": 106,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1112,
+    "nameIndex": 881112,
+    "descIndex": 891112,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1113,
+    "nameIndex": 881113,
+    "descIndex": 891113,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      6.0,
+      20.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      10.0,
+      40.0
+    ]
+  },
+  {
+    "id": 1114,
+    "nameIndex": 881114,
+    "descIndex": 891114,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      9.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1115,
+    "nameIndex": 881115,
+    "descIndex": 891115,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1116,
+    "nameIndex": 881116,
+    "descIndex": 891116,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1117,
+    "nameIndex": 881117,
+    "descIndex": 891117,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      3.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      5.0
+    ]
+  },
+  {
+    "id": 1118,
+    "nameIndex": 881118,
+    "descIndex": 891118,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1119,
+    "nameIndex": 881119,
+    "descIndex": 891119,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1120,
+    "nameIndex": 881120,
+    "descIndex": 891120,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1121,
+    "nameIndex": 881121,
+    "descIndex": 891121,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1122,
+    "nameIndex": 881122,
+    "descIndex": 891122,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1123,
+    "nameIndex": 881123,
+    "descIndex": 891123,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1124,
+    "nameIndex": 881124,
+    "descIndex": 891124,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      30.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1125,
+    "nameIndex": 881125,
+    "descIndex": 891125,
+    "type": "117",
+    "typeId": 117,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      102.0,
+      104.0,
+      107.0,
+      114.0,
+      0.0
+    ],
+    "valueMaxs": [
+      102.0,
+      104.0,
+      107.0,
+      114.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1126,
+    "nameIndex": 881126,
+    "descIndex": 891126,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1127,
+    "nameIndex": 881127,
+    "descIndex": 891127,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      60.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1128,
+    "nameIndex": 881128,
+    "descIndex": 891128,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      6.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1129,
+    "nameIndex": 881129,
+    "descIndex": 891129,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1130,
+    "nameIndex": 881130,
+    "descIndex": 891130,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 3,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      2.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      4.0,
+      5.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1131,
+    "nameIndex": 881131,
+    "descIndex": 891131,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1132,
+    "nameIndex": 881132,
+    "descIndex": 891132,
+    "type": "IncreaseStat1",
+    "typeId": 1,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      3.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      7.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1133,
+    "nameIndex": 881133,
+    "descIndex": 891133,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1134,
+    "nameIndex": 881134,
+    "descIndex": 891134,
+    "type": "SkillGaugeGainUp",
+    "typeId": 118,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      60.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1135,
+    "nameIndex": 881135,
+    "descIndex": 891135,
+    "type": "DecreaseStat2",
+    "typeId": 4,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      5.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 1136,
+    "nameIndex": 881136,
+    "descIndex": 891136,
+    "type": "Charm",
+    "typeId": 107,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2001,
+    "nameIndex": 882001,
+    "descIndex": 892001,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      104.0,
+      103.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      104.0,
+      103.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2002,
+    "nameIndex": 882002,
+    "descIndex": 892002,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      104.0,
+      102.0,
+      101.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      104.0,
+      102.0,
+      101.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2003,
+    "nameIndex": 882003,
+    "descIndex": 892003,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      104.0,
+      102.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      104.0,
+      102.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2004,
+    "nameIndex": 882004,
+    "descIndex": 892004,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      104.0,
+      102.0,
+      105.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      104.0,
+      102.0,
+      105.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2005,
+    "nameIndex": 882005,
+    "descIndex": 892005,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      104.0,
+      102.0,
+      103.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      104.0,
+      102.0,
+      103.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2006,
+    "nameIndex": 882006,
+    "descIndex": 892006,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      101.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      101.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2007,
+    "nameIndex": 882007,
+    "descIndex": 892007,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      102.0,
+      101.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      102.0,
+      101.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2008,
+    "nameIndex": 882008,
+    "descIndex": 892008,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      102.0,
+      105.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      102.0,
+      105.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2009,
+    "nameIndex": 882009,
+    "descIndex": 892009,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      103.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      103.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2010,
+    "nameIndex": 882010,
+    "descIndex": 892010,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      103.0,
+      101.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      103.0,
+      101.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2011,
+    "nameIndex": 882011,
+    "descIndex": 892011,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      103.0,
+      101.0,
+      104.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      103.0,
+      101.0,
+      104.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2012,
+    "nameIndex": 882012,
+    "descIndex": 892012,
+    "type": "BlockHeal",
+    "typeId": 10,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      102.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      102.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2101,
+    "nameIndex": 882101,
+    "descIndex": 892101,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2102,
+    "nameIndex": 882102,
+    "descIndex": 892102,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2103,
+    "nameIndex": 882103,
+    "descIndex": 892103,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2104,
+    "nameIndex": 882104,
+    "descIndex": 892104,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2105,
+    "nameIndex": 882105,
+    "descIndex": 892105,
+    "type": "Poison",
+    "typeId": 105,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2106,
+    "nameIndex": 882106,
+    "descIndex": 892106,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2107,
+    "nameIndex": 882107,
+    "descIndex": 892107,
+    "type": "Poison",
+    "typeId": 105,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2108,
+    "nameIndex": 882108,
+    "descIndex": 892108,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2109,
+    "nameIndex": 882109,
+    "descIndex": 892109,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2110,
+    "nameIndex": 882110,
+    "descIndex": 892110,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 2,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2111,
+    "nameIndex": 882111,
+    "descIndex": 892111,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2112,
+    "nameIndex": 882112,
+    "descIndex": 892112,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2113,
+    "nameIndex": 882113,
+    "descIndex": 892113,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      101.0,
+      102.0,
+      103.0,
+      3.0,
+      2.0
+    ],
+    "valueMaxs": [
+      101.0,
+      102.0,
+      103.0,
+      3.0,
+      4.0
+    ]
+  },
+  {
+    "id": 2114,
+    "nameIndex": 882114,
+    "descIndex": 892114,
+    "type": "RemoveBuff",
+    "typeId": 8,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      3.0
+    ],
+    "valueMaxs": [
+      1.0,
+      2.0,
+      5.0,
+      6.0,
+      5.0
+    ]
+  },
+  {
+    "id": 2115,
+    "nameIndex": 881038,
+    "descIndex": 891038,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      30.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      35.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2116,
+    "nameIndex": 882116,
+    "descIndex": 892116,
+    "type": "BlockResurrection",
+    "typeId": 9,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2117,
+    "nameIndex": 882117,
+    "descIndex": 892117,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      45.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2118,
+    "nameIndex": 882118,
+    "descIndex": 892118,
+    "type": "BlockDebuff",
+    "typeId": 7,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 5,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2119,
+    "nameIndex": 882119,
+    "descIndex": 892119,
+    "type": "Burn",
+    "typeId": 101,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      15.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2120,
+    "nameIndex": 882120,
+    "descIndex": 892120,
+    "type": "Freeze",
+    "typeId": 102,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2121,
+    "nameIndex": 881008,
+    "descIndex": 891008,
+    "type": "DecreaseStat1",
+    "typeId": 3,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      9.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      15.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2122,
+    "nameIndex": 882122,
+    "descIndex": 892122,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      200.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      220.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2123,
+    "nameIndex": 882123,
+    "descIndex": 892123,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2124,
+    "nameIndex": 882124,
+    "descIndex": 892124,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2125,
+    "nameIndex": 882125,
+    "descIndex": 892125,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2126,
+    "nameIndex": 882126,
+    "descIndex": 892126,
+    "type": "Poison",
+    "typeId": 105,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2127,
+    "nameIndex": 882127,
+    "descIndex": 892127,
+    "type": "DotHeal",
+    "typeId": 5,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 10,
+    "valueMins": [
+      90.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 2128,
+    "nameIndex": 882128,
+    "descIndex": 892128,
+    "type": "IncreaseStat2",
+    "typeId": 2,
+    "accumulate": 0,
+    "castType": "Passive",
+    "castValue": 0,
+    "valueMins": [
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      20.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 3001,
+    "nameIndex": 883001,
+    "descIndex": 893001,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 10,
+    "valueMins": [
+      50.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      60.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 3002,
+    "nameIndex": 883002,
+    "descIndex": 893002,
+    "type": "Shield",
+    "typeId": 6,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 3,
+    "valueMins": [
+      0.0,
+      40.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      60.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 3003,
+    "nameIndex": 883003,
+    "descIndex": 893003,
+    "type": "Stun",
+    "typeId": 104,
+    "accumulate": 0,
+    "castType": "Turn",
+    "castValue": 1,
+    "valueMins": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "id": 3004,
+    "nameIndex": 883004,
+    "descIndex": 893004,
+    "type": "Bleed",
+    "typeId": 103,
+    "accumulate": 5,
+    "castType": "Turn",
+    "castValue": 4,
+    "valueMins": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "valueMaxs": [
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+]

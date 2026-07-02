@@ -1,0 +1,47 @@
+*{box-sizing:border-box}
+body{margin:0;background:#140c1c;color:#eee6f2;font-family:"Outfit","DM Sans",system-ui,"Microsoft JhengHei",sans-serif;line-height:1.6}
+a{color:#e79cc9}
+/* topbar（與其他 Ero Dorado 工具一致） */
+.ed-topbar{position:sticky;top:0;z-index:60;background:rgba(20,12,28,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.1);padding:6px 12px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+.ed-games{font-size:13px;font-weight:800;color:#cdb4e0;display:flex;align-items:center;gap:8px}
+.ed-games a{color:#e79cc9;text-decoration:none;padding:2px 8px;border-radius:8px;border:1px solid transparent}
+.ed-games a:hover{border-color:#e79cc9}
+.ed-games .cur{color:#fff;background:linear-gradient(120deg,#c23b8a,#7a4ec2);padding:2px 10px;border-radius:8px}
+.ed-tools{display:flex;flex-wrap:wrap;gap:4px;margin-left:auto}
+.ed-tools a{font-size:13px;font-weight:700;color:#cdb4e0;text-decoration:none;padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.14);white-space:nowrap;transition:.15s}
+.ed-tools a:hover{border-color:#e79cc9;color:#fff}
+.ed-tools a.cur{background:linear-gradient(120deg,#c23b8a,#7a4ec2);color:#fff;border-color:transparent}
+/* layout */
+.calc-wrap{max-width:1100px;margin:0 auto;padding:18px 16px 60px}
+h1{font-size:26px;font-weight:800;margin:8px 0 4px}
+h1 .tag{font-size:12px;background:linear-gradient(120deg,#c23b8a,#7a4ec2);color:#fff;padding:3px 9px;border-radius:999px;vertical-align:middle;margin-left:6px}
+.sub{color:#b6a7c6;font-size:13.5px;margin:0 0 18px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:#1d1329;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 18px}
+.panel.wide{grid-column:1/-1}
+.panel h2{font-size:16px;margin:0 0 12px;color:#e79cc9}
+#char-search,.fields input,.fields select{width:100%;background:#140c1c;border:1px solid rgba(255,255,255,.16);color:#eee6f2;border-radius:9px;padding:8px 11px;font-size:14px}
+.char-list{max-height:340px;overflow:auto;margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.char-chip{cursor:pointer;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 4px;text-align:center;background:#140c1c;transition:.15s}
+.char-chip:hover{border-color:#e79cc9}
+.char-chip.active{border-color:transparent;background:linear-gradient(120deg,#c23b8a,#7a4ec2)}
+.char-chip img{width:56px;height:56px;object-fit:cover;object-position:top center;border-radius:8px;display:block;margin:0 auto 4px}
+.char-chip .nm{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.char-chip .rr{font-size:10px;color:#cdb4e0}
+.picked{font-size:14px;margin-bottom:12px;padding:10px 12px;background:#140c1c;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.picked b{color:#fff}
+.picked .stats{color:#b6a7c6;font-size:12.5px;margin-top:4px;font-variant-numeric:tabular-nums}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fields label{font-size:12.5px;color:#b6a7c6;display:flex;flex-direction:column;gap:4px}
+.formula{font-size:11.5px;color:#8f80a4;margin-top:12px;line-height:1.7;border-top:1px dashed rgba(255,255,255,.14);padding-top:10px}
+.skill-out{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.skill{background:#140c1c;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px}
+.skill .sn{font-weight:700;font-size:14.5px}
+.skill .sm{font-size:12px;color:#cdb4e0;margin:3px 0 8px}
+.skill .row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px dashed rgba(255,255,255,.1)}
+.skill .row b{font-variant-numeric:tabular-nums}
+.skill .big{color:#ffb37a;font-weight:800}
+.skill .nonatk{color:#8f80a4;font-size:12px}
+.muted,.credit{color:#8f80a4;font-size:12.5px}
+.credit{margin-top:22px;text-align:center}
+@media(max-width:760px){.calc-grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr 1fr}}

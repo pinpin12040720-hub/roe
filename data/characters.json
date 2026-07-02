@@ -1,0 +1,2119 @@
+[
+  {
+    "id": 1101,
+    "nameIndex": 1101,
+    "skinId": 110101,
+    "class": "Supporter",
+    "boneStar": 1,
+    "element": "Fire",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 621.0,
+      "DEF": 108.0,
+      "HP": 1680.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 1101,
+    "skillIds": [
+      11011,
+      11012,
+      11013,
+      11014
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1102,
+    "nameIndex": 1102,
+    "skinId": 110201,
+    "class": "Defender",
+    "boneStar": 1,
+    "element": "Water",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 414.0,
+      "DEF": 120.0,
+      "HP": 2730.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 1102,
+    "skillIds": [
+      11021,
+      11022,
+      11023,
+      11024
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1103,
+    "nameIndex": 1103,
+    "skinId": 110301,
+    "class": "Supporter",
+    "boneStar": 1,
+    "element": "Water",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 621.0,
+      "DEF": 108.0,
+      "HP": 1680.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 1103,
+    "skillIds": [
+      11031,
+      11032,
+      11033,
+      11034
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1104,
+    "nameIndex": 1104,
+    "skinId": 110401,
+    "class": "Fighter",
+    "boneStar": 1,
+    "element": "Wind",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 690.0,
+      "DEF": 120.0,
+      "HP": 2100.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 1104,
+    "skillIds": [
+      11041,
+      11042,
+      11043,
+      11044
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1105,
+    "nameIndex": 1105,
+    "skinId": 110501,
+    "class": "Defender",
+    "boneStar": 1,
+    "element": "Fire",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 414.0,
+      "DEF": 120.0,
+      "HP": 2730.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 1105,
+    "skillIds": [
+      11051,
+      11052,
+      11053,
+      11054
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1106,
+    "nameIndex": 1106,
+    "skinId": 110601,
+    "class": "Healer",
+    "boneStar": 1,
+    "element": "Water",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 552.0,
+      "DEF": 96.0,
+      "HP": 1890.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 1106,
+    "skillIds": [
+      11061,
+      11062,
+      11063,
+      11064
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1107,
+    "nameIndex": 1107,
+    "skinId": 110701,
+    "class": "Supporter",
+    "boneStar": 1,
+    "element": "Wind",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 621.0,
+      "DEF": 108.0,
+      "HP": 1680.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 1107,
+    "skillIds": [
+      11071,
+      11072,
+      11073,
+      11074
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 1108,
+    "nameIndex": 1108,
+    "skinId": 110801,
+    "class": "Assassin",
+    "boneStar": 1,
+    "element": "Wind",
+    "rarity": 60,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 96.0,
+      "HP": 1680.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 98.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 1108,
+    "skillIds": [
+      11081,
+      11082,
+      11083,
+      11084
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2101,
+    "nameIndex": 2101,
+    "skinId": 210101,
+    "class": "Healer",
+    "boneStar": 2,
+    "element": "Water",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 736.0,
+      "DEF": 128.0,
+      "HP": 2520.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 2101,
+    "skillIds": [
+      21011,
+      21012,
+      21013,
+      21014
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2102,
+    "nameIndex": 2102,
+    "skinId": 210201,
+    "class": "Fighter",
+    "boneStar": 2,
+    "element": "Wind",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 920.0,
+      "DEF": 160.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 2102,
+    "skillIds": [
+      21021,
+      21022,
+      21023,
+      21024
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2103,
+    "nameIndex": 2103,
+    "skinId": 210301,
+    "class": "Healer",
+    "boneStar": 2,
+    "element": "Wind",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 736.0,
+      "DEF": 128.0,
+      "HP": 2520.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 2103,
+    "skillIds": [
+      21031,
+      21032,
+      21033,
+      21034
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2104,
+    "nameIndex": 2104,
+    "skinId": 210401,
+    "class": "Fighter",
+    "boneStar": 2,
+    "element": "Fire",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 920.0,
+      "DEF": 160.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 2104,
+    "skillIds": [
+      21041,
+      21042,
+      21043,
+      21044
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2105,
+    "nameIndex": 2105,
+    "skinId": 210501,
+    "class": "Assassin",
+    "boneStar": 2,
+    "element": "Dark",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 128.0,
+      "HP": 2240.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 98.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 2105,
+    "skillIds": [
+      21051,
+      21052,
+      21053,
+      21054
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2106,
+    "nameIndex": 2106,
+    "skinId": 210601,
+    "class": "Defender",
+    "boneStar": 2,
+    "element": "Water",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 552.0,
+      "DEF": 160.0,
+      "HP": 3640.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 2106,
+    "skillIds": [
+      21061,
+      21062,
+      21063,
+      21064
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2107,
+    "nameIndex": 2107,
+    "skinId": 210701,
+    "class": "Fighter",
+    "boneStar": 2,
+    "element": "Fire",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 920.0,
+      "DEF": 160.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 2107,
+    "skillIds": [
+      21071,
+      21072,
+      21073,
+      21074
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 2108,
+    "nameIndex": 2108,
+    "skinId": 210801,
+    "class": "Assassin",
+    "boneStar": 2,
+    "element": "Light",
+    "rarity": 80,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 128.0,
+      "HP": 2240.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 98.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 2108,
+    "skillIds": [
+      21081,
+      21082,
+      21083,
+      21084
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3101,
+    "nameIndex": 3101,
+    "skinId": 310101,
+    "class": "Defender",
+    "boneStar": 3,
+    "element": "Wind",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 690.0,
+      "DEF": 200.0,
+      "HP": 4550.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 3101,
+    "skillIds": [
+      31011,
+      31012,
+      31013,
+      31014
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3102,
+    "nameIndex": 3102,
+    "skinId": 310201,
+    "class": "Defender",
+    "boneStar": 3,
+    "element": "Fire",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 690.0,
+      "DEF": 200.0,
+      "HP": 4550.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 3102,
+    "skillIds": [
+      31021,
+      31022,
+      31023,
+      31024
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3103,
+    "nameIndex": 3103,
+    "skinId": 310301,
+    "class": "Fighter",
+    "boneStar": 3,
+    "element": "Wind",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1150.0,
+      "DEF": 200.0,
+      "HP": 3500.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 3103,
+    "skillIds": [
+      31031,
+      31032,
+      31033,
+      31034
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3104,
+    "nameIndex": 3104,
+    "skinId": 310401,
+    "class": "Assassin",
+    "boneStar": 3,
+    "element": "Water",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 160.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 98.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 3104,
+    "skillIds": [
+      31041,
+      31042,
+      31043,
+      31044
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3105,
+    "nameIndex": 3105,
+    "skinId": 310501,
+    "class": "Healer",
+    "boneStar": 3,
+    "element": "Water",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 920.0,
+      "DEF": 160.0,
+      "HP": 3150.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 3105,
+    "skillIds": [
+      31051,
+      31052,
+      31053,
+      31054
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3106,
+    "nameIndex": 3106,
+    "skinId": 310601,
+    "class": "Fighter",
+    "boneStar": 3,
+    "element": "Fire",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1150.0,
+      "DEF": 200.0,
+      "HP": 3500.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 3106,
+    "skillIds": [
+      31061,
+      31062,
+      31063,
+      31064
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3107,
+    "nameIndex": 3107,
+    "skinId": 310701,
+    "class": "Assassin",
+    "boneStar": 3,
+    "element": "Light",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 160.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 98.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 3107,
+    "skillIds": [
+      31071,
+      31072,
+      31073,
+      31074
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3108,
+    "nameIndex": 3108,
+    "skinId": 310801,
+    "class": "Fighter",
+    "boneStar": 3,
+    "element": "Dark",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1150.0,
+      "DEF": 200.0,
+      "HP": 3500.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 3108,
+    "skillIds": [
+      31081,
+      31082,
+      31083,
+      31084
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3109,
+    "nameIndex": 3109,
+    "skinId": 310901,
+    "class": "Fighter",
+    "boneStar": 3,
+    "element": "Water",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1150.0,
+      "DEF": 200.0,
+      "HP": 3500.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 100.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 3109,
+    "skillIds": [
+      31091,
+      31092,
+      31093,
+      31094
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3110,
+    "nameIndex": 3110,
+    "skinId": 311001,
+    "class": "Supporter",
+    "boneStar": 3,
+    "element": "Water",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1035.0,
+      "DEF": 180.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 3110,
+    "skillIds": [
+      31101,
+      31102,
+      31103,
+      31104
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3111,
+    "nameIndex": 3111,
+    "skinId": 311101,
+    "class": "Assassin",
+    "boneStar": 3,
+    "element": "Fire",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 160.0,
+      "HP": 2800.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 98.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 3111,
+    "skillIds": [
+      31111,
+      31112,
+      31113,
+      31114
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 3112,
+    "nameIndex": 3112,
+    "skinId": 311201,
+    "class": "Healer",
+    "boneStar": 3,
+    "element": "Wind",
+    "rarity": 100,
+    "baseStats": {
+      "ATK": 920.0,
+      "DEF": 160.0,
+      "HP": 3150.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 3112,
+    "skillIds": [
+      31121,
+      31122,
+      31123,
+      31124
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4101,
+    "nameIndex": 4101,
+    "skinId": 410101,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 4101,
+    "skillIds": [
+      41011,
+      41012,
+      41013,
+      41014
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4102,
+    "nameIndex": 4102,
+    "skinId": 410201,
+    "class": "Healer",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 192.0,
+      "HP": 3780.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 4102,
+    "skillIds": [
+      41021,
+      41022,
+      41023,
+      41024
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4103,
+    "nameIndex": 4103,
+    "skinId": 410301,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 4103,
+    "skillIds": [
+      41031,
+      41032,
+      41033,
+      41034
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4104,
+    "nameIndex": 4104,
+    "skinId": 410401,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 4104,
+    "skillIds": [
+      41041,
+      41042,
+      41043,
+      41044
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4105,
+    "nameIndex": 4105,
+    "skinId": 410501,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4105,
+    "skillIds": [
+      41051,
+      41052,
+      41053,
+      41054
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4106,
+    "nameIndex": 4106,
+    "skinId": 410601,
+    "class": "Healer",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 192.0,
+      "HP": 3780.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 4106,
+    "skillIds": [
+      41061,
+      41062,
+      41063,
+      41064
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4107,
+    "nameIndex": 4107,
+    "skinId": 410701,
+    "class": "Healer",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 192.0,
+      "HP": 3780.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 4107,
+    "skillIds": [
+      41071,
+      41072,
+      41073,
+      41074
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4108,
+    "nameIndex": 4108,
+    "skinId": 410801,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 4108,
+    "skillIds": [
+      41081,
+      41082,
+      41083,
+      41084
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4109,
+    "nameIndex": 4109,
+    "skinId": 410901,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4109,
+    "skillIds": [
+      41091,
+      41092,
+      41093,
+      41094
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4110,
+    "nameIndex": 4110,
+    "skinId": 411001,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 4110,
+    "skillIds": [
+      41101,
+      41102,
+      41103,
+      41104
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "limited"
+  },
+  {
+    "id": 4111,
+    "nameIndex": 4111,
+    "skinId": 411101,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4111,
+    "skillIds": [
+      41111,
+      41112,
+      41113,
+      41114
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4112,
+    "nameIndex": 4112,
+    "skinId": 411201,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 4112,
+    "skillIds": [
+      41121,
+      41122,
+      41123,
+      41124
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4113,
+    "nameIndex": 4113,
+    "skinId": 411301,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 4113,
+    "skillIds": [
+      41131,
+      41132,
+      41133,
+      41134
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4114,
+    "nameIndex": 4114,
+    "skinId": 411401,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 4114,
+    "skillIds": [
+      41141,
+      41142,
+      41143,
+      41144
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4115,
+    "nameIndex": 4115,
+    "skinId": 411501,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 4115,
+    "skillIds": [
+      41151,
+      41152,
+      41153,
+      41154
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4116,
+    "nameIndex": 4116,
+    "skinId": 411601,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4116,
+    "skillIds": [
+      41161,
+      41162,
+      41163,
+      41164
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4117,
+    "nameIndex": 4117,
+    "skinId": 411701,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 4117,
+    "skillIds": [
+      41171,
+      41172,
+      41173,
+      41174
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4118,
+    "nameIndex": 4118,
+    "skinId": 411801,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 4118,
+    "skillIds": [
+      41181,
+      41182,
+      41183,
+      41184
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4119,
+    "nameIndex": 4119,
+    "skinId": 411901,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 4119,
+    "skillIds": [
+      41191,
+      41192,
+      41193,
+      41194
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "limited"
+  },
+  {
+    "id": 4120,
+    "nameIndex": 4120,
+    "skinId": 412001,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 4120,
+    "skillIds": [
+      41201,
+      41202,
+      41203,
+      41204
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "limited"
+  },
+  {
+    "id": 4121,
+    "nameIndex": 4121,
+    "skinId": 412101,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 4121,
+    "skillIds": [
+      41211,
+      41212,
+      41213,
+      41214
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4122,
+    "nameIndex": 4122,
+    "skinId": 412201,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4122,
+    "skillIds": [
+      41221,
+      41222,
+      41223,
+      41224
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4123,
+    "nameIndex": 4123,
+    "skinId": 412301,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4123,
+    "skillIds": [
+      41231,
+      41232,
+      41233,
+      41234
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "limited"
+  },
+  {
+    "id": 4124,
+    "nameIndex": 4124,
+    "skinId": 412401,
+    "class": "Healer",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 192.0,
+      "HP": 3780.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 4124,
+    "skillIds": [
+      41241,
+      41242,
+      41243,
+      41244
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4125,
+    "nameIndex": 4125,
+    "skinId": 412501,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4125,
+    "skillIds": [
+      41251,
+      41252,
+      41253,
+      41254
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4128,
+    "nameIndex": 4128,
+    "skinId": 412801,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 4128,
+    "skillIds": [
+      41281,
+      41282,
+      41283,
+      41284
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 4154,
+    "nameIndex": 4154,
+    "skinId": 415401,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 4154,
+    "skillIds": [
+      41541,
+      41542,
+      41543,
+      41544
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4155,
+    "nameIndex": 4155,
+    "skinId": 415501,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 4155,
+    "skillIds": [
+      41551,
+      41552,
+      41553,
+      41554
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4157,
+    "nameIndex": 4157,
+    "skinId": 415701,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 4157,
+    "skillIds": [
+      41571,
+      41572,
+      41573,
+      41574
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "special"
+  },
+  {
+    "id": 4158,
+    "nameIndex": 4158,
+    "skinId": 415801,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 4158,
+    "skillIds": [
+      41581,
+      41582,
+      41583,
+      41584
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "pickup"
+  },
+  {
+    "id": 7101,
+    "nameIndex": 7101,
+    "skinId": 710101,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 7101,
+    "skillIds": [
+      71011,
+      71012,
+      71013,
+      71014
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7102,
+    "nameIndex": 7102,
+    "skinId": 710201,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 7102,
+    "skillIds": [
+      71021,
+      71022,
+      71023,
+      71024
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7103,
+    "nameIndex": 7103,
+    "skinId": 710301,
+    "class": "Healer",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1104.0,
+      "DEF": 192.0,
+      "HP": 3780.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 103.0,
+      "DDG": 200.0,
+      "ACC": 400.0
+    },
+    "statGrowthId": 7103,
+    "skillIds": [
+      71031,
+      71032,
+      71033,
+      71034
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7104,
+    "nameIndex": 7104,
+    "skinId": 710401,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Wind",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 95.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 7104,
+    "skillIds": [
+      71041,
+      71042,
+      71043,
+      71044
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7105,
+    "nameIndex": 7105,
+    "skinId": 710501,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 7105,
+    "skillIds": [
+      71051,
+      71052,
+      71053,
+      71054
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7106,
+    "nameIndex": 7106,
+    "skinId": 710601,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 7106,
+    "skillIds": [
+      71061,
+      71062,
+      71063,
+      71064
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7107,
+    "nameIndex": 7107,
+    "skinId": 710701,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 7107,
+    "skillIds": [
+      71071,
+      71072,
+      71073,
+      71074
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  },
+  {
+    "id": 7108,
+    "nameIndex": 7108,
+    "skinId": 710801,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 7108,
+    "skillIds": [
+      71081,
+      71082,
+      71083,
+      71084
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "limited"
+  },
+  {
+    "id": 7109,
+    "nameIndex": 7109,
+    "skinId": 710901,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 7109,
+    "skillIds": [
+      71091,
+      71092,
+      71093,
+      71094
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "limited"
+  },
+  {
+    "id": 7110,
+    "nameIndex": 7110,
+    "skinId": 711001,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 7110,
+    "skillIds": [
+      71101,
+      71102,
+      71103,
+      71104
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "event"
+  },
+  {
+    "id": 7111,
+    "nameIndex": 7111,
+    "skinId": 711101,
+    "class": "Defender",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 828.0,
+      "DEF": 240.0,
+      "HP": 5460.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 102.0,
+      "DDG": 300.0,
+      "ACC": 300.0
+    },
+    "statGrowthId": 7111,
+    "skillIds": [
+      71111,
+      71112,
+      71113,
+      71114
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "trial"
+  },
+  {
+    "id": 7116,
+    "nameIndex": 7116,
+    "skinId": 711601,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Fire",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 7116,
+    "skillIds": [
+      71161,
+      71162,
+      71163,
+      71164
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "raid"
+  },
+  {
+    "id": 7117,
+    "nameIndex": 7117,
+    "skinId": 711701,
+    "class": "Assassin",
+    "boneStar": 4,
+    "element": "Dark",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1656.0,
+      "DEF": 192.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 99.0,
+      "DDG": 700.0,
+      "ACC": 250.0
+    },
+    "statGrowthId": 7117,
+    "skillIds": [
+      71171,
+      71172,
+      71173,
+      71174
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "raid"
+  },
+  {
+    "id": 7119,
+    "nameIndex": 7119,
+    "skinId": 711901,
+    "class": "Fighter",
+    "boneStar": 4,
+    "element": "Water",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1380.0,
+      "DEF": 240.0,
+      "HP": 4200.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 101.0,
+      "DDG": 500.0,
+      "ACC": 350.0
+    },
+    "statGrowthId": 7119,
+    "skillIds": [
+      71191,
+      71192,
+      71193,
+      71194
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "event"
+  },
+  {
+    "id": 7120,
+    "nameIndex": 7120,
+    "skinId": 712001,
+    "class": "Supporter",
+    "boneStar": 4,
+    "element": "Light",
+    "rarity": 120,
+    "baseStats": {
+      "ATK": 1242.0,
+      "DEF": 216.0,
+      "HP": 3360.0,
+      "CRI": 300.0,
+      "CRI_DMG": 12500.0,
+      "SPD": 104.0,
+      "DDG": 600.0,
+      "ACC": 500.0
+    },
+    "statGrowthId": 7120,
+    "skillIds": [
+      71201,
+      71202,
+      71203,
+      71204
+    ],
+    "isDark": false,
+    "collectionRate": 0,
+    "bannerType": "seasonal"
+  }
+]
