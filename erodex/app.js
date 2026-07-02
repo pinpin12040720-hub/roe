@@ -2,6 +2,7 @@
 
 let characters = [];
 let strings = {};
+window.__LANG = (function(){ try { return localStorage.getItem('ed-lang') || 'zh'; } catch(e){ return 'zh'; } })();
 let skillMap = {};
 let buffMap = {};
 let charTags = {};  // charId -> { buffs: Set, debuffs: Set }
@@ -99,21 +100,28 @@ const BANNER_TYPE_LABELS = { pickup: 'Pick Up', limited: 'Limited', special: 'Sp
 // ─── Data Loading ───────────────────────────────────────────────────
 
 async function loadData() {
-  const [charsData, stringsData, skillsData, buffsData] = await Promise.all([
+  const [charsData, stringsData, skillsData, buffsData, zhData] = await Promise.all([
     fetch('../data/characters.json?v=2').then(r => r.json()),
     fetch('../data/strings.json?v=2').then(r => r.json()),
     fetch('../data/skills.json?v=2').then(r => r.json()),
     fetch('../data/skill_buffs.json?v=2').then(r => r.json()),
+    fetch('../data/strings_zh.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
   ]);
 
   characters = charsData;
-  strings = stringsData;
+  window.__EN = stringsData;
+  window.__ZH = zhData || {};
+  // strings 依 __LANG 回傳中/英：中文缺該條則退回英文（角色名無中譯故保留羅馬拼音）
+  strings = new Proxy({}, { get: function(_, p){
+    return (window.__LANG === 'zh' && window.__ZH[p] != null) ? window.__ZH[p] : window.__EN[p];
+  }});
   skillsData.forEach(s => skillMap[s.id] = s);
   buffsData.forEach(b => buffMap[b.id] = b);
 
   buildCharTags();
   buildTagFilters();
   render();
+  edSetupBilingual();
 }
 
 // ─── Tag System ─────────────────────────────────────────────────────
@@ -856,7 +864,9 @@ var DESC_OVERRIDES = {
 };
 
 function formatSkillDesc(skill) {
-  let desc = DESC_OVERRIDES[skill.id] || strings[skill.descIndex] || '';
+  let desc = (window.__LANG === 'zh' && window.__ZH['OV' + skill.id])
+    ? window.__ZH['OV' + skill.id]
+    : (DESC_OVERRIDES[skill.id] || strings[skill.descIndex] || '');
   for (let i = 0; i < 5; i++) {
     // Show all three skill levels as "level1/level2/level3", matching the buff/debuff
     // section. Level 1 = valueMins, level 3 = valueMaxs, level 2 = linear midpoint (floored).
@@ -1045,6 +1055,7 @@ function buildSkillsSection(c) {
 }
 
 function openDetail(c) {
+  window.__curChar = c;
   const overlay = document.getElementById('detail-overlay');
   const content = document.getElementById('detail-content');
   content.replaceChildren();
@@ -1330,3 +1341,57 @@ function createTunedSpinePlayer(charId, viewport) {
 // ─── Init ───────────────────────────────────────────────────────────
 
 loadData();
+
+// ─── 中/EN 雙語切換（後加） ──────────────────────────────────────────
+var ED_CH = {
+  "All":"全部","Fire":"火","Water":"水","Wind":"風","Light":"光","Dark":"暗",
+  "Fighter":"鬥士","Defender":"防禦","Supporter":"輔助","Assassin":"刺客","Healer":"治療",
+  "Buff Tags":"增益標籤","Debuff Tags":"減益標籤","Sort":"排序",
+  "Name":"名稱","Element":"元素","Class":"職業","Rarity":"稀有度","ID":"編號",
+  "No characters match your filters.":"沒有符合條件的角色。"
+};
+var ED_ORIG = new WeakMap();
+function edWalk(){
+  var zh = window.__LANG === 'zh';
+  var roots = ['toolbar','empty-state','sort-label','results-count'].map(function(id){return document.getElementById(id);}).filter(Boolean);
+  roots.forEach(function(root){
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n;
+    while (n = w.nextNode()){
+      if (!ED_ORIG.has(n)){ var t = n.nodeValue.trim(); if(!t) continue; ED_ORIG.set(n, t); }
+      var en = ED_ORIG.get(n); if(!en) continue;
+      var to = zh ? (ED_CH[en] || en) : en;
+      if (n.nodeValue.trim() !== to) n.nodeValue = n.nodeValue.replace(n.nodeValue.trim(), to);
+    }
+  });
+  var s = document.getElementById('search');
+  if (s){ if(!s.dataset.enph) s.dataset.enph = s.placeholder || ''; s.placeholder = zh ? '以名稱搜尋…' : s.dataset.enph; }
+  document.documentElement.lang = zh ? 'zh-Hant' : 'en';
+}
+function edSetupBilingual(){
+  // 包住 render，使每次重繪後同步翻譯 chrome
+  if (!window.__renderWrapped && typeof render === 'function'){
+    var _r = render;
+    render = function(){ _r.apply(this, arguments); edWalk(); };
+    window.__renderWrapped = true;
+  }
+  edWalk();
+  // 語言切換鈕（放進頂部導覽列）
+  var bar = document.querySelector('.ed-topbar') || document.querySelector('header');
+  if (bar && !document.getElementById('ed-lang-btn')){
+    var btn = document.createElement('button');
+    btn.id = 'ed-lang-btn';
+    btn.type = 'button';
+    btn.style.cssText = 'margin-left:8px;font-size:13px;font-weight:800;color:#fff;background:linear-gradient(120deg,#c23b8a,#7a4ec2);border:none;border-radius:999px;padding:5px 13px;cursor:pointer';
+    btn.textContent = window.__LANG === 'zh' ? 'EN' : '中';
+    btn.addEventListener('click', function(){
+      window.__LANG = (window.__LANG === 'zh') ? 'en' : 'zh';
+      try { localStorage.setItem('ed-lang', window.__LANG); } catch(e){}
+      btn.textContent = window.__LANG === 'zh' ? 'EN' : '中';
+      edWalk();
+      render();
+      var ov = document.getElementById('detail-overlay');
+      if (window.__curChar && ov && !ov.classList.contains('hidden')) openDetail(window.__curChar);
+    });
+    bar.appendChild(btn);
+  }
+}

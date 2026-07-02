@@ -1,5 +1,5 @@
 (async () => {
-  const res  = await fetch('/enemyfinder/data/enemies.json');
+  const res  = await fetch('../enemyfinder/data/enemies.json');
   const data = await res.json();
   const grid = document.getElementById('portrait-grid');
 
@@ -15,13 +15,14 @@
     card.className = 'portrait-card';
 
     const portrait = document.createElement('img');
-    portrait.src    = `/enemies/portraits/portrait_${numId}.webp`;
-    portrait.alt    = enemy.name;
+    portrait.src    = `portraits/portrait_${numId}.webp`;
+    portrait.alt    = enemy.name_zh || enemy.name;
     portrait.draggable = false;
+    portrait.loading = 'lazy';
 
     const label = document.createElement('figcaption');
     label.className   = 'portrait-name';
-    label.textContent = enemy.name;
+    label.textContent = enemy.name_zh || enemy.name;
 
     card.append(portrait, label);
     grid.appendChild(card);
