@@ -187,12 +187,12 @@
       '<h1>星慾姬絆 繁體中文 Wiki</h1>' +
       '<p>Stellar Affinity 完整攻略資料庫，共 ' +
       total +
-      ' 篇。全部內容已翻譯為繁體中文，並移除原站的廣告與跳轉腳本，可完全離線閱讀。</p>' +
+      ' 篇。全部內容已翻譯為繁體中文，並移除原站的廣告與跳轉腳本，不含任何第三方腳本。</p>' +
       '</div>'
 
     html +=
       '<div class="notice">' +
-      '<strong>關於這份離線版：</strong>內容譯自 stellaraffinity.wiki 的公開頁面，僅供個人閱讀。' +
+      '<strong>關於這份中文版：</strong>內容譯自 stellaraffinity.wiki 的公開頁面，僅供個人閱讀。' +
       '原站嵌入的廣告聯播網腳本（會造成強制跳轉與假防毒推播）已在建置階段完全剝除，站內不含任何第三方腳本、追蹤碼或 iframe。' +
       '遊戲數值可能隨版本改動，實際請以遊戲內為準。' +
       '</div>'
@@ -253,7 +253,7 @@
 
     document.getElementById('content').innerHTML = html
     document.getElementById('toc').innerHTML = ''
-    document.title = '星慾姬絆 繁中 Wiki — 本地離線版'
+    document.title = '星慾姬絆 繁中 Wiki'
   }
 
   /* ---------------- 內容頁 ---------------- */
