@@ -21,6 +21,7 @@
     { key: 'codes', title: '兌換碼', icon: '🎁', desc: '可用兌換碼與使用方式' },
     { key: 'tools', title: '實用工具', icon: '🧮', desc: '檢查清單與規劃器' },
     { key: 'review', title: '遊戲評測', icon: '⭐', desc: '整體評價與值不值得玩' },
+    { key: 'about', title: '遊戲資訊', icon: 'ℹ️', desc: '開發商、平台、語言與名稱對照' },
   ]
 
   function sectionOf(slug) {
@@ -137,6 +138,40 @@
         case 'callout':
           html += '<div class="callout">' + inline(b.text) + '</div>'
           break
+        case 'image':
+          html +=
+            '<figure class="fig' +
+            (b.wide ? ' fig-wide' : '') +
+            '"><img src="' +
+            esc(b.src) +
+            '" alt="' +
+            esc(b.alt || '') +
+            '" loading="lazy" decoding="async">' +
+            (b.caption ? '<figcaption>' + inline(b.caption) + '</figcaption>' : '') +
+            '</figure>'
+          break
+        case 'charcard':
+          html +=
+            '<div class="charcard">' +
+            '<div class="charcard-art"><img src="' + esc(b.image) + '" alt="' + esc(b.name) +
+            '" loading="lazy" decoding="async"></div>' +
+            '<div class="charcard-body">' +
+            '<div class="charcard-names">' +
+            '<span class="charcard-name">' + esc(b.name) + '</span>' +
+            (b.role ? '<span class="charcard-role">' + esc(b.role) + '</span>' : '') +
+            '</div>' +
+            '<div class="charcard-alias">' +
+            (b.nameEn ? '<span>EN&nbsp;' + esc(b.nameEn) + '</span>' : '') +
+            (b.nameJa ? '<span>JA&nbsp;' + esc(b.nameJa) + '</span>' : '') +
+            '</div>' +
+            (b.desc ? '<p class="charcard-desc">' + inline(b.desc) + '</p>' : '') +
+            (b.notes && b.notes.length
+              ? '<ul class="charcard-notes">' +
+                b.notes.map(function (t) { return '<li>' + inline(t) + '</li>' }).join('') +
+                '</ul>'
+              : '') +
+            '</div></div>'
+          break
         case 'faq':
           html +=
             '<details class="faq"><summary>' +
@@ -184,10 +219,17 @@
     var total = PAGES.length
     var html =
       '<div class="hero">' +
+      '<img class="hero-logo" src="assets/img/logo.webp" alt="Stellar Affinity" ' +
+      'loading="eager" decoding="async">' +
       '<h1>星慾姬絆 繁體中文 Wiki</h1>' +
       '<p>Stellar Affinity 完整攻略資料庫，共 ' +
       total +
       ' 篇。全部內容已翻譯為繁體中文，並移除原站的廣告與跳轉腳本，不含任何第三方腳本。</p>' +
+      '<div class="hero-meta">' +
+      '<span>開發 <b>HIMEFUN Inc.</b></span>' +
+      '<span>發行 <b>EROLABS</b></span>' +
+      '<span>上線 <b>2026-07-29</b></span>' +
+      '</div>' +
       '</div>'
 
     html +=
@@ -227,11 +269,13 @@
     html += '<h2>新手從這裡開始</h2><div class="card-grid">'
     ;[
       ['guides__how-to-play', '🎮', '這款遊戲怎麼玩'],
+      ['characters__profiles', '🖼️', '角色圖鑑與立繪'],
       ['guides__beginner-week', '📅', '新手第一週規劃'],
       ['guides__reroll', '🔄', '洗初始帳號'],
       ['characters__tier-list', '🏆', '角色強度榜'],
       ['codes__active', '🎁', '目前可用兌換碼'],
       ['builds__f2p-plan', '💰', '零課玩家路線'],
+      ['about', 'ℹ️', '開發商與遊戲資訊'],
     ].forEach(function (row) {
       var p = BY_SLUG[row[0]]
       if (!p) return
@@ -366,6 +410,14 @@
         if (b.items) parts.push(b.items.join(' '))
         if (b.headers) parts.push(b.headers.join(' '))
         if (b.rows) b.rows.forEach(function (r) { parts.push(r.join(' ')) })
+        // 角色卡與圖片的可搜尋文字
+        if (b.name) parts.push(b.name)
+        if (b.nameEn) parts.push(b.nameEn)
+        if (b.nameJa) parts.push(b.nameJa)
+        if (b.role) parts.push(b.role)
+        if (b.desc) parts.push(b.desc)
+        if (b.notes) parts.push(b.notes.join(' '))
+        if (b.caption) parts.push(b.caption)
         if (b.answer) walk(b.answer)
       })
     })(p.blocks)

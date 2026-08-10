@@ -269,6 +269,57 @@ tbody tr:hover { background: var(--bg-sunken); }
   margin: 0 0 18px; font-size: 14.5px;
 }
 
+/* ---------- 圖片 ---------- */
+.fig {
+  margin: 0 0 22px; padding: 0;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg-sunken); overflow: hidden;
+}
+.fig img { display: block; width: 100%; height: auto; }
+.fig-wide img { max-height: 340px; object-fit: contain; padding: 14px; }
+.fig figcaption {
+  padding: 9px 14px; font-size: 12.5px; color: var(--text-faint);
+  border-top: 1px solid var(--border); background: var(--bg-elev);
+}
+
+/* ---------- 角色卡 ---------- */
+.charcard {
+  display: grid; grid-template-columns: 190px minmax(0, 1fr);
+  gap: 20px; align-items: start;
+  padding: 18px; margin-bottom: 18px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg-elev);
+  transition: border-color .15s;
+}
+.charcard:hover { border-color: var(--border-strong); }
+.charcard-art {
+  border-radius: 9px; overflow: hidden;
+  background: linear-gradient(160deg, var(--accent-soft), var(--bg-sunken));
+  display: grid; place-items: center;
+}
+.charcard-art img { display: block; width: 100%; height: auto; }
+.charcard-names { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
+.charcard-name { font-size: 21px; font-weight: 800; letter-spacing: -0.01em; }
+.charcard-role {
+  font-size: 12.5px; color: var(--accent-text); font-weight: 600;
+  border: 1px solid var(--accent); border-radius: 20px; padding: 2px 10px;
+}
+.charcard-alias {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin: 7px 0 11px; font-size: 12.5px; color: var(--text-faint);
+}
+.charcard-alias span {
+  font-family: 'Cascadia Code', Consolas, monospace; letter-spacing: .02em;
+}
+.charcard-desc { margin: 0 0 10px; font-size: 14.5px; }
+.charcard-notes { margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--text-dim); }
+.charcard-notes li { margin-bottom: 4px; }
+
+@media (max-width: 620px) {
+  .charcard { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .charcard-art { max-width: 210px; margin: 0 auto; }
+}
+
 .faq {
   border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--bg-elev); margin-bottom: 10px; overflow: hidden;
@@ -301,10 +352,23 @@ tbody tr:hover { background: var(--bg-sunken); }
 
 /* ---------- 首頁 ---------- */
 .hero {
-  padding: 40px 0 10px;
+  padding: 36px 0 10px;
+}
+.hero-logo {
+  display: block; width: 100%; max-width: 300px; height: auto;
+  margin: 0 0 16px;
 }
 .hero h1 { font-size: 34px; font-weight: 800; margin: 0 0 10px; letter-spacing: -0.02em; }
 .hero p { color: var(--text-dim); font-size: 16px; max-width: 640px; margin: 0 0 6px; }
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+}
+.hero-meta span {
+  font-size: 12.5px; color: var(--text-dim);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 4px 12px; background: var(--bg-elev);
+}
+.hero-meta b { color: var(--text); font-weight: 600; }
 
 .card-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
