@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>星慾姬絆 繁中 Wiki — 本地離線版</title>
+    <meta
+      name="description"
+      content="Stellar Affinity 繁體中文攻略 Wiki，本地離線版。已移除原站所有廣告與導流腳本。"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  <style>
+      .back-to-roe {
+        display: inline-flex; align-items: center;
+        padding: 5px 11px; margin-right: 4px;
+        border: 1px solid var(--border-strong); border-radius: 8px;
+        background: var(--bg-sunken); color: var(--text-dim);
+        font-size: 13px; white-space: nowrap;
+      }
+      .back-to-roe:hover { color: var(--accent-text); border-color: var(--accent); text-decoration: none; }
+      @media (max-width: 860px) { .back-to-roe { display: none; } }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="開啟選單">☰</button>
+
+      <a class="back-to-roe" href="../" title="回到慾神幻想攻略站">← 慾神幻想</a>
+      <a class="brand" href="#index">
+        <span class="brand-mark">星</span>
+        <span>星慾姬絆 Wiki</span>
+        <span class="brand-sub">繁中離線版</span>
+      </a>
+
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          id="search"
+          type="search"
+          placeholder="搜尋全站內容…"
+          autocomplete="off"
+          aria-label="搜尋"
+        />
+        <span class="search-kbd">Ctrl K</span>
+        <div class="results" id="results" role="listbox"></div>
+      </div>
+
+      <button class="icon-btn" id="themeBtn" aria-label="切換深色／淺色">◐</button>
+    </header>
+
+    <div class="scrim" id="scrim"></div>
+
+    <div class="layout">
+      <nav class="sidebar" id="sidebar" aria-label="主要導覽"></nav>
+      <main class="content" id="content"></main>
+      <aside class="toc" id="toc" aria-label="本頁目錄"></aside>
+    </div>
+
+    <script src="data/pages.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
