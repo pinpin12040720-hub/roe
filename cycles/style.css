@@ -154,3 +154,18 @@ body:not(.is-admin) .card .acts{margin-top:9px}
 .card .nm .aka{display:block;font-size:12px;font-weight:400;color:#8f80a4;margin-top:2px}
 .card .cat.todo-tag{color:#ffb37a;border-color:rgba(255,179,122,.45);background:rgba(255,179,122,.08)}
 .card .todo{font-size:12.5px;color:#ffb37a;background:rgba(255,179,122,.07);border:1px dashed rgba(255,179,122,.3);border-radius:9px;padding:7px 10px;margin-top:8px;white-space:pre-wrap}
+
+/* 窄螢幕：輪替表改成區塊排版，日期才不會被捲到看不見 */
+@media(max-width:560px){
+  .rot-table{min-width:0}
+  .rot-table thead{display:none}
+  .rot-table tr{display:block;padding:9px 8px;border-bottom:1px dashed rgba(255,255,255,.1);border-radius:9px}
+  .rot-table tr.now{background:rgba(255,179,122,.08)}
+  .rot-table tr:last-child{border-bottom:0}
+  .rot-table td{display:block;padding:1px 0;border:0}
+  .rot-table .wk{font-size:14.5px;margin-bottom:3px}
+  .rot-table .when,.rot-table .dt{font-size:12.5px;display:inline-block;margin-right:12px}
+  .rot-table .when::before{content:'開放 ';color:#8f80a4}
+  .rot-table .dt::before{content:'· ';color:#8f80a4}
+  .rot-table .acts{margin-top:4px}
+}
