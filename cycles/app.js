@@ -591,8 +591,10 @@ function loadDraft() {
 // 留言板由 giscus 提供；設定不全就不載入，免得留一塊壞掉的 iframe
 function mountGiscus() {
   if (!GISCUS_CATEGORY_ID) {
+    // 還沒接好就整塊收起來，別讓訪客看到半成品；設定說明只給管理員
+    document.querySelector('.board').hidden = !isAdmin;
     const off = $('#giscus-off');
-    off.hidden = false;
+    off.hidden = !isAdmin;
     off.textContent = '留言板尚未啟用：repo 需要先開啟 Discussions、安裝 giscus app，'
       + '再把 category id 填進 app.js 的 GISCUS_CATEGORY_ID。';
     return;
@@ -613,7 +615,6 @@ function mountGiscus() {
 
 async function init() {
   buildWeekdayBoxes();
-  mountGiscus();
   bind();
   bindLogin();
   setInterval(tick, 60000);
@@ -635,6 +636,7 @@ async function init() {
 
   applyRole();
   render();
+  mountGiscus();
 }
 
 init();
