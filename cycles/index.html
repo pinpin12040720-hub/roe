@@ -34,7 +34,7 @@
     </div>
     <div class="rot-scroll">
       <table class="rot-table">
-        <thead><tr><th>週次</th><th>開始</th><th>活動</th><th>本輪日期</th></tr></thead>
+        <thead><tr><th>週次</th><th>活動何時開</th><th>活動</th><th>該週起始</th></tr></thead>
         <tbody id="rot-body"></tbody>
       </table>
     </div>
@@ -83,7 +83,8 @@
   <form method="dialog" id="form">
     <h2 id="dlg-title">新增項目</h2>
     <div class="fields">
-      <label class="wide">名稱<input type="text" id="f-name" required maxlength="60"></label>
+      <label>名稱<input type="text" id="f-name" required maxlength="60"></label>
+      <label>別名／實際內容<input type="text" id="f-aka" maxlength="60" placeholder="例：技能巡獵、機群巡獵"></label>
       <label>分類<input type="text" id="f-category" list="cat-list" maxlength="20" placeholder="分類名稱"></label>
       <datalist id="cat-list"></datalist>
       <label>開放日<select id="f-startDay"><option value="">依該週規則</option><option value="1">週一</option><option value="2">週二</option><option value="3">週三</option><option value="4">週四</option><option value="5">週五</option><option value="6">週六</option><option value="7">週日</option></select></label>
@@ -96,6 +97,8 @@
       <label>持續時數<input type="number" id="f-durationHours" min="0" max="23" step="1"></label>
       <label>最近一次開放<input type="date" id="f-lastSeen"></label>
       <label class="chk-field"><input type="checkbox" id="f-archived"> 封存（不再追蹤）</label>
+      <label class="chk-field"><input type="checkbox" id="f-verified"> 資料待確認</label>
+      <label class="wide">待確認什麼<input type="text" id="f-todo" maxlength="200" placeholder="還缺哪些資訊、要在遊戲裡核對什麼"></label>
       <label class="wide">備註<textarea id="f-note" rows="2" maxlength="500"></textarea></label>
       <label class="wide">原始筆記<input type="text" id="f-raw" maxlength="200" placeholder="保留手寫原文，方便日後校正"></label>
     </div>

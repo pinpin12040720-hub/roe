@@ -60,7 +60,8 @@ async function checkPassword(password) {
 function blankEntry() {
   return {
     id: 'c-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    name: '', category: '', weeks: [], startDay: null, openTime: '',
+    name: '', aka: '', category: '', weeks: [], startDay: null, openTime: '',
+    verified: false, todo: '',
     durationDays: null, durationHours: null, lastSeen: '',
     note: '', raw: '', archived: false, comments: [],
     createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
@@ -110,6 +111,10 @@ function migrate(data) {
       ...b, ...e,
       id: e.id || b.id,
       name: String(e.name || ''),
+      aka: String(e.aka || ''),
+      // 舊資料沒有 verified 就當已確認，免得整批被標成待確認
+      verified: e.verified === undefined ? true : !!e.verified,
+      todo: String(e.todo || ''),
       category: String(e.category || ''),
       // v1 的 weekdays（每週星期幾）在新模型下沒有意義，直接捨棄
       weeks: (Array.isArray(e.weeks) ? e.weeks : [])
@@ -248,7 +253,7 @@ function visible() {
     if (!arch && e.archived) return false;
     if (cat && e.category !== cat) return false;
     if (!q) return true;
-    const hay = [e.name, e.category, e.note, e.raw, ...e.comments.map(c => c.text)]
+    const hay = [e.name, e.aka, e.category, e.note, e.todo, e.raw, ...e.comments.map(c => c.text)]
       .join(' ').toLowerCase();
     return hay.includes(q);
   });
@@ -292,14 +297,17 @@ function renderRotation() {
       <td class="wk">Week ${w.n}${on ? ' <span class="badge">本週</span>' : ''}</td>
       <td class="when">${esc(when)}</td>
       <td class="acts">${w.activities.map(a => `<span class="chip">${esc(a)}</span>`).join('') || '—'}</td>
-      <td class="dt">${dates}</td>
+      <td class="dt">${dates ? dates + ' 起' : ''}</td>
     </tr>`;
   }).join('');
 
   const rules = (r.rules || []).map(x => `<li>${esc(x)}</li>`).join('');
   $('#rot-rules').innerHTML = rules ? `<ul>${rules}</ul>` : '';
-  $('#rot-note').textContent = [r.anchorNote, r.openNote].filter(Boolean).join(' ');
-  $('#rot-note').hidden = !isAdmin || !$('#rot-note').textContent;
+  // openNote 是給所有人看的（哪裡還沒確認）；anchorNote 是推導過程，只給管理員
+  $('#rot-note').textContent = isAdmin
+    ? [r.openNote, r.anchorNote].filter(Boolean).join('　')
+    : (r.openNote || '');
+  $('#rot-note').hidden = !$('#rot-note').textContent;
 }
 
 function cardHtml(e) {
@@ -312,7 +320,9 @@ function cardHtml(e) {
 
   return `<article class="card ${s.status === 'live' ? 'live' : ''} ${e.archived ? 'archived' : ''}" data-id="${e.id}">
     <div class="top">
-      <div class="nm">${esc(e.name) || '（未命名）'}</div>
+      <div class="nm">${esc(e.name) || '（未命名）'}${
+        e.aka ? `<span class="aka">${esc(e.aka)}</span>` : ''}</div>
+      ${!e.verified ? '<span class="cat todo-tag">待確認</span>' : ''}
       ${e.category ? `<span class="cat">${esc(e.category)}</span>` : ''}
     </div>
     <div class="when">
@@ -322,6 +332,7 @@ function cardHtml(e) {
     </div>
     <div class="next ${s.status}">${nextHtml(e)}</div>
     ${e.note ? `<div class="note">${esc(e.note)}</div>` : ''}
+    ${e.todo ? `<div class="todo">待確認：${esc(e.todo)}</div>` : ''}
     ${e.raw ? `<div class="raw">手寫筆記：${esc(e.raw)}</div>` : ''}
     <div class="acts">
       ${isAdmin ? `<button class="btn small" data-act="edit">編輯</button>
@@ -396,7 +407,10 @@ function openEdit(id) {
   const e = id ? entry(id) : blankEntry();
   $('#dlg-title').textContent = id ? '編輯項目' : '新增項目';
   $('#f-name').value = e.name;
+  $('#f-aka').value = e.aka;
   $('#f-category').value = e.category;
+  $('#f-verified').checked = !e.verified;
+  $('#f-todo').value = e.todo;
   $('#f-startDay').value = e.startDay ?? '';
   $('#f-openTime').value = e.openTime;
   $('#f-durationDays').value = e.durationDays ?? '';
@@ -420,7 +434,10 @@ function commitEdit() {
   };
   const patch = {
     name,
+    aka: $('#f-aka').value.trim(),
     category: $('#f-category').value.trim(),
+    verified: !$('#f-verified').checked,
+    todo: $('#f-todo').value.trim(),
     startDay: numOrNull('#f-startDay'),
     openTime: $('#f-openTime').value,
     durationDays: numOrNull('#f-durationDays'),

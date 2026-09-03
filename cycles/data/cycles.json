@@ -6,12 +6,12 @@
   "rotation": {
     "totalWeeks": 7,
     "anchorDate": "2026-07-27",
-    "anchorNote": "Week 1 Day 1 的日期（週一）。由手寫筆記與官方圖交叉推得：官方標 Week 5–7 「Starts Mon. & Tue.」表示每週兩個活動分別在週一、週二開，故週期邊界在週一；筆記「飛船 9/1」正好是 Week 6 的週二＝第二個活動，「豐收 w4」對上 8/17 那週的週四，「神殿 w5」對上 8/24 那週。仍請在遊戲內核對一次。",
+    "anchorNote": "輪替的相位基準（週一），不是開服首日。遊戲 2026-07-29（週三）上線，官方圖的 Week 1–3「Day 1–21」是開服那一次的新手期、從上線日起算；Week 4 起才改成 「Starts Thu.／Mon. & Tue.」對齊週一。以此錨點推得 Week 6 = 8/31–9/6，已由使用者在遊戲內確認。",
     "rules": [
       "淫紋巡獵結束後的下週四會開豐收巡獵",
       "星體巡獵結束後的下週一會開神殿巡獵"
     ],
-    "openNote": "Week 7 之後如何接回 Week 1 尚未確認；目前以 7 週循環推算。"
+    "openNote": "Week 7 之後如何接回尚未確認，目前以七週循環推算 —— 繞回 Week 1 那次請留意核對。"
   },
   "weeks": [
     {
@@ -91,7 +91,10 @@
       "raw": "神殿巡獵 w5 7d 消耗果籃",
       "archived": false,
       "comments": [],
-      "startDay": 1
+      "startDay": 1,
+      "aka": "",
+      "verified": true,
+      "todo": ""
     },
     {
       "id": "c-guanka",
@@ -105,7 +108,10 @@
       "raw": "",
       "archived": false,
       "comments": [],
-      "startDay": 2
+      "startDay": 2,
+      "aka": "",
+      "verified": false,
+      "todo": "手寫筆記未提及，開放日與持續天數待實際遇到時補。"
     },
     {
       "id": "c-jingcui",
@@ -120,7 +126,10 @@
       "raw": "巡獵精萃 less:3d11h || on 0811 w3 1200 w1 8/30",
       "archived": false,
       "comments": [],
-      "startDay": 1
+      "startDay": 1,
+      "aka": "",
+      "verified": false,
+      "todo": "持續天數待實際觀察（目前當作開滿整週處理）。"
     },
     {
       "id": "c-feichuan",
@@ -135,7 +144,10 @@
       "raw": "飛船 9/1 3d",
       "archived": false,
       "comments": [],
-      "startDay": 2
+      "startDay": 2,
+      "aka": "",
+      "verified": true,
+      "todo": ""
     },
     {
       "id": "c-xingti",
@@ -150,7 +162,10 @@
       "raw": "星體巡獵 w2",
       "archived": false,
       "comments": [],
-      "startDay": 1
+      "startDay": 1,
+      "aka": "",
+      "verified": false,
+      "todo": "持續天數待實際觀察（目前當作開滿整週處理）。"
     },
     {
       "id": "c-yinwen",
@@ -165,7 +180,10 @@
       "raw": "淫紋巡獵 sun 2d",
       "archived": false,
       "comments": [],
-      "startDay": 2
+      "startDay": 2,
+      "aka": "",
+      "verified": true,
+      "todo": ""
     },
     {
       "id": "c-fengshou",
@@ -179,7 +197,10 @@
       "raw": "豐收。w4 3d",
       "archived": false,
       "comments": [],
-      "startDay": 4
+      "startDay": 4,
+      "aka": "",
+      "verified": true,
+      "todo": ""
     },
     {
       "id": "c-choka",
@@ -189,11 +210,14 @@
         5
       ],
       "durationDays": 3,
-      "note": "筆記寫作「抽卡/幾群/技能 巡獵」，用字待確認。",
+      "note": "官方活動日誌寫「抽卡巡獵」，實際內容是技能與機群。",
       "raw": "抽卡/幾群/技能 巡獵 w1 3d",
       "archived": false,
       "comments": [],
-      "startDay": 2
+      "startDay": 2,
+      "aka": "技能巡獵、機群巡獵",
+      "verified": false,
+      "todo": "確認這是一個活動，還是技能、機群兩個分開的活動；開放日與天數也待核。"
     }
   ]
 }
