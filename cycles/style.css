@@ -1,4 +1,7 @@
 *{box-sizing:border-box}
+/* 告訴瀏覽器這是深色介面，否則 date/time 欄位的內建文字與日曆圖示
+   會用淺色主題的深色渲染，壓在深紫底上等於隱形（勾選框同理） */
+:root{color-scheme:dark}
 body{margin:0;background:#140c1c;color:#eee6f2;font-family:"Outfit","DM Sans",system-ui,"Microsoft JhengHei",sans-serif;line-height:1.6}
 a{color:#e79cc9}
 code{background:#241634;padding:1px 6px;border-radius:6px;font-size:12.5px}
