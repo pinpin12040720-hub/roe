@@ -11,7 +11,14 @@ const PBKDF2_ITER = 250000;
 const ADMIN_SALT = 'roe-cycles-admin';  // 固定 salt，只為了讓暴力破解變貴
 
 // 管理員密碼的 PBKDF2-SHA256 雜湊（hex）。空字串＝尚未設定，編輯功能停用。
-const ADMIN_HASH = '';
+const ADMIN_HASH = 'cc06ce05dc09f374f90620b8f1d465b035082768c0034e0ff7aeeaf8a151a768';
+
+// giscus 留言板：留言存在 GitHub Discussions，訪客需有 GitHub 帳號。
+// CATEGORY_ID 要等 repo 開啟 Discussions 後才拿得到；留空則不載入留言板。
+const GISCUS_REPO = 'pinpin12040720-hub/roe';
+const GISCUS_REPO_ID = 'R_kgDOTJWkkA';
+const GISCUS_CATEGORY = 'General';
+const GISCUS_CATEGORY_ID = '';
 
 const WD = ['', '週一', '週二', '週三', '週四', '週五', '週六', '週日'];
 
@@ -581,8 +588,32 @@ function loadDraft() {
   } catch (err) { /* 損毀就沿用站上版本 */ }
 }
 
+// 留言板由 giscus 提供；設定不全就不載入，免得留一塊壞掉的 iframe
+function mountGiscus() {
+  if (!GISCUS_CATEGORY_ID) {
+    const off = $('#giscus-off');
+    off.hidden = false;
+    off.textContent = '留言板尚未啟用：repo 需要先開啟 Discussions、安裝 giscus app，'
+      + '再把 category id 填進 app.js 的 GISCUS_CATEGORY_ID。';
+    return;
+  }
+  const sc = document.createElement('script');
+  sc.src = 'https://giscus.app/client.js';
+  sc.async = true;
+  sc.crossOrigin = 'anonymous';
+  Object.entries({
+    repo: GISCUS_REPO, repoId: GISCUS_REPO_ID,
+    category: GISCUS_CATEGORY, categoryId: GISCUS_CATEGORY_ID,
+    mapping: 'pathname', strict: '0', reactionsEnabled: '1',
+    emitMetadata: '0', inputPosition: 'bottom',
+    theme: 'transparent_dark', lang: 'zh-TW', loading: 'lazy',
+  }).forEach(([k, v]) => sc.setAttribute('data-' + k.replace(/[A-Z]/g, c => '-' + c.toLowerCase()), v));
+  $('#giscus').appendChild(sc);
+}
+
 async function init() {
   buildWeekdayBoxes();
+  mountGiscus();
   bind();
   bindLogin();
   setInterval(tick, 60000);
