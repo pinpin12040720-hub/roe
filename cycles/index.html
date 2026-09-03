@@ -3,45 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>週期登錄表</title>
+<title>星慾姬絆 週期表</title>
+<meta name="description" content="星慾姬絆（Stellar Affinity）巡獵與活動的開放週期整理。">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- 解鎖／設定密碼畫面：解鎖前不會有任何內容被寫進 DOM -->
-<div id="gate" class="gate">
-  <form class="gate-box" id="gate-form">
-    <h1>週期登錄表</h1>
-    <p class="gate-msg" id="gate-msg">內容已加密，請輸入密碼解鎖。</p>
-    <label class="gate-f">密碼<input type="password" id="gate-pw" autocomplete="current-password" required></label>
-    <label class="gate-f" id="gate-f2" hidden>再輸入一次<input type="password" id="gate-pw2" autocomplete="new-password"></label>
-    <label class="chk"><input type="checkbox" id="gate-remember" checked> 這個分頁內記住（關掉分頁就忘記）</label>
-    <div class="gate-btns">
-      <button type="button" class="btn" id="gate-cancel" hidden>取消</button>
-      <button class="btn primary" id="gate-btn">解鎖</button>
-    </div>
-    <p class="gate-err" id="gate-err" hidden></p>
-    <p class="gate-hint" id="gate-hint"></p>
-  </form>
-</div>
-
-<div id="app" hidden>
 <!-- ED-CHROME -->
 <div class="ed-topbar">
-  <div class="ed-games">GAME：<a href="../">慾神幻想</a>⇄<a href="../erodex/">愛慾轉生</a>⇄<span class="cur">星慾姬絆</span></div>
+  <div class="ed-games">GAME：<a href="../">慾神幻想</a>⇄<a href="../enemyfinder/">愛慾轉生</a>⇄<span class="cur">星慾姬絆</span></div>
   <nav class="ed-tools">
-    <a href="../sa/">星慾姬絆 Wiki</a>
-    <a href="./" class="cur">週期登錄表</a>
+    <a href="../sa/">攻略 Wiki</a>
+    <a href="./" class="cur">週期表</a>
   </nav>
 </div>
 
 <main class="cy-wrap">
   <header class="cy-head">
-    <h1>週期登錄表 <span class="tag">個人紀錄</span></h1>
-    <p class="sub">開放週期與觀察紀錄。內容一律加密後才落地：本機修改存在瀏覽器（密文），要更新站上內容請用「資料 → 匯出加密檔」覆蓋 <code>data/cycles.enc</code> 再 commit。</p>
+    <h1>週期表 <span class="tag">星慾姬絆</span></h1>
+    <p class="sub">巡獵與活動的開放週期整理。「下次開放」依開放星期與時間即時推算。</p>
   </header>
 
   <section class="bar">
@@ -49,32 +31,30 @@
     <select id="filter-cat"><option value="">全部分類</option></select>
     <label class="chk"><input type="checkbox" id="show-archived"> 顯示已封存</label>
     <span class="spacer"></span>
-    <button id="btn-new" class="btn primary">＋ 新增項目</button>
-    <div class="menu-wrap">
+    <button id="btn-new" class="btn primary" hidden>＋ 新增項目</button>
+    <div class="menu-wrap" id="admin-wrap" hidden>
       <button id="btn-more" class="btn">資料 ▾</button>
       <div id="more-menu" class="menu" hidden>
-        <button data-act="seal"><b>匯出加密檔 cycles.enc</b><small>放進 data/ 再 commit，即可更新站上內容</small></button>
-        <button data-act="passwd">變更密碼…</button>
-        <button data-act="lock">立刻鎖定</button>
+        <button data-act="export"><b>匯出 cycles.json</b><small>覆蓋 data/cycles.json 再 commit，才會更新站上內容</small></button>
+        <button data-act="copy">複製 JSON 到剪貼簿</button>
+        <button data-act="import">匯入 JSON 檔…</button>
         <hr>
-        <button data-act="export">匯出明文 JSON（備份用）</button>
-        <button data-act="copy">複製明文 JSON 到剪貼簿</button>
-        <button data-act="import">匯入明文 JSON 檔…</button>
-        <button data-act="reload" class="danger">捨棄本機修改，重讀站上版本</button>
+        <button data-act="reload">捨棄草稿，重讀站上版本</button>
+        <button data-act="logout">登出管理員</button>
       </div>
     </div>
+    <button id="btn-login" class="btn">管理員</button>
   </section>
 
+  <p id="draft" class="draft" hidden></p>
   <p id="status" class="status" hidden></p>
   <div id="list" class="cards"></div>
   <p id="empty" class="empty" hidden>沒有符合條件的項目。</p>
 
-  <p class="credit">星期以 1=週一 … 7=週日 表示。「下次開放」由開放星期＋時間推算，僅供估計，實際以遊戲內為準。<br>
-  資料以 AES-GCM 加密後才離開這個頁面；忘記密碼沒有救回的辦法。</p>
+  <p class="credit">星期以 1=週一 … 7=週日 表示。「下次開放」為推算值，實際以遊戲內為準。</p>
 </main>
-</div>
 
-<!-- 編輯視窗 -->
+<!-- 編輯視窗（僅管理員） -->
 <dialog id="dlg" class="dlg">
   <form method="dialog" id="form">
     <h2 id="dlg-title">新增項目</h2>
@@ -97,6 +77,20 @@
     <div class="dlg-btns">
       <button value="cancel" class="btn" formnovalidate>取消</button>
       <button value="save" id="btn-save" class="btn primary">儲存</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- 管理員登入 -->
+<dialog id="login" class="dlg login-dlg">
+  <form id="login-form">
+    <h2>管理員登入</h2>
+    <p class="login-msg" id="login-msg">登入後才會出現編輯功能。改完要匯出 JSON 並 commit，站上內容才會跟著變。</p>
+    <label class="gate-f">密碼<input type="password" id="login-pw" autocomplete="current-password" required></label>
+    <p class="gate-err" id="login-err" hidden></p>
+    <div class="dlg-btns">
+      <button type="button" class="btn" id="login-cancel">取消</button>
+      <button type="submit" class="btn primary" id="login-btn">登入</button>
     </div>
   </form>
 </dialog>

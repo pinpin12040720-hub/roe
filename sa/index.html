@@ -18,6 +18,9 @@
         font-size: 13px; white-space: nowrap;
       }
       .back-to-roe:hover { color: var(--accent-text); border-color: var(--accent); text-decoration: none; }
+      .back-to-roe.cur-game { background: linear-gradient(120deg,#c23b8a,#7a4ec2);
+        color: #fff; border-color: transparent; }
+      .back-to-roe.tool-link { margin-left: 10px; }
       @media (max-width: 860px) { .back-to-roe { display: none; } }
     </style>
   </head>
@@ -25,8 +28,10 @@
     <header class="topbar">
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="開啟選單">☰</button>
 
-      <a class="back-to-roe" href="../" title="回到慾神幻想攻略站">← 慾神幻想</a>
-      <a class="back-to-roe" href="../cycles/" title="週期登錄表（需密碼）">週期表</a>
+      <a class="back-to-roe" href="../" title="慾神幻想 Rise of Eros">慾神幻想</a>
+      <a class="back-to-roe" href="../enemyfinder/" title="愛慾轉生 Ero Dorado">愛慾轉生</a>
+      <span class="back-to-roe cur-game">星慾姬絆</span>
+      <a class="back-to-roe tool-link" href="../cycles/" title="巡獵與活動的開放週期">週期表</a>
       <a class="brand" href="#index">
         <span class="brand-mark">星</span>
         <span>星慾姬絆 Wiki</span>

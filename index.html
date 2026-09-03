@@ -237,7 +237,7 @@ html.js .reveal.in{opacity:1;transform:none}
 <div class="nav-links">
 <a href="#tier">階級表</a><a href="#roles">定位</a><a href="#banner">卡池</a>
 <a href="#teams">隊伍</a><a href="#guide">新手</a><a href="#index">圖鑑</a>
-<a class="nav-sa" href="sa/" title="星慾姬絆 繁中攻略">星慾姬絆 ↗</a>
+
 </div>
 <button id="theme" class="theme-btn" aria-label="切換主題">🌙</button>
 </div><div id="progress"></div></nav>
@@ -492,7 +492,7 @@ var themeBtn=doc.getElementById('theme');
 if(themeBtn&&themeBtn.parentNode)themeBtn.parentNode.insertBefore(langBtn,themeBtn);else if(nav)nav.appendChild(langBtn);
 langBtn.addEventListener('click',function(){applyLang(lang==='en'?'zh':'en');});
 var gs=doc.createElement('div');gs.className='game-switch';
-gs.innerHTML='<div class="gs-inner"><span class="gs-label">GAME</span><span class="gs active" data-zh="慾神幻想" data-en="Rise of Eros">慾神幻想</span><a class="gs" href="enemyfinder/" data-zh="愛慾轉生" data-en="Ero Dorado" title="另一款遊戲《愛慾轉生 Ero Dorado》">愛慾轉生</a></div>';
+gs.innerHTML='<div class="gs-inner"><span class="gs-label">GAME</span><span class="gs active" data-zh="慾神幻想" data-en="Rise of Eros">慾神幻想</span><a class="gs" href="enemyfinder/" data-zh="愛慾轉生" data-en="Ero Dorado" title="另一款遊戲《愛慾轉生 Ero Dorado》">愛慾轉生</a><a class="gs" href="sa/" data-zh="星慾姬絆" data-en="Stellar Affinity" title="另一款遊戲《星慾姬絆 Stellar Affinity》">星慾姬絆</a></div>';
 doc.body.insertBefore(gs,doc.body.firstChild);
 var modal=doc.createElement('div');modal.id='pmodal';modal.className='hidden';
 modal.innerHTML='<div class="pm-box"><button class="pm-close" aria-label="close">✕</button><div class="pm-head"></div><div class="pm-body"></div></div>';

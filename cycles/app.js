@@ -1,82 +1,46 @@
 /* 星慾姬絆 週期登錄表
-   資料以 JSON 管理，但站上是公開的 GitHub Pages，所以內容一律加密後才落地：
-   - 站上版本  data/cycles.enc   AES-GCM 密文（密碼經 PBKDF2 導出金鑰）
-   - 本機修改  localStorage      同樣是密文，明文只存在記憶體
-   改完按「匯出加密檔」覆蓋 data/cycles.enc 再 commit，即可更新站上內容。 */
+   內容是公開的：任何人打開都看得到週期與留言，資料就是 data/cycles.json。
+   編輯功能藏在管理員密碼後面 —— 但要講清楚，這道門只擋 UI：
+   站上真正的內容由 repo 裡的 cycles.json 決定，所以實際的修改權限
+   等於 git push 權限。管理員在自己瀏覽器改完後匯出 JSON、commit，才會影響別人。 */
 
-const LS_KEY = 'roe-cycles-box-v1';    // localStorage：加密後的資料
-const SS_KEY = 'roe-cycles-key-v1';    // sessionStorage：本分頁記住的金鑰
-const ENC_URL = 'data/cycles.enc';
-const SEED_URL = 'data/cycles.json';   // 明文種子，只在本機首次建立時用得到
+const DATA_URL = 'data/cycles.json';
+const LS_KEY = 'roe-cycles-draft-v1';   // 管理員尚未匯出的草稿
+const LS_ADMIN = 'roe-cycles-admin-v1'; // 這台瀏覽器已通過管理員驗證
 const PBKDF2_ITER = 250000;
+const ADMIN_SALT = 'roe-cycles-admin';  // 固定 salt，只為了讓暴力破解變貴
+
+// 管理員密碼的 PBKDF2-SHA256 雜湊（hex）。空字串＝尚未設定，編輯功能停用。
+const ADMIN_HASH = '';
+
 const WD = ['', '週一', '週二', '週三', '週四', '週五', '週六', '週日'];
 
-let db = null;            // 明文資料（僅存在記憶體）
-let cryptoKey = null;     // 解鎖後的 AES-GCM 金鑰
-let salt = null;          // 目前這份資料的 KDF salt
+let db = null;            // 目前資料
+let published = null;     // 站上那份（data/cycles.json），用來判斷草稿有沒有差異
+let isAdmin = false;
 let editingId = null;     // 正在編輯的項目 id；null = 新增
-let seedData = null;      // 明文種子（只有首次建立時會用到）
-let pendingBox = null;    // 等待解鎖的密文
-let gateMode = 'unlock';  // unlock | setup | change
 const openComments = new Set();   // 展開留言的項目 id
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-/* ---------- 加密層（WebCrypto，AES-GCM 256 + PBKDF2-SHA256） ---------- */
+/* ---------- 管理員密碼驗證 ---------- */
 
-const TE = new TextEncoder(), TD = new TextDecoder();
-const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
-const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-
-async function deriveKey(password, saltBytes) {
+// PBKDF2-SHA256 導出 32 bytes，輸出 hex。刻意用高迭代數讓暴力破解變貴，
+// 但這終究是前端驗證：擋得住手滑，擋不住決心。真正的權限是 git push。
+async function hashPassword(password) {
   const base = await crypto.subtle.importKey(
-    'raw', TE.encode(password), 'PBKDF2', false, ['deriveKey']);
-  return crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt: saltBytes, iterations: PBKDF2_ITER, hash: 'SHA-256' },
-    base, { name: 'AES-GCM', length: 256 }, true, ['encrypt', 'decrypt']);
+    'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: new TextEncoder().encode(ADMIN_SALT),
+      iterations: PBKDF2_ITER, hash: 'SHA-256' },
+    base, 256);
+  return [...new Uint8Array(bits)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// 明文物件 -> 可存檔的密文信封
-async function seal(obj, key, saltBytes) {
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const ct = await crypto.subtle.encrypt(
-    { name: 'AES-GCM', iv }, key, TE.encode(JSON.stringify(obj)));
-  return {
-    format: 'cycles-enc-v1',
-    kdf: 'PBKDF2-SHA256', iter: PBKDF2_ITER,
-    salt: b64(saltBytes), iv: b64(iv), ct: b64(ct),
-    sealedAt: new Date().toISOString(),
-  };
-}
-
-// 密文信封 -> 明文物件（密碼錯會丟出例外）
-async function unseal(box, key) {
-  const pt = await crypto.subtle.decrypt(
-    { name: 'AES-GCM', iv: unb64(box.iv) }, key, unb64(box.ct));
-  return JSON.parse(TD.decode(pt));
-}
-
-// 讓同一分頁重整免再輸密碼；分頁關掉就沒了
-async function rememberKey(key) {
-  try {
-    const raw = await crypto.subtle.exportKey('raw', key);
-    sessionStorage.setItem(SS_KEY, JSON.stringify({ k: b64(raw), s: b64(salt) }));
-  } catch (err) { /* sessionStorage 被關掉就算了 */ }
-}
-
-async function recallKey() {
-  try {
-    const saved = JSON.parse(sessionStorage.getItem(SS_KEY) || 'null');
-    if (!saved) return null;
-    const key = await crypto.subtle.importKey(
-      'raw', unb64(saved.k), { name: 'AES-GCM' }, true, ['encrypt', 'decrypt']);
-    return { key, salt: unb64(saved.s) };
-  } catch (err) { return null; }
-}
-
-function forgetKey() {
-  try { sessionStorage.removeItem(SS_KEY); } catch (err) { /* ignore */ }
+async function checkPassword(password) {
+  if (!ADMIN_HASH) return false;
+  return await hashPassword(password) === ADMIN_HASH;
 }
 
 /* ---------- 資料層 ---------- */
@@ -127,18 +91,15 @@ function migrate(data) {
   return out;
 }
 
-// 加密是非同步的，但呼叫端都是同步流程；用一條 promise 鏈串起來，
-// 避免連續操作時後寫的先落地
-let saveChain = Promise.resolve();
-
+// 只有管理員會產生草稿；訪客不寫入任何東西
 function save() {
+  if (!isAdmin) return;
   db.updatedAt = new Date().toISOString().slice(0, 10);
-  if (!cryptoKey) return;
-  const snapshot = structuredClone(db);
-  saveChain = saveChain
-    .then(() => seal(snapshot, cryptoKey, salt))
-    .then(box => localStorage.setItem(LS_KEY, JSON.stringify(box)))
-    .catch(err => note('存檔失敗：' + err.message));
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(db));
+  } catch (err) {
+    note('草稿存檔失敗（瀏覽器儲存空間可能已滿）：' + err.message);
+  }
 }
 
 function entry(id) { return db.entries.find(e => e.id === id); }
@@ -238,6 +199,7 @@ function render() {
   $('#list').innerHTML = list.map(cardHtml).join('');
   $('#empty').hidden = list.length > 0;
   refreshCats();
+  showDraftBadge();
 }
 
 function cardHtml(e) {
@@ -260,10 +222,10 @@ function cardHtml(e) {
     ${e.note ? `<div class="note">${esc(e.note)}</div>` : ''}
     ${e.raw ? `<div class="raw">原始筆記：${esc(e.raw)}</div>` : ''}
     <div class="acts">
-      <button class="btn small" data-act="edit">編輯</button>
-      <button class="btn small" data-act="dup">複製</button>
+      ${isAdmin ? `<button class="btn small" data-act="edit">編輯</button>
+      <button class="btn small" data-act="dup">複製</button>` : ''}
       <button class="btn small" data-act="toggle-cm">留言 ${e.comments.length ? `(${e.comments.length})` : ''}</button>
-      <button class="btn small danger" data-act="del">刪除</button>
+      ${isAdmin ? `<button class="btn small danger" data-act="del">刪除</button>` : ''}
     </div>
     ${open ? commentsHtml(e) : ''}
   </article>`;
@@ -273,17 +235,19 @@ function commentsHtml(e) {
   const items = e.comments.length
     ? e.comments.map(c => `<div class="cm-item" data-cid="${c.id}">
         <div class="meta"><span>${esc(new Date(c.at).toLocaleString('zh-TW', { hour12: false }))}</span>
-        <button class="del" data-act="del-cm" title="刪除這則留言">刪除</button></div>
+        ${isAdmin ? `<button class="del" data-act="del-cm" title="刪除這則留言">刪除</button>` : ''}</div>
         <div class="txt">${esc(c.text)}</div>
       </div>`).join('')
     : `<div class="cm-none">還沒有留言。</div>`;
 
-  return `<div class="cm">
-    <div class="cm-list">${items}</div>
-    <div class="cm-form">
+  const form = isAdmin ? `<div class="cm-form">
       <textarea rows="1" placeholder="記下這期的觀察…（Ctrl+Enter 送出）" data-role="cm-input"></textarea>
       <button class="btn small primary" data-act="add-cm">送出</button>
-    </div>
+    </div>` : '';
+
+  return `<div class="cm">
+    <div class="cm-list">${items}</div>
+    ${form}
   </div>`;
 }
 
@@ -387,20 +351,9 @@ function download(text, filename) {
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
-// 要放上站的就是這個檔
-async function doSeal() {
-  try {
-    const box = await seal(db, cryptoKey, salt);
-    download(JSON.stringify(box, null, 2) + '\n', 'cycles.enc');
-    note('已匯出 cycles.enc；覆蓋 web/cycles/data/cycles.enc 再 commit 即可更新站上內容。');
-  } catch (err) {
-    note('加密失敗：' + err.message);
-  }
-}
-
 function doExport() {
   download(jsonText(), 'cycles.json');
-  note('已匯出明文 cycles.json —— 這份沒有加密，只當本機備份，不要 commit 進 repo。');
+  note('已匯出 cycles.json；覆蓋 web/cycles/data/cycles.json 再 commit，站上內容才會更新。');
 }
 
 async function doCopy() {
@@ -454,16 +407,22 @@ function bind() {
     if (!btn) return;
     const act = btn.dataset.act;
     menu.hidden = true;
-    if (act === 'seal') doSeal();
     if (act === 'export') doExport();
     if (act === 'copy') doCopy();
     if (act === 'import') $('#file-input').click();
-    if (act === 'passwd') showGate('change');
-    if (act === 'lock') lock();
+    if (act === 'logout') {
+      isAdmin = false;
+      try { localStorage.removeItem(LS_ADMIN); } catch (err) { /* ignore */ }
+      applyRole();
+      render();
+      note('已登出管理員。草稿仍留在這台瀏覽器，再次登入就會看到。');
+    }
     if (act === 'reload') {
-      if (!confirm('捨棄本機所有修改，重新讀取站上版本？之後要重新輸入密碼。')) return;
-      localStorage.removeItem(LS_KEY);
-      lock();
+      if (!confirm('捨棄尚未匯出的草稿，改用站上版本？')) return;
+      try { localStorage.removeItem(LS_KEY); } catch (err) { /* ignore */ }
+      db = migrate(structuredClone(published));
+      render();
+      note('已改用站上版本。');
     }
   });
   $('#file-input').addEventListener('change', ev => {
@@ -480,7 +439,11 @@ function bind() {
     const e = entry(id);
     if (!e) return;
 
-    switch (btn.dataset.act) {
+    // 訪客只能展開留言；其餘動作即使被人手動塞回 DOM 也不執行
+    const act = btn.dataset.act;
+    if (act !== 'toggle-cm' && !isAdmin) return;
+
+    switch (act) {
       case 'edit':
         openEdit(id);
         break;
@@ -546,146 +509,101 @@ function bind() {
 
 /* ---------- 啟動 ---------- */
 
-const GATE_MSG = {
-  unlock: '內容已加密，請輸入密碼解鎖。',
-  setup: '第一次使用：設定一組密碼。資料會用它加密，忘記就沒有辦法救回來。',
-  change: '設定新密碼。變更後記得「匯出加密檔」並 commit，站上版本才會跟著換密碼。',
-};
+/* ---------- 管理員模式 ---------- */
 
-function showGate(mode) {
-  gateMode = mode;
-  const isNew = mode !== 'unlock';
-  $('#gate-msg').textContent = GATE_MSG[mode];
-  $('#gate-f2').hidden = !isNew;
-  $('#gate-pw2').required = isNew;
-  $('#gate-pw').value = '';
-  $('#gate-pw2').value = '';
-  $('#gate-pw').autocomplete = isNew ? 'new-password' : 'current-password';
-  $('#gate-btn').textContent = isNew ? '設定密碼' : '解鎖';
-  $('#gate-cancel').hidden = mode !== 'change';
-  $('#gate-err').hidden = true;
-  $('#gate-hint').textContent = '';
-  $('#gate').hidden = false;
-  $('#gate-pw').focus();
+// 依身分切換 UI；訪客看到的頁面沒有任何編輯入口
+function applyRole() {
+  $('#btn-new').hidden = !isAdmin;
+  $('#admin-wrap').hidden = !isAdmin;
+  $('#btn-login').hidden = isAdmin;
+  document.body.classList.toggle('is-admin', isAdmin);
+  showDraftBadge();
 }
 
-function enterApp() {
-  $('#gate').hidden = true;
-  $('#app').hidden = false;
-  render();
+// 草稿與站上版本不同時提醒：改了不匯出＝別人看不到
+function showDraftBadge() {
+  const el = $('#draft');
+  if (!isAdmin || !published || !db) return void (el.hidden = true);
+  const dirty = JSON.stringify(db.entries) !== JSON.stringify(migrate(published).entries);
+  el.hidden = !dirty;
+  if (dirty) {
+    el.textContent = '這台瀏覽器有尚未匯出的草稿 —— 站上看到的還是舊版。'
+      + '要讓別人看到，請「資料 → 匯出 cycles.json」覆蓋 data/cycles.json 再 commit。';
+  }
 }
 
-function lock() {
-  cryptoKey = null;
-  db = null;
-  salt = null;
-  forgetKey();
-  location.reload();   // 重載才能把記憶體裡的明文一起丟掉
-}
-
-function bindGate() {
+function bindLogin() {
+  const dlg = $('#login');
   const err = m => {
-    $('#gate-err').textContent = m;
-    $('#gate-err').hidden = false;
+    $('#login-err').textContent = m;
+    $('#login-err').hidden = false;
   };
 
-  $('#gate-cancel').addEventListener('click', () => { $('#gate').hidden = true; });
-
-  $('#gate-form').addEventListener('submit', async ev => {
-    ev.preventDefault();
-    $('#gate-err').hidden = true;
-    const pw = $('#gate-pw').value;
-    const remember = $('#gate-remember').checked;
-
-    if (gateMode === 'unlock') {
-      const s = unb64(pendingBox.salt);
-      try {
-        const key = await deriveKey(pw, s);
-        const data = await unseal(pendingBox, key);
-        cryptoKey = key;
-        salt = s;
-        db = migrate(data);
-      } catch (e) {
-        return err('密碼不對，或這份資料已損毀。');
-      }
-      if (remember) await rememberKey(cryptoKey);
-      enterApp();
-      return;
+  $('#btn-login').addEventListener('click', () => {
+    $('#login-pw').value = '';
+    $('#login-err').hidden = true;
+    if (!ADMIN_HASH) {
+      $('#login-msg').textContent =
+        '尚未設定管理員密碼（app.js 的 ADMIN_HASH 是空的），編輯功能停用中。';
+      $('#login-pw').disabled = true;
+      $('#login-btn').disabled = true;
     }
+    dlg.showModal();
+    if (ADMIN_HASH) $('#login-pw').focus();
+  });
 
-    // setup / change
-    if (pw.length < 8) return err('密碼至少 8 個字。');
-    if (pw !== $('#gate-pw2').value) return err('兩次輸入不一致。');
+  $('#login-cancel').addEventListener('click', () => dlg.close());
 
-    salt = crypto.getRandomValues(new Uint8Array(16));
-    cryptoKey = await deriveKey(pw, salt);
-    if (remember) await rememberKey(cryptoKey);
-    if (gateMode === 'setup') db = seedData || migrate({ entries: [] });
-    save();
-    enterApp();
-    note(gateMode === 'change'
-      ? '密碼已變更。記得「匯出加密檔 cycles.enc」放進 data/ 再 commit。'
-      : '密碼已設定。改完資料後用「匯出加密檔」產生 cycles.enc 放進 data/ 再 commit。');
+  $('#login-form').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    $('#login-err').hidden = true;
+    if (!crypto.subtle) return err('這個環境沒有 WebCrypto，請用 https 或 localhost 開啟。');
+    $('#login-btn').disabled = true;
+    const ok = await checkPassword($('#login-pw').value);
+    $('#login-btn').disabled = false;
+    if (!ok) return err('密碼不對。');
+
+    isAdmin = true;
+    try { localStorage.setItem(LS_ADMIN, '1'); } catch (e) { /* ignore */ }
+    loadDraft();
+    dlg.close();
+    applyRole();
+    render();
+    note('已進入管理員模式。改完記得匯出 JSON 並 commit，站上內容才會更新。');
   });
 }
 
-async function fetchJson(url) {
+// 管理員在這台瀏覽器尚未匯出的修改
+function loadDraft() {
   try {
-    const res = await fetch(url, { cache: 'no-store' });
-    return res.ok ? await res.json() : null;
-  } catch (err) {
-    return null;   // file:// 直接開會被擋，用本機 http server 即可
-  }
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) db = migrate(JSON.parse(raw));
+  } catch (err) { /* 損毀就沿用站上版本 */ }
 }
 
 async function init() {
   buildWeekdayBoxes();
   bind();
-  bindGate();
-
-  // WebCrypto 只在安全來源可用（https 或 localhost）
-  if (!crypto.subtle) {
-    $('#gate-msg').textContent =
-      '這個環境沒有 WebCrypto，無法解密。請用 https 或 localhost 開啟本頁。';
-    $('#gate-form').querySelectorAll('input,button').forEach(el => { el.disabled = true; });
-    return;
-  }
-
+  bindLogin();
   setInterval(tick, 60000);
 
-  // 本機有未匯出的修改就用它，否則抓站上的加密檔
-  let box = null, fromLocal = false;
+  // 公開資料：任何人打開都看得到
   try {
-    box = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
-    fromLocal = !!box;
-  } catch (err) { /* 損毀就當沒有 */ }
-  if (!box) box = await fetchJson(ENC_URL);
-
-  if (box && box.ct) {
-    pendingBox = box;
-    const saved = await recallKey();      // 同分頁重整免再輸密碼
-    if (saved) {
-      try {
-        db = migrate(await unseal(box, saved.key));
-        cryptoKey = saved.key;
-        salt = unb64(box.salt);
-        return enterApp();
-      } catch (err) {
-        forgetKey();                      // 記住的金鑰對不上這份資料
-      }
-    }
-    showGate('unlock');
-    if (fromLocal) $('#gate-hint').textContent = '（這是你本機還沒匯出的修改）';
-    return;
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    published = await res.json();
+    db = migrate(structuredClone(published));
+  } catch (err) {
+    published = { entries: [] };
+    db = migrate({ entries: [] });
+    note('讀不到 data/cycles.json（用 file:// 直接開啟會被瀏覽器擋下，請改用 http server）。');
   }
 
-  // 站上還沒有加密檔 —— 首次建立，拿明文種子起頭
-  const seedJson = await fetchJson(SEED_URL);
-  if (seedJson) seedData = migrate(seedJson);
-  showGate('setup');
-  $('#gate-hint').textContent = seedData
-    ? `會以 data/cycles.json 現有的 ${seedData.entries.length} 筆資料起頭。`
-    : '目前沒有任何資料，設定密碼後從空白開始。';
+  try { isAdmin = localStorage.getItem(LS_ADMIN) === '1' && !!ADMIN_HASH; } catch (e) { /* ignore */ }
+  if (isAdmin) loadDraft();
+
+  applyRole();
+  render();
 }
 
 init();
