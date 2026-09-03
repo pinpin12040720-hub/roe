@@ -310,7 +310,7 @@ html.js .reveal.in{opacity:1;transform:none}
  var prog=doc.getElementById('progress');
  var totop=doc.getElementById('totop');
  var navLinks=[].slice.call(doc.querySelectorAll('.nav-links a'));
- var sects=navLinks.map(function(a){return doc.querySelector(a.getAttribute('href'));}).filter(Boolean);
+ var sects=navLinks.map(function(a){var h=a.getAttribute('href')||'';return h.charAt(0)==='#'?doc.querySelector(h):null;}).filter(Boolean);
  function onScroll(){
    var st=doc.documentElement.scrollTop||doc.body.scrollTop;
    var h=doc.documentElement.scrollHeight-doc.documentElement.clientHeight;
