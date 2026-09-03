@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>星慾姬絆 週期表</title>
+<title>星慾姬絆 活動日誌</title>
 <meta name="description" content="星慾姬絆（Stellar Affinity）巡獵與活動的開放週期整理。">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,9 +23,24 @@
 
 <main class="cy-wrap">
   <header class="cy-head">
-    <h1>週期表 <span class="tag">星慾姬絆</span></h1>
-    <p class="sub">巡獵與活動的開放週期整理。「下次開放」依開放星期與時間即時推算。</p>
+    <h1>活動日誌 <span class="tag">星慾姬絆</span></h1>
+    <p class="sub">巡獵與活動走七週輪替，每一輪的第幾週開哪些活動。對照遊戲內「活動日誌」整理，日期由目前週次即時推算。</p>
   </header>
+
+  <section class="rot">
+    <div class="rot-head">
+      <h2>輪替總表</h2>
+      <p id="rot-now" class="rot-now"></p>
+    </div>
+    <div class="rot-scroll">
+      <table class="rot-table">
+        <thead><tr><th>週次</th><th>開始</th><th>活動</th><th>本輪日期</th></tr></thead>
+        <tbody id="rot-body"></tbody>
+      </table>
+    </div>
+    <div id="rot-rules" class="rot-rules"></div>
+    <p id="rot-note" class="rot-note" hidden></p>
+  </section>
 
   <section class="bar">
     <input type="search" id="q" placeholder="搜尋名稱／備註／留言…">
@@ -37,6 +52,7 @@
       <button id="btn-more" class="btn">資料 ▾</button>
       <div id="more-menu" class="menu" hidden>
         <button data-act="export"><b>匯出 cycles.json</b><small>覆蓋 data/cycles.json 再 commit，才會更新站上內容</small></button>
+        <button data-act="calibrate"><b>校準輪替週次…</b><small>告訴系統遊戲裡現在是第幾週</small></button>
         <button data-act="copy">複製 JSON 到剪貼簿</button>
         <button data-act="import">匯入 JSON 檔…</button>
         <hr>
@@ -52,7 +68,7 @@
   <div id="list" class="cards"></div>
   <p id="empty" class="empty" hidden>沒有符合條件的項目。</p>
 
-  <p class="credit">星期以 1=週一 … 7=週日 表示。「下次開放」為推算值，實際以遊戲內為準。</p>
+  <p class="credit">W1–W7 為輪替的第幾週，不是星期幾。日期為推算值，實際以遊戲內為準。</p>
 
   <section class="board">
     <h2>留言板</h2>
@@ -70,10 +86,11 @@
       <label class="wide">名稱<input type="text" id="f-name" required maxlength="60"></label>
       <label>分類<input type="text" id="f-category" list="cat-list" maxlength="20" placeholder="分類名稱"></label>
       <datalist id="cat-list"></datalist>
-      <label>開放時間<input type="time" id="f-openTime"></label>
+      <label>開放日<select id="f-startDay"><option value="">依該週規則</option><option value="1">週一</option><option value="2">週二</option><option value="3">週三</option><option value="4">週四</option><option value="5">週五</option><option value="6">週六</option><option value="7">週日</option></select></label>
+      <label>開放時刻<input type="time" id="f-openTime"></label>
       <div class="wide">
-        <span class="lb">開放星期（可複選）</span>
-        <div class="wd" id="f-weekdays"></div>
+        <span class="lb">開放週次（可複選，對應輪替的第幾週）</span>
+        <div class="wd" id="f-weeks"></div>
       </div>
       <label>持續天數<input type="number" id="f-durationDays" min="0" max="365" step="1"></label>
       <label>持續時數<input type="number" id="f-durationHours" min="0" max="23" step="1"></label>

@@ -1,11 +1,15 @@
-/* 星慾姬絆 週期登錄表
-   內容是公開的：任何人打開都看得到週期與留言，資料就是 data/cycles.json。
+/* 星慾姬絆 活動日誌
+   內容是公開的：任何人打開都看得到輪替表，資料就是 data/cycles.json。
    編輯功能藏在管理員密碼後面 —— 但要講清楚，這道門只擋 UI：
    站上真正的內容由 repo 裡的 cycles.json 決定，所以實際的修改權限
-   等於 git push 權限。管理員在自己瀏覽器改完後匯出 JSON、commit，才會影響別人。 */
+   等於 git push 權限。管理員在自己瀏覽器改完後匯出 JSON、commit，才會影響別人。
+
+   資料模型（v2）：活動不是「每週固定星期幾」，而是一個 N 週輪替 ——
+   每一輪的第幾週開哪些活動。要換算成實際日期需要 rotation.anchorDate
+   （某次 Week 1 的第一天）。 */
 
 const DATA_URL = 'data/cycles.json';
-const LS_KEY = 'roe-cycles-draft-v1';   // 管理員尚未匯出的草稿
+const LS_KEY = 'roe-cycles-draft-v2';   // 管理員尚未匯出的草稿
 const LS_ADMIN = 'roe-cycles-admin-v1'; // 這台瀏覽器已通過管理員驗證
 const PBKDF2_ITER = 250000;
 const ADMIN_SALT = 'roe-cycles-admin';  // 固定 salt，只為了讓暴力破解變貴
@@ -21,6 +25,7 @@ const GISCUS_CATEGORY = 'General';
 const GISCUS_CATEGORY_ID = '';
 
 const WD = ['', '週一', '週二', '週三', '週四', '週五', '週六', '週日'];
+const DAY = 86400000;
 
 let db = null;            // 目前資料
 let published = null;     // 站上那份（data/cycles.json），用來判斷草稿有沒有差異
@@ -55,32 +60,61 @@ async function checkPassword(password) {
 function blankEntry() {
   return {
     id: 'c-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    name: '', category: '', weekdays: [], openTime: '',
+    name: '', category: '', weeks: [], startDay: null, openTime: '',
     durationDays: null, durationHours: null, lastSeen: '',
     note: '', raw: '', archived: false, comments: [],
     createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
   };
 }
 
+const DEFAULT_ROTATION = { totalWeeks: 7, anchorDate: '', anchorNote: '', rules: [], openNote: '' };
+
 // 補齊缺欄位，容忍手改過的 JSON
 function migrate(data) {
+  const num = v => (v === null || v === undefined || v === '' ? null : Number(v));
+  const r = data.rotation || {};
+  const total = Number(r.totalWeeks) || 7;
+
   const out = {
-    schema: 'cycles-v1',
-    title: data.title || '週期登錄表',
-    note: data.note || '',
+    schema: 'cycles-v2',
+    title: data.title || '活動日誌',
+    source: data.source || '',
     updatedAt: data.updatedAt || '',
+    rotation: {
+      ...DEFAULT_ROTATION,
+      ...r,
+      totalWeeks: total,
+      anchorDate: String(r.anchorDate || ''),
+      rules: Array.isArray(r.rules) ? r.rules.map(String) : [],
+    },
+    weeks: [],
     entries: [],
   };
+
+  // 週次表：補滿 1..total，缺的用空的
+  const given = Array.isArray(data.weeks) ? data.weeks : [];
+  for (let n = 1; n <= total; n++) {
+    const w = given.find(x => Number(x.n) === n) || {};
+    out.weeks.push({
+      n,
+      label: String(w.label || ''),
+      startsOn: String(w.startsOn || ''),
+      activities: (Array.isArray(w.activities) ? w.activities : []).map(String),
+    });
+  }
+
   const list = Array.isArray(data.entries) ? data.entries : [];
   out.entries = list.map(e => {
     const b = blankEntry();
-    const num = v => (v === null || v === undefined || v === '' ? null : Number(v));
     return {
       ...b, ...e,
       id: e.id || b.id,
       name: String(e.name || ''),
       category: String(e.category || ''),
-      weekdays: (Array.isArray(e.weekdays) ? e.weekdays : []).map(Number).filter(n => n >= 1 && n <= 7),
+      // v1 的 weekdays（每週星期幾）在新模型下沒有意義，直接捨棄
+      weeks: (Array.isArray(e.weeks) ? e.weeks : [])
+        .map(Number).filter(n => n >= 1 && n <= total),
+      startDay: (n => (n >= 1 && n <= 7 ? n : null))(Number(e.startDay)),
       openTime: String(e.openTime || ''),
       durationDays: num(e.durationDays),
       durationHours: num(e.durationHours),
@@ -111,36 +145,62 @@ function save() {
 
 function entry(id) { return db.entries.find(e => e.id === id); }
 
-/* ---------- 週期推算 ---------- */
+/* ---------- 輪替推算 ---------- */
 
 function isoDay(d) { return ((d.getDay() + 6) % 7) + 1; }   // 1=週一 … 7=週日
 
-function durMs(e) {
-  return ((e.durationDays || 0) * 24 + (e.durationHours || 0)) * 3600e3;
+// 目前落在輪替的第幾週。沒有 anchorDate 就算不出來。
+function rotationOf(ts = Date.now()) {
+  const r = db && db.rotation;
+  if (!r || !r.anchorDate) return null;
+  const anchor = new Date(r.anchorDate + 'T00:00:00').getTime();
+  if (Number.isNaN(anchor)) return null;
+  const total = r.totalWeeks;
+  const n = Math.floor((ts - anchor) / (7 * DAY));
+  return {
+    week: ((n % total) + total) % total + 1,
+    start: anchor + n * 7 * DAY,
+    index: n,
+    total,
+  };
 }
 
-// 回傳 {status:'live'|'upcoming'|'unknown', start, end}
-function schedule(e, now = Date.now()) {
-  const wds = e.weekdays || [];
-  if (!wds.length) return { status: 'unknown' };
-  const [hh, mm] = (e.openTime || '00:00').split(':').map(n => Number(n) || 0);
-  const span = durMs(e);
-  let live = null, next = null;
+function weekDef(n) {
+  return (db.weeks || []).find(w => w.n === n) || { n, activities: [], startsOn: '', label: '' };
+}
 
-  for (let d = -8; d <= 15; d++) {
-    const t = new Date(now);
-    t.setDate(t.getDate() + d);
-    t.setHours(hh, mm, 0, 0);
-    if (!wds.includes(isoDay(t))) continue;
-    const start = t.getTime();
-    const end = start + span;
-    // 持續時間長到跨過下一個開放日時，場次會重疊；取最近開始的那場，
-    // 它的結束時間才是實際還剩多久（所以這裡不 break，讓後面的覆蓋前面的）
-    if (span > 0 && start <= now && now < end) live = { start, end };
-    if (!next && start > now) next = { start, end };
+// 「週四」「週一、週二」→ 該週第幾天開（0 = 週一）
+function startOffset(startsOn) {
+  const first = String(startsOn || '').split(/[、,／/\s]/)[0].trim();
+  const i = WD.indexOf(first);
+  return i > 0 ? i - 1 : 0;
+}
+
+// 活動在所屬那一週的第幾天開。同一週的兩個活動常是一個週一、一個週二，
+// 所以優先看活動自己的 startDay，沒填才退回該週的規則。
+function entryOffset(e, week) {
+  if (e.startDay >= 1 && e.startDay <= 7) return e.startDay - 1;
+  return startOffset(weekDef(week).startsOn);
+}
+
+// 某活動的狀態：live（開放中）/ upcoming（還沒到）/ unknown
+function activityState(e, ts = Date.now()) {
+  const cur = rotationOf(ts);
+  const weeks = e.weeks || [];
+  if (!cur || !weeks.length) return { status: 'unknown' };
+
+  // 從本週往後掃一整輪，找出第一個還沒結束的場次
+  for (let i = 0; i <= cur.total; i++) {
+    const w = ((cur.week - 1 + i) % cur.total) + 1;
+    if (!weeks.includes(w)) continue;
+    const weekStart = cur.start + i * 7 * DAY;
+    const start = weekStart + entryOffset(e, w) * DAY;
+    const span = (e.durationDays || 0) * DAY + (e.durationHours || 0) * 3600e3;
+    // 沒填持續時間就當它開滿整週
+    const end = span > 0 ? start + span : weekStart + 7 * DAY;
+    if (ts >= start && ts < end) return { status: 'live', week: w, start, end };
+    if (ts < start) return { status: 'upcoming', week: w, start, end };
   }
-  if (live) return { status: 'live', ...live };
-  if (next) return { status: 'upcoming', ...next };
   return { status: 'unknown' };
 }
 
@@ -155,22 +215,24 @@ function fmtDur(ms) {
   return `${m} 分`;
 }
 
-function fmtWhen(ts) {
+function fmtDate(ts) {
   const t = new Date(ts);
-  const hm = String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
-  return `${t.getMonth() + 1}/${t.getDate()}（${WD[isoDay(t)]}）${hm}`;
+  return `${t.getMonth() + 1}/${t.getDate()}（${WD[isoDay(t)]}）`;
 }
 
 function nextHtml(e) {
-  const s = schedule(e);
+  const s = activityState(e);
   if (s.status === 'unknown') {
-    return `<span class="lbl">下次開放</span>尚未設定開放星期`;
+    return !(e.weeks || []).length
+      ? `<span class="lbl">開放週次</span>尚未設定`
+      : `<span class="lbl">開放週次</span>需要先校準輪替（缺 anchorDate）`;
   }
   if (s.status === 'live') {
-    return `<span class="lbl">進行中</span>剩 ${fmtDur(s.end - Date.now())}　·　${fmtWhen(s.end)} 結束`;
+    return `<span class="lbl">開放中 · Week ${s.week}</span>`
+      + `剩 ${fmtDur(s.end - Date.now())}　·　${fmtDate(s.end)} 結束`;
   }
-  const left = s.start - Date.now();
-  return `<span class="lbl">下次開放</span>${fmtWhen(s.start)}　·　還有 ${fmtDur(left)}`;
+  return `<span class="lbl">下次 · Week ${s.week}</span>`
+    + `${fmtDate(s.start)} 開　·　還有 ${fmtDur(s.start - Date.now())}`;
 }
 
 /* ---------- 畫面 ---------- */
@@ -195,9 +257,11 @@ function visible() {
 const RANK = { live: 0, upcoming: 1, unknown: 2 };
 
 function render() {
+  renderRotation();
+
   const list = visible().sort((a, b) => {
     if (a.archived !== b.archived) return a.archived ? 1 : -1;
-    const sa = schedule(a), sb = schedule(b);
+    const sa = activityState(a), sb = activityState(b);
     if (RANK[sa.status] !== RANK[sb.status]) return RANK[sa.status] - RANK[sb.status];
     if (sa.start && sb.start) return sa.start - sb.start;
     return a.name.localeCompare(b.name, 'zh-Hant');
@@ -209,10 +273,41 @@ function render() {
   showDraftBadge();
 }
 
+// 輪替總表：官方活動日誌的內容，目前這一週會被標出來
+function renderRotation() {
+  const cur = rotationOf();
+  const r = db.rotation;
+
+  $('#rot-now').innerHTML = cur
+    ? `目前是 <b>Week ${cur.week}</b>　·　${fmtDate(cur.start)} ~ ${fmtDate(cur.start + 6 * DAY)}`
+    : '<b>尚未校準</b> —— 設定 Week 1 的起始日後才能推算目前週次與倒數。';
+
+  $('#rot-body').innerHTML = db.weeks.map(w => {
+    const on = cur && cur.week === w.n;
+    const when = w.label || (w.startsOn ? w.startsOn + '開始' : '—');
+    const dates = cur
+      ? fmtDate(cur.start + ((w.n - cur.week + cur.total) % cur.total) * 7 * DAY)
+      : '';
+    return `<tr class="${on ? 'now' : ''}">
+      <td class="wk">Week ${w.n}${on ? ' <span class="badge">本週</span>' : ''}</td>
+      <td class="when">${esc(when)}</td>
+      <td class="acts">${w.activities.map(a => `<span class="chip">${esc(a)}</span>`).join('') || '—'}</td>
+      <td class="dt">${dates}</td>
+    </tr>`;
+  }).join('');
+
+  const rules = (r.rules || []).map(x => `<li>${esc(x)}</li>`).join('');
+  $('#rot-rules').innerHTML = rules ? `<ul>${rules}</ul>` : '';
+  $('#rot-note').textContent = [r.anchorNote, r.openNote].filter(Boolean).join(' ');
+  $('#rot-note').hidden = !isAdmin || !$('#rot-note').textContent;
+}
+
 function cardHtml(e) {
-  const s = schedule(e);
-  const wd = e.weekdays.length ? e.weekdays.slice().sort().map(n => WD[n]).join('、') : '—';
-  const dur = durMs(e) > 0 ? fmtDur(durMs(e)) : '—';
+  const s = activityState(e);
+  const weeks = (e.weeks || []).length
+    ? e.weeks.slice().sort((a, b) => a - b).map(n => `W${n}`).join('、') : '—';
+  const dur = (e.durationDays || e.durationHours)
+    ? fmtDur((e.durationDays || 0) * DAY + (e.durationHours || 0) * 3600e3) : '—';
   const open = openComments.has(e.id);
 
   return `<article class="card ${s.status === 'live' ? 'live' : ''} ${e.archived ? 'archived' : ''}" data-id="${e.id}">
@@ -221,13 +316,13 @@ function cardHtml(e) {
       ${e.category ? `<span class="cat">${esc(e.category)}</span>` : ''}
     </div>
     <div class="when">
-      <span>開放：<b>${esc(wd)}</b>${e.openTime ? ' ' + esc(e.openTime) : ''}</span>
+      <span>開放週次：<b>${esc(weeks)}</b>${e.startDay ? ' ' + WD[e.startDay] + '開' : ''}</span>
       <span>持續：<b>${dur}</b></span>
       ${e.lastSeen ? `<span>最近：<b>${esc(e.lastSeen)}</b></span>` : ''}
     </div>
     <div class="next ${s.status}">${nextHtml(e)}</div>
     ${e.note ? `<div class="note">${esc(e.note)}</div>` : ''}
-    ${e.raw ? `<div class="raw">原始筆記：${esc(e.raw)}</div>` : ''}
+    ${e.raw ? `<div class="raw">手寫筆記：${esc(e.raw)}</div>` : ''}
     <div class="acts">
       ${isAdmin ? `<button class="btn small" data-act="edit">編輯</button>
       <button class="btn small" data-act="dup">複製</button>` : ''}
@@ -264,7 +359,7 @@ function tick() {
     const e = entry(card.dataset.id);
     if (!e) return;
     const box = $('.next', card);
-    const s = schedule(e);
+    const s = activityState(e);
     box.className = 'next ' + s.status;
     box.innerHTML = nextHtml(e);
     card.classList.toggle('live', s.status === 'live');
@@ -285,14 +380,15 @@ function note(msg) {
   el.textContent = msg;
   el.hidden = false;
   clearTimeout(note._t);
-  note._t = setTimeout(() => { el.hidden = true; }, 5000);
+  note._t = setTimeout(() => { el.hidden = true; }, 6000);
 }
 
 /* ---------- 編輯 ---------- */
 
-function buildWeekdayBoxes() {
-  $('#f-weekdays').innerHTML = [1, 2, 3, 4, 5, 6, 7].map(n =>
-    `<label><input type="checkbox" value="${n}">${WD[n]}</label>`).join('');
+function buildWeekBoxes() {
+  const total = (db && db.rotation.totalWeeks) || 7;
+  $('#f-weeks').innerHTML = Array.from({ length: total }, (_, i) => i + 1).map(n =>
+    `<label><input type="checkbox" value="${n}">W${n}</label>`).join('');
 }
 
 function openEdit(id) {
@@ -301,6 +397,7 @@ function openEdit(id) {
   $('#dlg-title').textContent = id ? '編輯項目' : '新增項目';
   $('#f-name').value = e.name;
   $('#f-category').value = e.category;
+  $('#f-startDay').value = e.startDay ?? '';
   $('#f-openTime').value = e.openTime;
   $('#f-durationDays').value = e.durationDays ?? '';
   $('#f-durationHours').value = e.durationHours ?? '';
@@ -308,7 +405,7 @@ function openEdit(id) {
   $('#f-archived').checked = e.archived;
   $('#f-note').value = e.note;
   $('#f-raw').value = e.raw;
-  $$('#f-weekdays input').forEach(cb => { cb.checked = e.weekdays.includes(Number(cb.value)); });
+  $$('#f-weeks input').forEach(cb => { cb.checked = e.weeks.includes(Number(cb.value)); });
   if (!id) openEdit._draft = e;
   $('#dlg').showModal();
   $('#f-name').focus();
@@ -324,6 +421,7 @@ function commitEdit() {
   const patch = {
     name,
     category: $('#f-category').value.trim(),
+    startDay: numOrNull('#f-startDay'),
     openTime: $('#f-openTime').value,
     durationDays: numOrNull('#f-durationDays'),
     durationHours: numOrNull('#f-durationHours'),
@@ -331,7 +429,7 @@ function commitEdit() {
     archived: $('#f-archived').checked,
     note: $('#f-note').value.trim(),
     raw: $('#f-raw').value.trim(),
-    weekdays: $$('#f-weekdays input:checked').map(cb => Number(cb.value)).sort(),
+    weeks: $$('#f-weeks input:checked').map(cb => Number(cb.value)).sort((a, b) => a - b),
     updatedAt: new Date().toISOString(),
   };
   if (editingId) {
@@ -343,10 +441,38 @@ function commitEdit() {
   render();
 }
 
+// 校準：告訴系統「遊戲裡現在是第幾週」，反推 anchorDate
+function calibrate() {
+  const cur = rotationOf();
+  const total = db.rotation.totalWeeks;
+  const ans = prompt(
+    `遊戲內現在是輪替的第幾週？（1–${total}）\n\n`
+    + `目前推算為 Week ${cur ? cur.week : '？'}。填入正確的週次，`
+    + `系統會反推 Week 1 的起始日。`,
+    cur ? String(cur.week) : '');
+  if (ans === null) return;
+  const want = Number(ans);
+  if (!(want >= 1 && want <= total)) return note(`要填 1 到 ${total} 之間的數字。`);
+
+  // 本週的週一當基準，往回推 (want-1) 週就是 Week 1 的起始日
+  const now = new Date();
+  const monday = new Date(now);
+  monday.setHours(0, 0, 0, 0);
+  monday.setDate(monday.getDate() - (isoDay(monday) - 1));
+  const anchor = new Date(monday.getTime() - (want - 1) * 7 * DAY);
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+  db.rotation.anchorDate = iso(anchor);
+  db.rotation.anchorNote = `由管理員於 ${iso(new Date())} 校準為 Week ${want}。`;
+  save();
+  render();
+  note(`已校準：本週為 Week ${want}，Week 1 起始日設為 ${iso(anchor)}。記得匯出 JSON 並 commit。`);
+}
+
 /* ---------- JSON 匯出／匯入 ---------- */
 
 function jsonText() {
-  return JSON.stringify({ ...db, schema: 'cycles-v1' }, null, 2) + '\n';
+  return JSON.stringify({ ...db, schema: 'cycles-v2' }, null, 2) + '\n';
 }
 
 function download(text, filename) {
@@ -380,6 +506,7 @@ function doImport(file) {
       if (!Array.isArray(parsed.entries)) throw new Error('JSON 裡找不到 entries 陣列');
       if (!confirm(`匯入 ${parsed.entries.length} 筆資料，將覆蓋目前內容。確定嗎？`)) return;
       db = migrate(parsed);
+      buildWeekBoxes();
       save();
       render();
       note(`已匯入 ${db.entries.length} 筆。`);
@@ -414,6 +541,7 @@ function bind() {
     if (!btn) return;
     const act = btn.dataset.act;
     menu.hidden = true;
+    if (act === 'calibrate') calibrate();
     if (act === 'export') doExport();
     if (act === 'copy') doCopy();
     if (act === 'import') $('#file-input').click();
@@ -428,6 +556,7 @@ function bind() {
       if (!confirm('捨棄尚未匯出的草稿，改用站上版本？')) return;
       try { localStorage.removeItem(LS_KEY); } catch (err) { /* ignore */ }
       db = migrate(structuredClone(published));
+      buildWeekBoxes();
       render();
       note('已改用站上版本。');
     }
@@ -514,8 +643,6 @@ function bind() {
   });
 }
 
-/* ---------- 啟動 ---------- */
-
 /* ---------- 管理員模式 ---------- */
 
 // 依身分切換 UI；訪客看到的頁面沒有任何編輯入口
@@ -531,9 +658,11 @@ function applyRole() {
 function showDraftBadge() {
   const el = $('#draft');
   if (!isAdmin || !published || !db) return void (el.hidden = true);
-  const dirty = JSON.stringify(db.entries) !== JSON.stringify(migrate(published).entries);
-  el.hidden = !dirty;
-  if (dirty) {
+  const a = JSON.stringify({ e: db.entries, w: db.weeks, r: db.rotation });
+  const p = migrate(published);
+  const b = JSON.stringify({ e: p.entries, w: p.weeks, r: p.rotation });
+  el.hidden = a === b;
+  if (a !== b) {
     el.textContent = '這台瀏覽器有尚未匯出的草稿 —— 站上看到的還是舊版。'
       + '要讓別人看到，請「資料 → 匯出 cycles.json」覆蓋 data/cycles.json 再 commit。';
   }
@@ -614,7 +743,6 @@ function mountGiscus() {
 }
 
 async function init() {
-  buildWeekdayBoxes();
   bind();
   bindLogin();
   setInterval(tick, 60000);
@@ -634,6 +762,7 @@ async function init() {
   try { isAdmin = localStorage.getItem(LS_ADMIN) === '1' && !!ADMIN_HASH; } catch (e) { /* ignore */ }
   if (isAdmin) loadDraft();
 
+  buildWeekBoxes();
   applyRole();
   render();
   mountGiscus();

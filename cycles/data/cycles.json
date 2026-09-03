@@ -1,106 +1,199 @@
 {
-  "schema": "cycles-v1",
-  "title": "星慾姬絆 週期登錄表",
-  "note": "初始資料整理自 2026-09 手寫備忘（未命名.rtf）。weekdays 1=週一 … 7=週日；raw 欄位保留原始筆記字串，供日後校正。",
+  "schema": "cycles-v2",
+  "title": "星慾姬絆 活動日誌",
+  "source": "遊戲內「活動日誌」公告，2026-09-03 對照手寫筆記整理",
   "updatedAt": "2026-09-03",
+  "rotation": {
+    "totalWeeks": 7,
+    "anchorDate": "2026-07-27",
+    "anchorNote": "Week 1 Day 1 的日期（週一）。由手寫筆記與官方圖交叉推得：官方標 Week 5–7 「Starts Mon. & Tue.」表示每週兩個活動分別在週一、週二開，故週期邊界在週一；筆記「飛船 9/1」正好是 Week 6 的週二＝第二個活動，「豐收 w4」對上 8/17 那週的週四，「神殿 w5」對上 8/24 那週。仍請在遊戲內核對一次。",
+    "rules": [
+      "淫紋巡獵結束後的下週四會開豐收巡獵",
+      "星體巡獵結束後的下週一會開神殿巡獵"
+    ],
+    "openNote": "Week 7 之後如何接回 Week 1 尚未確認；目前以 7 週循環推算。"
+  },
+  "weeks": [
+    {
+      "n": 1,
+      "label": "Day 1 – Day 7",
+      "startsOn": "",
+      "activities": [
+        "神殿巡獵",
+        "關卡巡獵"
+      ]
+    },
+    {
+      "n": 2,
+      "label": "Day 8 – Day 14",
+      "startsOn": "",
+      "activities": [
+        "精粹巡獵",
+        "飛船巡獵"
+      ]
+    },
+    {
+      "n": 3,
+      "label": "Day 15 – Day 21",
+      "startsOn": "",
+      "activities": [
+        "星體巡獵",
+        "淫紋巡獵"
+      ]
+    },
+    {
+      "n": 4,
+      "label": "",
+      "startsOn": "週四",
+      "activities": [
+        "豐收巡獵"
+      ]
+    },
+    {
+      "n": 5,
+      "label": "",
+      "startsOn": "週一、週二",
+      "activities": [
+        "神殿巡獵",
+        "抽卡巡獵"
+      ]
+    },
+    {
+      "n": 6,
+      "label": "",
+      "startsOn": "週一、週二",
+      "activities": [
+        "精粹巡獵",
+        "飛船巡獵"
+      ]
+    },
+    {
+      "n": 7,
+      "label": "",
+      "startsOn": "週一、週二",
+      "activities": [
+        "星體巡獵",
+        "淫紋巡獵"
+      ]
+    }
+  ],
   "entries": [
     {
-      "id": "c-xunlie-jinghua",
-      "name": "巡獵精萃",
+      "id": "c-shendian",
+      "name": "神殿巡獵",
       "category": "巡獵",
-      "weekdays": [3, 1],
-      "openTime": "12:00",
+      "weeks": [
+        1,
+        5
+      ],
+      "durationDays": 7,
+      "note": "消耗果籃。星體巡獵結束後的下週一開。",
+      "raw": "神殿巡獵 w5 7d 消耗果籃",
+      "archived": false,
+      "comments": [],
+      "startDay": 1
+    },
+    {
+      "id": "c-guanka",
+      "name": "關卡巡獵",
+      "category": "巡獵",
+      "weeks": [
+        1
+      ],
       "durationDays": null,
-      "durationHours": null,
-      "lastSeen": "2026-08-30",
-      "note": "原筆記的 3d11h 看起來是當下「還剩多久」的快照，不是每期的持續長度，所以持續時間先留空待觀察。開放日推測為週三與週一、12:00 開。",
+      "note": "官方活動日誌列在 Week 1，手寫筆記未提及。開放日與持續天數待確認。",
+      "raw": "",
+      "archived": false,
+      "comments": [],
+      "startDay": 2
+    },
+    {
+      "id": "c-jingcui",
+      "name": "精粹巡獵",
+      "category": "巡獵",
+      "weeks": [
+        2,
+        6
+      ],
+      "durationDays": null,
+      "note": "筆記寫作「巡獵精萃」。原記的 3d11h 是當下還剩多久的快照，不是每期長度，持續天數待補。",
       "raw": "巡獵精萃 less:3d11h || on 0811 w3 1200 w1 8/30",
       "archived": false,
-      "comments": []
+      "comments": [],
+      "startDay": 1
+    },
+    {
+      "id": "c-feichuan",
+      "name": "飛船巡獵",
+      "category": "巡獵",
+      "weeks": [
+        2,
+        6
+      ],
+      "durationDays": 3,
+      "note": "",
+      "raw": "飛船 9/1 3d",
+      "archived": false,
+      "comments": [],
+      "startDay": 2
     },
     {
       "id": "c-xingti",
       "name": "星體巡獵",
       "category": "巡獵",
-      "weekdays": [2],
-      "openTime": "",
+      "weeks": [
+        3,
+        7
+      ],
       "durationDays": null,
-      "durationHours": null,
-      "lastSeen": "",
-      "note": "原筆記只記了 w2，持續天數待補。",
+      "note": "結束後的下週一會開神殿巡獵。",
       "raw": "星體巡獵 w2",
       "archived": false,
-      "comments": []
+      "comments": [],
+      "startDay": 1
     },
     {
       "id": "c-yinwen",
       "name": "淫紋巡獵",
       "category": "巡獵",
-      "weekdays": [7],
-      "openTime": "",
+      "weeks": [
+        3,
+        7
+      ],
       "durationDays": 2,
-      "durationHours": null,
-      "lastSeen": "",
-      "note": "",
+      "note": "結束後的下週四會開豐收巡獵。",
       "raw": "淫紋巡獵 sun 2d",
       "archived": false,
-      "comments": []
+      "comments": [],
+      "startDay": 2
     },
     {
       "id": "c-fengshou",
-      "name": "豐收",
+      "name": "豐收巡獵",
       "category": "資源",
-      "weekdays": [4],
-      "openTime": "",
+      "weeks": [
+        4
+      ],
       "durationDays": 3,
-      "durationHours": null,
-      "lastSeen": "",
-      "note": "",
+      "note": "該週的週四才開，不是週一。",
       "raw": "豐收。w4 3d",
       "archived": false,
-      "comments": []
-    },
-    {
-      "id": "c-shendian",
-      "name": "神殿巡獵",
-      "category": "巡獵",
-      "weekdays": [5],
-      "openTime": "",
-      "durationDays": 7,
-      "durationHours": null,
-      "lastSeen": "",
-      "note": "消耗果籃",
-      "raw": "神殿巡獵 w5 7d 消耗果籃",
-      "archived": false,
-      "comments": []
+      "comments": [],
+      "startDay": 4
     },
     {
       "id": "c-choka",
-      "name": "抽卡／幾群／技能 巡獵",
+      "name": "抽卡巡獵",
       "category": "巡獵",
-      "weekdays": [1],
-      "openTime": "",
+      "weeks": [
+        5
+      ],
       "durationDays": 3,
-      "durationHours": null,
-      "lastSeen": "",
-      "note": "原筆記寫「幾群」，用字待確認。",
+      "note": "筆記寫作「抽卡/幾群/技能 巡獵」，用字待確認。",
       "raw": "抽卡/幾群/技能 巡獵 w1 3d",
       "archived": false,
-      "comments": []
-    },
-    {
-      "id": "c-feichuan",
-      "name": "飛船",
-      "category": "其他",
-      "weekdays": [],
-      "openTime": "",
-      "durationDays": 3,
-      "durationHours": null,
-      "lastSeen": "2026-09-01",
-      "note": "只記到 9/1 開、持續 3d，固定星期待觀察。",
-      "raw": "飛船 9/1 3d",
-      "archived": false,
-      "comments": []
+      "comments": [],
+      "startDay": 2
     }
   ]
 }
