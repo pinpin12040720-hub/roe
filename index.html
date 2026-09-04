@@ -492,7 +492,7 @@ var themeBtn=doc.getElementById('theme');
 if(themeBtn&&themeBtn.parentNode)themeBtn.parentNode.insertBefore(langBtn,themeBtn);else if(nav)nav.appendChild(langBtn);
 langBtn.addEventListener('click',function(){applyLang(lang==='en'?'zh':'en');});
 var gs=doc.createElement('div');gs.className='game-switch';
-gs.innerHTML='<div class="gs-inner"><span class="gs-label">GAME</span><span class="gs active" data-zh="慾神幻想" data-en="Rise of Eros">慾神幻想</span><a class="gs" href="enemyfinder/" data-zh="愛慾轉生" data-en="Ero Dorado" title="另一款遊戲《愛慾轉生 Ero Dorado》">愛慾轉生</a><a class="gs" href="sa/" data-zh="星慾姬絆" data-en="Stellar Affinity" title="另一款遊戲《星慾姬絆 Stellar Affinity》">星慾姬絆</a></div>';
+gs.innerHTML='<div class="gs-inner"><span class="gs-label">GAME</span><span class="gs active" data-zh="慾神幻想" data-en="Rise of Eros">慾神幻想</span><a class="gs" href="enemyfinder/" data-zh="愛慾轉生" data-en="Ero Dorado" title="另一款遊戲《愛慾轉生 Ero Dorado》">愛慾轉生</a><a class="gs" href="sa/" data-zh="星慾姬絆" data-en="Stellar Affinity" title="另一款遊戲《星慾姬絆 Stellar Affinity》">星慾姬絆</a><a class="gs" href="majo/" data-zh="魔女之夜" data-en="MAJO" title="另一款遊戲《魔女之夜 MAJO》">魔女之夜</a></div>';
 doc.body.insertBefore(gs,doc.body.firstChild);
 var modal=doc.createElement('div');modal.id='pmodal';modal.className='hidden';
 modal.innerHTML='<div class="pm-box"><button class="pm-close" aria-label="close">✕</button><div class="pm-head"></div><div class="pm-body"></div></div>';
