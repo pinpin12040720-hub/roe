@@ -23,12 +23,11 @@ const ADMIN_HASH = 'cc06ce05dc09f374f90620b8f1d465b035082768c0034e0ff7aeeaf8a151
 
 // 回報管道
 // giscus 留言板：留言存在 GitHub Discussions，訪客需有 GitHub 帳號。
-// CATEGORY_ID 要等 repo 開啟 Discussions 後才拿得到；留空則改顯示 GitHub Issue 回報連結。
+// CATEGORY_ID 要等 repo 開啟 Discussions 後才拿得到；留空則改顯示全站回報表單的按鈕。
 const GISCUS_REPO = 'pinpin12040720-hub/roe';
 const GISCUS_REPO_ID = 'R_kgDOTJWkkA';
 const GISCUS_CATEGORY = 'General';
 const GISCUS_CATEGORY_ID = '';
-const ISSUE_URL = 'https://github.com/pinpin12040720-hub/roe/issues/new';
 
 const WD = ['', '週一', '週二', '週三', '週四', '週五', '週六', '週日'];
 const DAY = 86400000;
@@ -356,7 +355,11 @@ function renderStatus() {
   ].filter(Boolean).join('　·　');
   $('#stat-note').textContent = st.note || '';
   $('#stat-note').hidden = !st.note;
-  $('#stat-report').href = issueUrl(null);
+  $('#stat-report').href = '#';
+  $('#stat-report').setAttribute('data-report', '');
+  $('#stat-report').setAttribute('data-report-type', 'schedule');
+  $('#stat-report').setAttribute('data-report-message', issueUrl(null));
+  $('#stat-report').removeAttribute('target');
 }
 
 // 伺服器列：目前用哪個開服日在算
@@ -448,27 +451,21 @@ function cardHtml(e) {
       ${isAdmin ? `<button class="btn small" data-act="edit">編輯</button>
       <button class="btn small" data-act="dup">複製</button>` : ''}
       <button class="btn small" data-act="toggle-cm">${isAdmin ? '筆記' : '觀察紀錄'} ${e.comments.length ? `(${e.comments.length})` : ''}</button>
-      <a class="btn small" href="${issueUrl(e)}" target="_blank" rel="noopener">回報修正</a>
+      <a class="btn small" href="#" data-report data-report-type="schedule" data-report-subject="週期表：${esc(e.name)}" data-report-message="${esc(issueUrl(e))}">回報修正</a>
       ${isAdmin ? `<button class="btn small danger" data-act="del">刪除</button>` : ''}
     </div>
     ${open ? commentsHtml(e) : ''}
   </article>`;
 }
 
-// 開一則 GitHub Issue 的連結，標題與內文先帶好，回報的人只要補觀察到的日期
+// 回報表單（assets/report.js）的預填文字：活動名、站上寫的 Day、伺服器開服日先帶好，回報的人只要補觀察到的日期
 function issueUrl(e) {
-  const u = new URL(ISSUE_URL);
   const srv = visitorOpen ? `我的伺服器開服日：${visitorOpen}` : `伺服器：${db.rotation.serverLabel}（${db.rotation.serverOpenDate} 開服）`;
   if (e) {
-    u.searchParams.set('title', `[週期表] ${e.name} 時程修正`);
-    u.searchParams.set('body',
-      `活動：${e.name}\n目前站上寫的開放日：${(e.days || []).map(d => 'Day ' + d).join('、') || '未填'}\n${srv}\n\n`
-      + `實際觀察到的開放日期／時刻：\n\n持續多久：\n\n其他補充：\n`);
-  } else {
-    u.searchParams.set('title', '[週期表] 修正建議');
-    u.searchParams.set('body', `${srv}\n\n要修正的地方：\n\n實際觀察：\n`);
+    return `活動：${e.name}\n目前站上寫的開放日：${(e.days || []).map(d => 'Day ' + d).join('、') || '未填'}\n${srv}\n\n`
+      + `實際觀察到的開放日期／時刻：\n\n持續多久：\n\n其他補充：\n`;
   }
-  return u.toString();
+  return `${srv}\n\n要修正的地方：\n\n實際觀察：\n`;
 }
 
 function commentsHtml(e) {
@@ -908,13 +905,13 @@ function loadDraft() {
   } catch (err) { /* 損毀就沿用站上版本 */ }
 }
 
-// 留言板：giscus 接好就載入；沒接好就給 GitHub Issue 連結，訪客一樣有地方回報
+// 留言板：giscus 接好就載入；沒接好就給全站回報表單的按鈕，訪客一樣有地方回報
 function mountGiscus() {
   const off = $('#giscus-off');
   if (!GISCUS_CATEGORY_ID) {
     off.hidden = false;
-    off.innerHTML = `討論區（GitHub Discussions）尚未啟用，回報請先開一則 GitHub Issue：`
-      + `<a class="btn small" href="${issueUrl(null)}" target="_blank" rel="noopener">回報修正 ↗</a>`
+    off.innerHTML = `看到時程或名詞不對，直接用站上的回報表單（不需帳號）：`
+      + `<a class="btn small" href="#" data-report data-report-type="schedule" data-report-message="${esc(issueUrl(null))}">回報修正</a>`
       + (isAdmin ? `<br><small>管理員：repo 要先開啟 Discussions、安裝 giscus app，再把 category id 填進 app.js 的 GISCUS_CATEGORY_ID。</small>` : '');
     return;
   }
