@@ -9,6 +9,9 @@
    - rotation.serverOpenDate：本站基準服的開服日（Day 1）
    - rotation.cycleDays：一輪幾天（官方活動日誌畫到 Week 7 = 49 天）
    - entry.days：該活動在一輪裡的第幾天開（1-based），與 entry.weeks（官方週次標籤）逐一對應
+   - rotation.phase2：{ fromDay, weekday } —— 兩個伺服器實測：前 21 天純看開服天數，
+     Day 22 起貼齊到第一個週四（官方圖 Week 4「Starts Thu.」），之後的 Day 從那個週四往後數。
+     所以 Day ≥ fromDay 的值是「週四開服」的名義日曆，實際日期會依開服日的星期偏移 0–6 天。
    訪客可以填自己伺服器的開服日，只存在自己瀏覽器，不影響站上資料。 */
 
 const DATA_URL = 'data/cycles.json';
@@ -76,7 +79,7 @@ function blankEntry() {
 
 const DEFAULT_ROTATION = {
   cycleDays: 49, serverOpenDate: '', serverLabel: '本站基準服',
-  rules: [], openNote: '', adminNote: '',
+  phase2: null, rules: [], openNote: '', adminNote: '',
 };
 const DEFAULT_STATUS = { level: 'unverified', basis: '', note: '' };
 
@@ -116,6 +119,10 @@ function migrate(data) {
       cycleDays,
       serverOpenDate: validIso(serverOpen) ? serverOpen : '',
       rules: Array.isArray(r.rules) ? r.rules.map(String) : [],
+      // 第二階段對齊星期：fromDay 起貼到第一個 weekday（1=週一…7=週日）；沒設就純看天數
+      phase2: (p => (p && Number(p.fromDay) >= 1 && Number(p.weekday) >= 1 && Number(p.weekday) <= 7)
+        ? { fromDay: Number(p.fromDay), weekday: Number(p.weekday), note: String(p.note || '') }
+        : null)(r.phase2),
       openNote: String(r.openNote || ''),
       adminNote: String(r.adminNote || r.anchorNote || ''),
     },
@@ -218,6 +225,21 @@ function cyclePos(ts = Date.now()) {
   return { day, cycle: idx, pos, total, cycleStart: openDate() + idx * total * DAY };
 }
 
+// 第二階段起點：該輪 Day fromDay 之後（含）第一個指定星期的 00:00
+function phaseStart(cycle) {
+  const p = db.rotation.phase2;
+  const base = openDate() + (cycle * db.rotation.cycleDays + p.fromDay - 1) * DAY;
+  const shift = (p.weekday - isoDay(new Date(base)) + 7) % 7;
+  return base + shift * DAY;
+}
+
+// 某輪某 Day 的 00:00：前段純看天數；到了 phase2 就從貼齊後的那天往後數
+function dayStart(cycle, day) {
+  const p = db.rotation.phase2;
+  if (p && day >= p.fromDay) return phaseStart(cycle) + (day - p.fromDay) * DAY;
+  return openDate() + (cycle * db.rotation.cycleDays + day - 1) * DAY;
+}
+
 // 某週次列在一輪裡的起始天（該列活動裡最早的 Day），沒資料回 null
 function weekStartDay(w) {
   const days = w.activities.map(nm => {
@@ -229,20 +251,21 @@ function weekStartDay(w) {
   return days.length ? Math.min(...days) : null;
 }
 
-// 目前對應官方哪一個 Week：最後一個「起始天 <= 目前 Day」的列
-function currentWeekLabel(pos) {
-  let cur = null;
+// 目前對應官方哪一個 Week：這一輪裡最後一個「起始時刻 <= 現在」的列
+function currentWeekLabel(cur, ts = Date.now()) {
+  let best = null, bestTs = -Infinity;
   db.weeks.forEach(w => {
     const s = weekStartDay(w);
-    if (s !== null && s <= pos && (cur === null || s >= weekStartDay(cur))) cur = w;
+    if (s === null) return;
+    const t = dayStart(cur.cycle, s);
+    if (t <= ts && t >= bestTs) { best = w; bestTs = t; }
   });
-  return cur;
+  return best;
 }
 
-// 活動每一場的開始時刻：開服日 + (輪數*一輪天數 + Day - 1) 天 + 開放時刻
+// 活動每一場的開始時刻：該 Day 的 00:00 + 開放時刻
 function occurrenceStart(e, cycle, day) {
-  const open = openDate();
-  let t = open + (cycle * db.rotation.cycleDays + day - 1) * DAY;
+  let t = dayStart(cycle, day);
   const m = /^(\d{2}):(\d{2})$/.exec(e.openTime || '');
   if (m) t += (Number(m[1]) * 60 + Number(m[2])) * 60000;
   return t;
@@ -380,11 +403,12 @@ function renderServer() {
 function renderRotation() {
   const cur = cyclePos();
   const r = db.rotation;
-  const curW = cur ? currentWeekLabel(cur.pos) : null;
+  const curW = cur ? currentWeekLabel(cur) : null;
 
   $('#rot-now').innerHTML = cur
     ? `目前是第 <b>${cur.cycle + 1}</b> 輪 <b>Day ${cur.pos}</b>`
       + (curW ? `　·　對應官方 <b>Week ${curW.n}</b>` : '')
+      + (r.phase2 ? `　·　Day ${r.phase2.fromDay} 起貼齊${WD[r.phase2.weekday]}（${fmtDate(phaseStart(cur.cycle))}）` : '')
     : '<b>尚未設定開服日</b> —— 填了才能推算目前進度與倒數。';
 
   $('#rot-body').innerHTML = db.weeks.map(w => {
@@ -394,17 +418,18 @@ function renderRotation() {
     if (cur && startDay !== null) {
       // 這一列在目前這一輪的日期；已經過了就顯示下一輪的
       let c = cur.cycle;
-      if (startDay < cur.pos && !on) c += 1;
-      const ts = openDate() + (c * cur.total + startDay - 1) * DAY;
-      dates = fmtDate(ts) + (c !== cur.cycle ? '（下一輪）' : '');
+      if (dayStart(c, startDay) < Date.now() && !on) c += 1;
+      dates = fmtDate(dayStart(c, startDay)) + (c !== cur.cycle ? '（下一輪）' : '');
     }
     const chips = w.activities.map(nm => {
       const e = db.entries.find(x => x.name === nm);
       const i = e ? e.weeks.indexOf(w.n) : -1;
       const d = e && i >= 0 && e.days[i] ? e.days[i] : null;
       const unv = e && !e.verified;
+      const p = db.rotation.phase2;
+      const dayTxt = d ? (p && d >= p.fromDay ? `Day ${d}·${WD[p.weekday]}起算` : `Day ${d}`) : '';
       return `<span class="chip${unv ? ' unv' : ''}" title="${unv ? '待確認' : ''}">${esc(nm)}${
-        d ? `<small>Day ${d}</small>` : ''}</span>`;
+        dayTxt ? `<small>${dayTxt}</small>` : ''}</span>`;
     }).join('');
     return `<tr class="${on ? 'now' : ''}">
       <td class="wk">Week ${w.n}${on ? ' <span class="badge">目前</span>' : ''}</td>
