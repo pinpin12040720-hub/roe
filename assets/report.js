@@ -11,7 +11,8 @@
   'use strict';
   if (window.RoeReport) return;
 
-  var ENDPOINT = window.ROE_REPORT_ENDPOINT || '';
+  var ENDPOINT = window.ROE_REPORT_ENDPOINT
+    || 'https://script.google.com/macros/s/AKfycbzi80QrqbU0jEUVC_ZvlYyzA4YU1ESImh6ZLFKxjfNXkJC91WejtL5mWGpY-685eB_Jeg/exec';
   var ME = document.currentScript; // defer 載入時 boot 才跑，那時 currentScript 已是 null，先記下來
   var LS_HISTORY = 'roe-report-history';   // 這台瀏覽器送過的回報（含狀態）
   var LS_LAST = 'roe-report-last';
