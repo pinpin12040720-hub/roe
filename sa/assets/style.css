@@ -448,3 +448,21 @@ tbody tr:hover { background: var(--bg-sunken); }
   .faq { break-inside: avoid; }
   .faq-body { display: block !important; }
 }
+
+/* ---------- 回報修正 ---------- */
+.callout.feedback { margin-top: -6px; margin-bottom: 26px; }
+.fb-btn {
+  display: inline-block; margin: 8px 10px 4px 0; padding: 6px 13px;
+  border: 1px solid var(--accent); border-radius: 20px;
+  color: var(--accent-text); background: var(--bg-elev);
+  font-size: 13px; font-weight: 600; white-space: nowrap;
+}
+.fb-btn:hover { background: var(--accent-soft); text-decoration: none; }
+.feedback-box {
+  margin: 0 0 18px; padding: 14px 16px;
+  border: 1px dashed var(--warn-border); border-radius: var(--radius);
+  background: var(--warn-bg); color: var(--warn-text); font-size: 13.5px; line-height: 1.6;
+}
+.feedback-box strong { display: block; margin-bottom: 2px; color: var(--text); }
+.fb-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 6px; }
+.fb-link { font-size: 13px; }

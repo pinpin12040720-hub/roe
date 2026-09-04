@@ -234,9 +234,15 @@
 
     html +=
       '<div class="notice">' +
-      '<strong>關於這份中文版：</strong>內容譯自 stellaraffinity.wiki 的公開頁面，僅供個人閱讀。' +
+      '<strong>關於這份中文版：</strong>內容譯自 stellaraffinity.wiki 的公開頁面（AI 輔助翻譯、人工陸續校對），僅供個人閱讀。' +
       '原站嵌入的廣告聯播網腳本（會造成強制跳轉與假防毒推播）已在建置階段完全剝除，站內不含任何第三方腳本、追蹤碼或 iframe。' +
       '遊戲數值可能隨版本改動，實際請以遊戲內為準。' +
+      '</div>' +
+      '<div class="callout feedback">' +
+      '<strong>名詞與遊戲內對不上？</strong>原文是英文社群站，部分角色、道具、活動名稱可能與遊戲內繁中版不一致，翻譯內容也可能有錯。' +
+      '看到不對的地方請直接回報，會逐條修正：' +
+      '<a class="fb-btn" href="' + issueUrl(null) + '" target="_blank" rel="noopener">回報修正（GitHub Issue）↗</a>' +
+      '巡獵與活動時程請看 <a href="../cycles/">週期表</a>，那邊依各伺服器開服日推算。' +
       '</div>'
 
     html += '<div class="card-grid">'
@@ -300,6 +306,19 @@
     document.title = '星慾姬絆 繁中 Wiki'
   }
 
+  /* ---------------- 回報修正 ----------------
+   * 站上沒有後端，回報走 GitHub Issue：標題與內文先帶好頁面資訊，回報的人只要補「哪裡不對、遊戲內怎麼寫」。
+   * repo 開啟 Discussions 後可再換成 giscus 留言板。 */
+  var ISSUE_URL = 'https://github.com/pinpin12040720-hub/roe/issues/new'
+  function issueUrl(page) {
+    var title = page ? '[wiki] ' + (page.navTitle || page.title) + ' 修正建議' : '[wiki] 修正建議'
+    var body = page
+      ? '頁面：' + page.title + '\n網址：' + location.href.split('#')[0] + '#' + page.slug + '\n\n' +
+        '哪一段／哪個名詞不對：\n\n遊戲內實際寫法或正確內容：\n\n其他補充：\n'
+      : '哪一頁、哪一段不對：\n\n遊戲內實際寫法或正確內容：\n'
+    return ISSUE_URL + '?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body)
+  }
+
   /* ---------------- 內容頁 ---------------- */
   function renderPage(slug) {
     var page = BY_SLUG[slug]
@@ -341,6 +360,14 @@
         esc(next.navTitle || next.title) + '</span></a>'
       : '<span></span>'
     html += '</div>'
+    html +=
+      '<div class="feedback-box">' +
+      '<strong>發現名詞或內容與遊戲內不符？</strong>' +
+      '本頁由英文社群 wiki 翻譯整理（AI 輔助翻譯），名詞可能與遊戲內繁中版不一致。歡迎留言建議修正，會逐條核對更新。' +
+      '<div class="fb-actions">' +
+      '<a class="fb-btn" href="' + issueUrl(page) + '" target="_blank" rel="noopener">回報這一頁的問題 ↗</a>' +
+      '<a class="fb-link" href="../cycles/#board">巡獵時程回報 → 週期表</a>' +
+      '</div></div>'
     html +=
       '<p>本頁譯自原站 <code>' +
       esc(page.path) +

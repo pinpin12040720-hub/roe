@@ -169,3 +169,30 @@ body:not(.is-admin) .card .acts{margin-top:9px}
   .rot-table .dt::before{content:'· ';color:#8f80a4}
   .rot-table .acts{margin-top:4px}
 }
+
+/* 資料狀態標籤（整頁層級） */
+.stat{background:#1d1329;border:1px solid rgba(255,179,122,.35);border-radius:14px;padding:12px 16px;margin-bottom:12px}
+.stat-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.stat-foot{margin-top:6px}
+.stat-tag{font-size:12px;font-weight:800;border-radius:999px;padding:3px 11px;white-space:nowrap}
+.stat-tag.todo{color:#ffb37a;border:1px solid rgba(255,179,122,.5);background:rgba(255,179,122,.1)}
+.stat-tag.ok{color:#9be7b4;border:1px solid rgba(155,231,180,.5);background:rgba(155,231,180,.1)}
+.stat-basis{font-size:13.5px;color:#eee6f2;flex:1 1 320px}
+.stat-meta{font-size:12.5px;color:#8f80a4;flex:1}
+.stat-link{font-size:12.5px;font-weight:700;color:#e79cc9;text-decoration:none;border:1px solid rgba(231,156,201,.45);border-radius:999px;padding:3px 11px;white-space:nowrap}
+.stat-link:hover{background:rgba(231,156,201,.14);color:#fff}
+.stat-note{font-size:12.5px;color:#b6a7c6;margin:8px 0 0;border-top:1px dashed rgba(255,255,255,.12);padding-top:8px}
+
+/* 伺服器開服日 */
+.srv{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-bottom:18px;padding:0 4px}
+.srv-now{font-size:13.5px;color:#b6a7c6;margin:0}
+.srv-now b{color:#ffb37a}
+.srv-form{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px}
+.srv-form label{font-size:12px;color:#8f80a4;display:flex;flex-direction:column;gap:3px}
+.srv-form input[type=date]{padding:5px 9px;font-size:13px}
+
+/* 輪替表：待確認的活動與 Day 標示 */
+.rot-table .chip small{color:#8f80a4;font-size:11px;margin-left:5px}
+.rot-table .chip.unv{border-style:dashed;border-color:rgba(255,179,122,.5);color:#ffb37a}
+.card .when small{color:#8f80a4;font-size:11px;margin-left:3px;font-weight:400}
+.card .acts a.btn{text-decoration:none;display:inline-block}

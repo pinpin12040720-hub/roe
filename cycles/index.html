@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>星慾姬絆 活動日誌</title>
-<meta name="description" content="星慾姬絆（Stellar Affinity）巡獵與活動的開放週期整理。">
+<meta name="description" content="星慾姬絆（Stellar Affinity）巡獵與活動的開放週期整理，依各伺服器開服日推算。">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -24,8 +24,32 @@
 <main class="cy-wrap">
   <header class="cy-head">
     <h1>活動日誌 <span class="tag">星慾姬絆</span></h1>
-    <p class="sub">巡獵與活動走七週輪替，每一輪的第幾週開哪些活動。對照遊戲內「活動日誌」整理，日期由目前週次即時推算。</p>
+    <p class="sub">巡獵與活動跟著「開服第幾天」走，每個伺服器的開服日不同，所以日期一律由開服日＋天數推算，不綁星期幾。對照遊戲內「活動日誌」與實際觀察整理。</p>
   </header>
+
+  <!-- 資料狀態標籤：整頁層級，訪客一眼看出哪些不能盡信 -->
+  <section class="stat" aria-label="資料狀態">
+    <div class="stat-row">
+      <span id="stat-level" class="stat-tag todo">待確認</span>
+      <span id="stat-basis" class="stat-basis"></span>
+    </div>
+    <div class="stat-row stat-foot">
+      <span id="stat-meta" class="stat-meta"></span>
+      <a id="stat-report" class="stat-link" href="#" target="_blank" rel="noopener">回報修正 ↗</a>
+    </div>
+    <p id="stat-note" class="stat-note" hidden></p>
+  </section>
+
+  <!-- 伺服器開服日：訪客可換成自己的，只存在自己瀏覽器 -->
+  <section class="srv">
+    <p id="srv-now" class="srv-now"></p>
+    <form id="srv-form" class="srv-form">
+      <label>我的伺服器開服日<input type="date" id="srv-open"></label>
+      <button type="submit" class="btn small">套用</button>
+      <button type="button" class="btn small" id="srv-by-day">用「今天是開服第幾天」反推</button>
+      <button type="button" class="btn small" id="srv-reset" hidden>還原基準服</button>
+    </form>
+  </section>
 
   <section class="rot">
     <div class="rot-head">
@@ -34,7 +58,7 @@
     </div>
     <div class="rot-scroll">
       <table class="rot-table">
-        <thead><tr><th>週次</th><th>活動何時開</th><th>活動</th><th>該週起始</th></tr></thead>
+        <thead><tr><th>官方週次</th><th>開服第幾天</th><th>活動</th><th>日期（依上方開服日）</th></tr></thead>
         <tbody id="rot-body"></tbody>
       </table>
     </div>
@@ -43,7 +67,7 @@
   </section>
 
   <section class="bar">
-    <input type="search" id="q" placeholder="搜尋名稱／備註／留言…">
+    <input type="search" id="q" placeholder="搜尋名稱／備註／紀錄…">
     <select id="filter-cat"><option value="">全部分類</option></select>
     <label class="chk"><input type="checkbox" id="show-archived"> 顯示已封存</label>
     <span class="spacer"></span>
@@ -52,7 +76,7 @@
       <button id="btn-more" class="btn">資料 ▾</button>
       <div id="more-menu" class="menu" hidden>
         <button data-act="export"><b>匯出 cycles.json</b><small>覆蓋 data/cycles.json 再 commit，才會更新站上內容</small></button>
-        <button data-act="calibrate"><b>校準輪替週次…</b><small>告訴系統遊戲裡現在是第幾週</small></button>
+        <button data-act="calibrate"><b>設定基準服開服日…</b><small>填日期，或填「今天是開服第幾天」反推</small></button>
         <button data-act="copy">複製 JSON 到剪貼簿</button>
         <button data-act="import">匯入 JSON 檔…</button>
         <hr>
@@ -68,11 +92,11 @@
   <div id="list" class="cards"></div>
   <p id="empty" class="empty" hidden>沒有符合條件的項目。</p>
 
-  <p class="credit">W1–W7 為輪替的第幾週，不是星期幾。日期為推算值，實際以遊戲內為準。</p>
+  <p class="credit">Day N 指開服第 N 天（開服當天＝Day 1），W1–W7 是官方活動日誌的週次標籤。日期為推算值，實際以遊戲內為準。</p>
 
   <section class="board">
-    <h2>留言板</h2>
-    <p class="board-sub">歡迎回報觀察到的開放時間或修正。留言存在 GitHub Discussions，需要 GitHub 帳號。</p>
+    <h2 id="board">回報與討論</h2>
+    <p class="board-sub">歡迎回報你伺服器上實際觀察到的開放時間，或指出名詞、日期的錯誤。回報存在 GitHub，需要 GitHub 帳號。</p>
     <div id="giscus"></div>
     <p id="giscus-off" class="board-off" hidden></p>
   </section>
@@ -87,10 +111,10 @@
       <label>別名／實際內容<input type="text" id="f-aka" maxlength="60" placeholder="例：技能巡獵、機群巡獵"></label>
       <label>分類<input type="text" id="f-category" list="cat-list" maxlength="20" placeholder="分類名稱"></label>
       <datalist id="cat-list"></datalist>
-      <label>開放日<select id="f-startDay"><option value="">依該週規則</option><option value="1">週一</option><option value="2">週二</option><option value="3">週三</option><option value="4">週四</option><option value="5">週五</option><option value="6">週六</option><option value="7">週日</option></select></label>
+      <label class="wide">開放日（開服第幾天，逗號分隔；一輪內可多次，例：1, 27）<input type="text" id="f-days" maxlength="60" placeholder="例：1, 27" inputmode="numeric"></label>
       <label>開放時刻<input type="time" id="f-openTime"></label>
       <div class="wide">
-        <span class="lb">開放週次（可複選，對應輪替的第幾週）</span>
+        <span class="lb">官方週次標籤（可複選，順序與上面的開放日逐一對應）</span>
         <div class="wd" id="f-weeks"></div>
       </div>
       <label>持續天數<input type="number" id="f-durationDays" min="0" max="365" step="1"></label>

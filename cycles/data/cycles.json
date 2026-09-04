@@ -1,23 +1,28 @@
 {
-  "schema": "cycles-v2",
+  "schema": "cycles-v3",
   "title": "星慾姬絆 活動日誌",
-  "source": "遊戲內「活動日誌」公告，2026-09-03 對照手寫筆記整理",
-  "updatedAt": "2026-09-03",
+  "source": "遊戲內「活動日誌」公告與實際觀察，2026-09-03 對照手寫筆記整理，2026-09-04 改為依開服日推算",
+  "updatedAt": "2026-09-04",
+  "status": {
+    "level": "unverified",
+    "basis": "依本站基準服（2026-07-29 開服）的遊戲內活動日誌與實際觀察整理；巡獵時程隨各伺服器的開服日走，其他伺服器請在下方填自己的開服日。",
+    "note": "第二輪（開服第 50 天起）如何接續尚未觀察到，繞回時的日期請以遊戲內為準。"
+  },
   "rotation": {
-    "totalWeeks": 7,
-    "anchorDate": "2026-07-27",
-    "anchorNote": "輪替的相位基準（週一），不是開服首日。遊戲 2026-07-29（週三）上線，官方圖的 Week 1–3「Day 1–21」是開服那一次的新手期、從上線日起算；Week 4 起才改成 「Starts Thu.／Mon. & Tue.」對齊週一。以此錨點推得 Week 6 = 8/31–9/6，已由使用者在遊戲內確認。",
+    "cycleDays": 49,
+    "serverOpenDate": "2026-07-29",
+    "serverLabel": "本站基準服",
     "rules": [
-      "淫紋巡獵結束後的下週四會開豐收巡獵",
-      "星體巡獵結束後的下週一會開神殿巡獵"
+      "淫紋巡獵結束後約一週開豐收巡獵（Day 16 → Day 23，基準服落在週四）",
+      "星體巡獵結束後接著開神殿巡獵（Day 41 結束 → 下一輪 Day 1，銜接方式待確認）"
     ],
-    "openNote": "Week 7 之後如何接回尚未確認，目前以七週循環推算 —— 繞回 Week 1 那次請留意核對。"
+    "openNote": "官方活動日誌只畫到 Week 7（開服第 49 天）。之後怎麼接目前有三種可能：照 49 天循環（下次神殿巡獵在開服第 50 天，基準服 9/16）、對齊週一（9/14）、或維持 26 天間隔（9/19）。哪一天真的開了請回報，會立刻修正。",
+    "adminNote": "2026-09-04 由「週一對齊的七週輪替」改為「開服日＋天數」模型：社群回報巡獵時程每個伺服器都跟著開服日數走，不是固定星期。舊模型錨點 07-27 換算成開服第 N 天：Day = (week-1)*7 + startDay - 2。基準服 07-29（週三）上線，Week 6 於 9/3 在遊戲內確認。"
   },
   "weeks": [
     {
       "n": 1,
-      "label": "Day 1 – Day 7",
-      "startsOn": "",
+      "label": "Day 1 – 7",
       "activities": [
         "神殿巡獵",
         "關卡巡獵"
@@ -25,8 +30,7 @@
     },
     {
       "n": 2,
-      "label": "Day 8 – Day 14",
-      "startsOn": "",
+      "label": "Day 8 – 14",
       "activities": [
         "精粹巡獵",
         "飛船巡獵"
@@ -34,8 +38,7 @@
     },
     {
       "n": 3,
-      "label": "Day 15 – Day 21",
-      "startsOn": "",
+      "label": "Day 15 – 21",
       "activities": [
         "星體巡獵",
         "淫紋巡獵"
@@ -43,16 +46,14 @@
     },
     {
       "n": 4,
-      "label": "",
-      "startsOn": "週四",
+      "label": "Day 22 – 28（豐收在 Day 23）",
       "activities": [
         "豐收巡獵"
       ]
     },
     {
       "n": 5,
-      "label": "",
-      "startsOn": "週一、週二",
+      "label": "Day 27 – 28 起",
       "activities": [
         "神殿巡獵",
         "抽卡巡獵"
@@ -60,8 +61,7 @@
     },
     {
       "n": 6,
-      "label": "",
-      "startsOn": "週一、週二",
+      "label": "Day 34 – 35 起",
       "activities": [
         "精粹巡獵",
         "飛船巡獵"
@@ -69,8 +69,7 @@
     },
     {
       "n": 7,
-      "label": "",
-      "startsOn": "週一、週二",
+      "label": "Day 41 – 42 起",
       "activities": [
         "星體巡獵",
         "淫紋巡獵"
@@ -87,14 +86,17 @@
         5
       ],
       "durationDays": 7,
-      "note": "消耗果籃。星體巡獵結束後的下週一開。",
+      "note": "消耗果籃。星體巡獵結束後接著開；官方日誌 Week 1 為 Day 1、Week 5 為 Day 27。",
       "raw": "神殿巡獵 w5 7d 消耗果籃",
       "archived": false,
       "comments": [],
-      "startDay": 1,
       "aka": "",
       "verified": true,
-      "todo": ""
+      "todo": "",
+      "days": [
+        1,
+        27
+      ]
     },
     {
       "id": "c-guanka",
@@ -104,14 +106,16 @@
         1
       ],
       "durationDays": null,
-      "note": "官方活動日誌列在 Week 1，手寫筆記未提及。開放日與持續天數待確認。",
+      "note": "官方活動日誌列在 Week 1，手寫筆記未提及。開放日與持續天數待確認。 首輪的開放日（Day 2）是依「同週第二個活動晚一天開」推的，未實際觀察。",
       "raw": "",
       "archived": false,
       "comments": [],
-      "startDay": 2,
       "aka": "",
       "verified": false,
-      "todo": "手寫筆記未提及，開放日與持續天數待實際遇到時補。"
+      "todo": "手寫筆記未提及，開放日與持續天數待實際遇到時補。",
+      "days": [
+        2
+      ]
     },
     {
       "id": "c-jingcui",
@@ -126,10 +130,13 @@
       "raw": "巡獵精萃 less:3d11h || on 0811 w3 1200 w1 8/30",
       "archived": false,
       "comments": [],
-      "startDay": 1,
       "aka": "",
       "verified": false,
-      "todo": "持續天數待實際觀察（目前當作開滿整週處理）。"
+      "todo": "持續天數待實際觀察（目前當作開滿 7 天處理）。",
+      "days": [
+        8,
+        34
+      ]
     },
     {
       "id": "c-feichuan",
@@ -140,14 +147,17 @@
         6
       ],
       "durationDays": 3,
-      "note": "",
+      "note": "第二輪 Day 35（基準服 9/1）已觀察到；首輪 Day 9 是依「同週第二個活動晚一天」推的。",
       "raw": "飛船 9/1 3d",
       "archived": false,
       "comments": [],
-      "startDay": 2,
       "aka": "",
       "verified": true,
-      "todo": ""
+      "todo": "",
+      "days": [
+        9,
+        35
+      ]
     },
     {
       "id": "c-xingti",
@@ -162,10 +172,13 @@
       "raw": "星體巡獵 w2",
       "archived": false,
       "comments": [],
-      "startDay": 1,
       "aka": "",
       "verified": false,
-      "todo": "持續天數待實際觀察（目前當作開滿整週處理）。"
+      "todo": "持續天數待實際觀察（目前當作開滿 7 天處理）。",
+      "days": [
+        15,
+        41
+      ]
     },
     {
       "id": "c-yinwen",
@@ -176,14 +189,17 @@
         7
       ],
       "durationDays": 2,
-      "note": "結束後的下週四會開豐收巡獵。",
+      "note": "結束後的下週四會開豐收巡獵。 第二輪 Day 42 依官方日誌「Mon. & Tue.」推得；首輪 Day 16 未觀察。",
       "raw": "淫紋巡獵 sun 2d",
       "archived": false,
       "comments": [],
-      "startDay": 2,
       "aka": "",
       "verified": true,
-      "todo": ""
+      "todo": "",
+      "days": [
+        16,
+        42
+      ]
     },
     {
       "id": "c-fengshou",
@@ -193,14 +209,16 @@
         4
       ],
       "durationDays": 3,
-      "note": "該週的週四才開，不是週一。",
+      "note": "開服第 23 天開（基準服落在週四）。",
       "raw": "豐收。w4 3d",
       "archived": false,
       "comments": [],
-      "startDay": 4,
       "aka": "",
       "verified": true,
-      "todo": ""
+      "todo": "",
+      "days": [
+        23
+      ]
     },
     {
       "id": "c-choka",
@@ -214,10 +232,12 @@
       "raw": "抽卡/幾群/技能 巡獵 w1 3d",
       "archived": false,
       "comments": [],
-      "startDay": 2,
       "aka": "技能巡獵、機群巡獵",
       "verified": false,
-      "todo": "確認這是一個活動，還是技能、機群兩個分開的活動；開放日與天數也待核。"
+      "todo": "確認這是一個活動，還是技能、機群兩個分開的活動；開放日與天數也待核。",
+      "days": [
+        28
+      ]
     }
   ]
 }
