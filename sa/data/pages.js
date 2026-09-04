@@ -66,7 +66,7 @@ window.WIKI_PAGES = [
      ],
      [
       "肉體面的伴侶／約會階段",
-      "[伴侶](#guides__cumpanions)"
+      "[乘員](#guides__cumpanions)"
      ],
      [
       "星球港路線與劇情牆",
@@ -121,7 +121,7 @@ window.WIKI_PAGES = [
      "[新手入門玩法](#guides__how-to-play)——理解「好感度 → 能量 → 神器 → 星球港」的循環。",
      "[洗初始帳號](#guides__reroll)——只在教學召喚券還很容易重來時進行；一旦有了羈絆與課金就該停手。",
      "[抽卡與召喚](#guides__gacha-summon)——對照[強度榜](#characters__tier-list)選定新手招募的目標。",
-     "[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)——讓精神與肉體兩條路線都能供養飛船。",
+     "[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)——讓精神與肉體兩條路線都能供養飛船。",
      "[戰鬥與掛機](#guides__combat-idle)——安排主動彈幕通關與離線材料採集的時段。",
      "[神器與能量](#guides__artifacts-energy)——當關卡不再靠純等級就能輾過去的時候。",
      "[星球攻略](#guides__planet-walkthrough)——星球港檢查清單與卡關診斷。",
@@ -142,7 +142,7 @@ window.WIKI_PAGES = [
     "ordered": false,
     "items": [
      "羈絆禮物與嘉年華的親密任務，會和神器強化材料互相競爭。",
-     "掛機收益填滿的倉庫，必須依照[養成優先度](#builds__progression)花在精練的核心上，而不是十二個角色。",
+     "放置獎勵填滿的倉庫，必須依照[養成優先度](#builds__progression)花在精練的核心上，而不是十二個角色。",
      "在約 200 抽的登入活動期間，卡池召喚券看起來無窮無盡——但只要你追三個機率提升，一樣會蒸發。",
      "星球港會限制劇情免費六星的養成；為了狂抽而跳過它們，通常反而讓帳號進度變慢。",
      "上線週過後剩下的登入與活動商店貨幣，仍然需要一個寫下來的消耗計畫——請見[當期活動](#events__current)與[零課路線](#builds__f2p-plan)。"
@@ -267,7 +267,7 @@ window.WIKI_PAGES = [
   "title": "星慾姬絆 新手入門玩法",
   "navTitle": "新手入門玩法",
   "description": "星慾姬絆玩法循環入門指南：飛船能量、羈絆系統與星球冒險完整說明。（2026 年 8 月更新）",
-  "updated": "2026-08-06",
+  "updated": "2026-09-04",
   "blocks": [
    {
     "type": "paragraph",
@@ -276,6 +276,14 @@ window.WIKI_PAGES = [
    {
     "type": "paragraph",
     "text": "《星慾姬絆》讓你扮演一艘飛船的艦長，按照官方文案的說法，這艘船靠著「用愛發電」這個傳說級概念運轉。本作又名 성간의 유대／星慾姬絆，是 EROLABS 平台於 **2026 年 7 月 29 日** 上線的成人向動漫放置彈幕 RPG：你培養船上少女們的關係，把這份濃度轉換成飛船能量，再將能量塑造成神器，最後用精練的隊伍攻克各個星球港。本頁是第一份系統總覽——不是逐日行程表（那是[新手第一週](#guides__beginner-week)），也不是卡池課金表（那是[抽卡與召喚](#guides__gacha-summon)）。"
+   },
+   {
+    "type": "image",
+    "src": "assets/img/crew/main-screen.webp",
+    "alt": "星慾姬絆主畫面",
+    "wide": true,
+    "caption": "繁中版主畫面。底部：艦長、機群、副本、基地、姬絆招募、商店；左側：特權通行證、三日姬絆禮、巔峰競技場、放置獎勵、新人好禮；右側：每日任務、巡獵活動。介面用語對照見[名詞解釋](#items__glossary)。",
+    "_gen": true
    },
    {
     "type": "heading",
@@ -287,7 +295,7 @@ window.WIKI_PAGES = [
     "ordered": true,
     "items": [
      "**登入並領取** — 打開信箱領取上線禮包，例如碎星禮物、每日任務，以及任何[可用兌換碼](#codes__active)。讓七日嘉年華任務板保持在視線內。",
-     "**雙軌培養羈絆** — 同時推進精神面的 **姬絆** 與肉體面的 **伴侶**。請參閱[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)，別把親密度當成可有可無的裝飾。",
+     "**雙軌培養羈絆** — 同時推進精神面的 **姬絆** 與肉體面的 **伴侶**。請參閱[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)，別把親密度當成可有可無的裝飾。",
      "**轉換能量** — 由好感度餵養的飛船能量會轉化為戰鬥模組。實用的轉換規則寫在[神器與能量](#guides__artifacts-energy)。",
      "**兩種節奏作戰** — 用主動操作的彈幕關卡突破劇情牆；用掛機／離線收益累積材料。兩者的排程方式請見[戰鬥與掛機](#guides__combat-idle)。",
      "**停靠與通關** — 每個星球停靠點都是一段獨立的冒險。行進路線的習慣整理在[星球攻略](#guides__planet-walkthrough)。",
@@ -384,7 +392,7 @@ window.WIKI_PAGES = [
      ],
      [
       "忽略其中一條羈絆路線",
-      "每天在[姬絆](#guides__hime-bonds)送禮加推劇情，並在[伴侶](#guides__cumpanions)提升階段"
+      "每天在[姬絆](#guides__hime-bonds)送禮加推劇情，並在[乘員](#guides__cumpanions)提升階段"
      ],
      [
       "第一天就盲目十連",
@@ -421,7 +429,7 @@ window.WIKI_PAGES = [
      "該主力與一名輔助的羈絆條開始推進。",
      "至少完成一次神器轉換，讓你實際感受過「能量 → 戰力」這條橋樑。",
      "通關至少一個超出純教學範圍的星球港節點。",
-     "關掉遊戲前先把掛機收益掛上。"
+     "關掉遊戲前先把放置獎勵掛上。"
     ]
    },
    {
@@ -534,7 +542,7 @@ window.WIKI_PAGES = [
      "在大量召喚之前先鎖定一名起手主力（[洗初始帳號](#guides__reroll)、[強度榜](#characters__tier-list)、[抽卡與召喚](#guides__gacha-summon)）。",
      "推進足夠的主線星球港，開啟劇情免費六星的培養路線。",
      "完成嘉年華任務，且不要漏掉主力角色的羈絆日。",
-     "每晚睡前掛上掛機收益，讓材料在睡覺時累積（[戰鬥與掛機](#guides__combat-idle)）。"
+     "每晚睡前掛上放置獎勵，讓材料在睡覺時累積（[戰鬥與掛機](#guides__combat-idle)）。"
     ]
    },
    {
@@ -558,7 +566,7 @@ window.WIKI_PAGES = [
      [
       "第 2 天",
       "集中把一條姬絆線推上去（[姬絆](#guides__hime-bonds)）",
-      "在同一名角色身上開始伴侶第 1 階段（[伴侶](#guides__cumpanions)）"
+      "在同一名角色身上開始伴侶第 1 階段（[乘員](#guides__cumpanions)）"
      ],
      [
       "第 3 天",
@@ -744,7 +752,7 @@ window.WIKI_PAGES = [
     "answer": [
      {
       "type": "paragraph",
-      "text": "第一週不行。羈絆會餵養能量、神器與嘉年華進度——請見[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)。"
+      "text": "第一週不行。羈絆會餵養能量、神器與嘉年華進度——請見[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)。"
      }
     ]
    },
@@ -818,7 +826,7 @@ window.WIKI_PAGES = [
      "你已經在喜歡的角色身上推了有意義的[姬絆](#guides__hime-bonds)，或完成了伴侶的階段提升",
      "你已經課金，包括正在等待該帳號的菁英封測 **200% 星鑽** 回饋",
      "你手上有一套堪用的 A 級核心，而[隊伍配置](#builds__team-builds)可以用劇情材料補足缺口",
-     "你缺的只是一個錦上添花的輔助，而星球港仍然能靠神器與掛機收益推過去",
+     "你缺的只是一個錦上添花的輔助，而星球港仍然能靠神器與放置獎勵推過去",
      "你已經兌換了無法轉移到新身分上的限時[可用兌換碼](#codes__active)"
     ]
    },
@@ -879,7 +887,7 @@ window.WIKI_PAGES = [
     "items": [
      "把模擬器實例標記為 `keep`（保留）與 `burn`（丟棄），才不會在錯的帳號上送禮。",
      "不要在準備丟棄的帳號上兌換上線序號。",
-     "不要在明天可能會刪掉的訪客帳號上開始伴侶第 3 階段（[伴侶](#guides__cumpanions)）。",
+     "不要在明天可能會刪掉的訪客帳號上開始伴侶第 3 階段（[乘員](#guides__cumpanions)）。",
      "把機率表與抽取結果截圖下來；洗到第五次之後，記憶是會騙人的。",
      "仔細同步裝置時間——時鐘跑掉造成的「登入獎勵不見了」恐慌，比抽卡運氣差還多。"
     ]
@@ -901,7 +909,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "無止盡地洗初始，只會延後你真正在玩的東西：星球冒險、羈絆劇情、掛機收益，以及神器轉換。"
+    "text": "無止盡地洗初始，只會延後你真正在玩的東西：星球冒險、羈絆劇情、放置獎勵，以及神器轉換。"
    },
    {
     "type": "heading",
@@ -1022,7 +1030,7 @@ window.WIKI_PAGES = [
     "ordered": true,
     "items": [
      "**領取** — 信箱、連續登入的剩餘獎勵、活動任務勾選（[當期活動](#events__current)）。",
-     "**培養羈絆** — 只在主力身上做對話／贈禮／任務（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)；用[羈絆檢查清單](#tools__bond-checklist)記錄）。",
+     "**培養羈絆** — 只在主力身上做對話／贈禮／任務（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)；用[羈絆檢查清單](#tools__bond-checklist)記錄）。",
      "**轉換** — 如果能量接近某個配方門檻，就打造或強化那個能讓你目前星球港解卡的神器（[神器與能量](#guides__artifacts-energy)）。",
      "**通關** — 打一到三個能推進商店或劇情關卡的主動彈幕關卡或活動關（[戰鬥與掛機](#guides__combat-idle)）。",
      "**掛上掛機** — 關掉遊戲前，讓飛船維持採集狀態。",
@@ -1083,7 +1091,7 @@ window.WIKI_PAGES = [
     "ordered": false,
     "items": [
      "把每一週都當成上線週——約 **200** 抽的登入活動與 **七日嘉年華** 是集中在前期的；不要自己發明沒有倒數計時的緊迫感。",
-     "在主力還打不過星球關卡時，就把[伴侶](#guides__cumpanions)第 3 階段的解鎖分散到整個角色池上。",
+     "在主力還打不過星球關卡時，就把[乘員](#guides__cumpanions)第 3 階段的解鎖分散到整個角色池上。",
      "在[最佳隊伍](#characters__best-teams)的協同效果成形之前，為了「收集」而抽卡。",
      "連續好幾天忽略離線收益，然後暴怒課金買體力（[零課路線](#builds__f2p-plan)）。",
      "把信箱禮物跟兌換碼搞混——到了八月這仍然是常見錯誤。"
@@ -1323,7 +1331,7 @@ window.WIKI_PAGES = [
      "對你的第一筆核心投資而言，劇情進度是一種 **抽卡的替代品**。",
      "為了狂抽卡池而跳過星球港，通常比按照[星球攻略](#guides__planet-walkthrough)清節點的性價比更差。",
      "劇情材料只餵給那名作為[隊伍配置](#builds__team-builds)支柱的角色。",
-     "在[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)上培養同一名角色，讓神器能隨稀有度一起成長。"
+     "在[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)上培養同一名角色，讓神器能隨稀有度一起成長。"
     ]
    },
    {
@@ -1581,7 +1589,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "戰力不只來自等級與抽卡稀有度。精神面的[姬絆](#guides__hime-bonds)與肉體面的[伴侶](#guides__cumpanions)會提升官方文案所說、可轉化為神器的情感能量。請把戰鬥想成 **成果驗證**，把羈絆想成 **電池**。"
+    "text": "戰力不只來自等級與抽卡稀有度。精神面的[姬絆](#guides__hime-bonds)與肉體面的[乘員](#guides__cumpanions)會提升官方文案所說、可轉化為神器的情感能量。請把戰鬥想成 **成果驗證**，把羈絆想成 **電池**。"
    },
    {
     "type": "paragraph",
@@ -1672,7 +1680,7 @@ window.WIKI_PAGES = [
      ],
      [
       "自認「戰鬥派」而跳過親密互動",
-      "能量會枯竭——回頭看[伴侶](#guides__cumpanions)"
+      "能量會枯竭——回頭看[乘員](#guides__cumpanions)"
      ]
     ]
    },
@@ -1765,7 +1773,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "本頁聚焦於精神面的 **姬絆** 路線，以及它如何與伴侶、嘉年華任務和戰鬥強化共用同一份預算。肉體面的約會階段請接著讀[伴侶](#guides__cumpanions)。轉換成模組的計算方式，請前往[神器與能量](#guides__artifacts-energy)。"
+    "text": "本頁聚焦於精神面的 **姬絆** 路線，以及它如何與伴侶、嘉年華任務和戰鬥強化共用同一份預算。肉體面的約會階段請接著讀[乘員](#guides__cumpanions)。轉換成模組的計算方式，請前往[神器與能量](#guides__artifacts-energy)。"
    },
    {
     "type": "heading",
@@ -1795,7 +1803,7 @@ window.WIKI_PAGES = [
      "有提供時，清掉與精神路線綁定的同伴類任務。",
      "觀看門檻劇情——它們往往代表機制上的加成，而不只是 CG。",
      "如果能量或轉換介面亮起來了，先轉換再去跳下一個卡池（[抽卡與召喚](#guides__gacha-summon)）。",
-     "之後掛上掛機收益，讓材料在你離開時補回來（[戰鬥與掛機](#guides__combat-idle)）。"
+     "之後掛上放置獎勵，讓材料在你離開時補回來（[戰鬥與掛機](#guides__combat-idle)）。"
     ]
    },
    {
@@ -1943,7 +1951,7 @@ window.WIKI_PAGES = [
     "type": "list",
     "ordered": false,
     "items": [
-     "[伴侶](#guides__cumpanions)",
+     "[乘員](#guides__cumpanions)",
      "[新手入門玩法](#guides__how-to-play)",
      "[神器與能量](#guides__artifacts-energy)",
      "[角色總覽](#characters)",
@@ -1970,7 +1978,7 @@ window.WIKI_PAGES = [
     "answer": [
      {
       "type": "paragraph",
-      "text": "官方的設定把兩者分為精神面與肉體面的伴侶路線。兩邊都會供給好感度能量；伴侶的階段細節請見[伴侶](#guides__cumpanions)。"
+      "text": "官方的設定把兩者分為精神面與肉體面的伴侶路線。兩邊都會供給好感度能量；伴侶的階段細節請見[乘員](#guides__cumpanions)。"
      }
     ]
    },
@@ -2009,11 +2017,16 @@ window.WIKI_PAGES = [
  {
   "slug": "guides__cumpanions",
   "path": "/guides/cumpanions/",
-  "title": "星慾姬絆 伴侶系統指南",
-  "navTitle": "伴侶系統",
+  "title": "星慾姬絆 乘員系統指南（原譯「伴侶」）",
+  "navTitle": "乘員（原「伴侶」）",
   "description": "星慾姬絆的伴侶系統與姬絆有何不同，包含三階段約會劇情與能量回報。（2026 年 8 月更新）",
-  "updated": "2026-08-06",
+  "updated": "2026-09-04",
   "blocks": [
+   {
+    "type": "callout",
+    "text": "**遊戲內名稱是「乘員」。** 英文原站把這個系統叫 Cumpanions，並描述成與姬絆平行的「肉體伴侶／約會階段」路線；但遊戲介面裡「乘員」就是可培養、可上場的角色（乘員清單／乘員持有效果／乘員持有技能／未持有乘員），沒有看到獨立的「約會階段」介面。本頁下文的「階段」「約會」說法尚未在遊戲內核對，請以遊戲內為準；乘員的實際數值與技能請看[角色圖鑑](#characters__profiles)。",
+    "_gen": true
+   },
    {
     "type": "paragraph",
     "text": "深化飛船好感度能量循環的肉體伴侶路線。"
@@ -2131,7 +2144,7 @@ window.WIKI_PAGES = [
      "確認是否出現了新的神器配方、能量上限或轉換按鈕。",
      "先去挑戰你先前失敗的星球節點，而不是立刻打開召喚介面。",
      "如果關卡仍然失敗，請先透過[隊伍配置](#builds__team-builds)修正隊伍續航，再認定自己需要再抽一發。",
-     "讓掛機收益持續運作，好讓下一次親密度尖峰出現時，材料已經備妥可供強化。"
+     "讓放置獎勵持續運作，好讓下一次親密度尖峰出現時，材料已經備妥可供強化。"
     ]
    },
    {
@@ -2272,7 +2285,7 @@ window.WIKI_PAGES = [
     "ordered": false,
     "items": [
      "[姬絆](#guides__hime-bonds)上的精神互動與門檻劇情",
-     "[伴侶](#guides__cumpanions)上的肉體伴侶階段提升",
+     "[乘員](#guides__cumpanions)上的肉體伴侶階段提升",
      "關卡通關與星球進度（[星球攻略](#guides__planet-walkthrough)）",
      "活動任務與嘉年華寶箱（[當期活動](#events__current)、[上線獎勵](#events__launch-rewards)）",
      "偶爾出現的兌換碼獎勵（[可用兌換碼](#codes__active)）",
@@ -2382,7 +2395,7 @@ window.WIKI_PAGES = [
      "培養主力羈絆（透過[羈絆檢查清單](#tools__bond-checklist)做對話／贈禮／任務）。",
      "只要主力有任何欄位能升級，就轉換能量。",
      "推進一到三個能受惠於新模組的主動關卡。",
-     "掛上掛機收益，讓下一次強化的材料累積起來（[戰鬥與掛機](#guides__combat-idle)）。",
+     "掛上放置獎勵，讓下一次強化的材料累積起來（[戰鬥與掛機](#guides__combat-idle)）。",
      "到這一步之後，才帶著寫下來的目標打開卡池。"
     ]
    },
@@ -2439,7 +2452,7 @@ window.WIKI_PAGES = [
      "[神器](#items__divine-artifacts)",
      "[隊伍配置](#builds__team-builds)",
      "[姬絆](#guides__hime-bonds)",
-     "[伴侶](#guides__cumpanions)",
+     "[乘員](#guides__cumpanions)",
      "[攻略總覽](#guides)",
      "[遊戲評測](#review)"
     ]
@@ -2530,7 +2543,7 @@ window.WIKI_PAGES = [
     "items": [
      "在花體力之前，先領取離線收益與停靠獎勵。",
      "掃一遍支線目標——記下哪些會掉羈絆禮物，哪些純粹是虛榮收集。",
-     "如果能量偏低，先更新精神面與肉體面的好感度（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)）。",
+     "如果能量偏低，先更新精神面與肉體面的好感度（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)）。",
      "依照[神器與能量](#guides__artifacts-energy)的邏輯確認主力的神器配置。",
      "派出[最佳隊伍](#characters__best-teams)裡的劇情模板隊，而不是一整排博物館收藏。",
      "先打通關鍵路線；等戰力提升之後再回頭做 100% 收集。",
@@ -2659,7 +2672,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "第一次造訪時，路線效率勝過完美收集。等掛機收益與嘉年華獎勵把基礎拉高之後，你隨時可以回頭。在解鎖能量轉換之前就把第一顆星球 100% 打完的艦長，往往會燒掉七日嘉年華原本要留給後面星球港的體力。"
+    "text": "第一次造訪時，路線效率勝過完美收集。等放置獎勵與嘉年華獎勵把基礎拉高之後，你隨時可以回頭。在解鎖能量轉換之前就把第一顆星球 100% 打完的艦長，往往會燒掉七日嘉年華原本要留給後面星球港的體力。"
    },
    {
     "type": "heading",
@@ -2699,7 +2712,7 @@ window.WIKI_PAGES = [
      "查看[更新日誌](#events__patch-notes)是否有新的星球港、難度層級或暫時鎖住的劇情。",
      "只有在劇情材料到手後仍然缺某個定位時，才回頭看[抽卡與召喚](#guides__gacha-summon)。",
      "如果你在評估這種星球港節奏適不適合你的時間表，可以掃一下[遊戲評測](#review)的預期說明。",
-     "登出前掛上掛機收益，讓下一顆星球一開始就有滿滿的物資。"
+     "登出前掛上放置獎勵，讓下一顆星球一開始就有滿滿的物資。"
     ]
    },
    {
@@ -3065,7 +3078,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "電腦版最大的優勢是多工：讓掛機收益在一個視窗裡跑著，同時用瀏覽器讀[新手第一週規劃](#guides__beginner-week)的檢查清單。"
+    "text": "電腦版最大的優勢是多工：讓放置獎勵在一個視窗裡跑著，同時用瀏覽器讀[新手第一週規劃](#guides__beginner-week)的檢查清單。"
    },
    {
     "type": "heading",
@@ -3134,7 +3147,7 @@ window.WIKI_PAGES = [
     "items": [
      "跑完[新手入門玩法](#guides__how-to-play)，讓選單開始有意義。",
      "兌換[可用兌換碼](#codes__active)，並記錄到[兌換碼追蹤器](#tools__codes-tracker)。",
-     "在你的起手陣容上開始[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)——對嘉年華來說，安裝日一樣算羈絆日。",
+     "在你的起手陣容上開始[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)——對嘉年華來說，安裝日一樣算羈絆日。",
      "關掉遊戲前先掛上一條掛機路線（[戰鬥與掛機](#guides__combat-idle)）。",
      "在[更新日誌](#events__patch-notes)追蹤版本變動，在[上線獎勵](#events__launch-rewards)追蹤限時信件。"
     ]
@@ -3256,7 +3269,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "官方資料強調 **姬絆**（精神連結）與 **伴侶**（肉體伴侶關係）。培養對的角色不只關乎技能組本身——羈絆深度會供養飛船能量，並同時解鎖劇情與機制上的回報。看任何強度榜截圖時，請一併閱讀[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)。在掛機＋彈幕的循環裡（[戰鬥與掛機](#guides__combat-idle)），一個技能組略遜但好感度健康的角色，往往比一個你從不送禮的「版本強勢」角色通關更快。"
+    "text": "官方資料強調 **姬絆**（精神連結）與 **伴侶**（肉體伴侶關係）。培養對的角色不只關乎技能組本身——羈絆深度會供養飛船能量，並同時解鎖劇情與機制上的回報。看任何強度榜截圖時，請一併閱讀[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)。在掛機＋彈幕的循環裡（[戰鬥與掛機](#guides__combat-idle)），一個技能組略遜但好感度健康的角色，往往比一個你從不送禮的「版本強勢」角色通關更快。"
    },
    {
     "type": "heading",
@@ -3356,7 +3369,7 @@ window.WIKI_PAGES = [
     "answer": [
      {
       "type": "paragraph",
-      "text": "有——好感度系統會供給能量與神器轉換。請見[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)。"
+      "text": "有——好感度系統會供給能量與神器轉換。請見[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)。"
      }
     ]
    },
@@ -3397,8 +3410,8 @@ window.WIKI_PAGES = [
   "path": "/characters/profiles/",
   "title": "星慾姬絆 角色圖鑑",
   "navTitle": "角色圖鑑",
-  "description": "星慾姬絆官方登場角色的立繪、多語譯名對照與背景設定，角色名稱與介紹取自官方繁體中文網站。（2026 年 8 月更新）",
-  "updated": "2026-08-10",
+  "description": "星慾姬絆官方登場角色的立繪、多語譯名對照與背景設定，角色名稱與介紹取自官方繁體中文網站。，並附遊戲內實測的乘員數值與技能。（2026 年 9 月更新）",
+  "updated": "2026-09-04",
   "blocks": [
    {
     "type": "paragraph",
@@ -3508,6 +3521,253 @@ window.WIKI_PAGES = [
    {
     "type": "heading",
     "level": 2,
+    "text": "乘員實測資料（遊戲內截圖）",
+    "_gen": true
+   },
+   {
+    "type": "callout",
+    "text": "以下 10 位乘員的數值、乘員持有效果與乘員持有技能，抄自 2026-09-04 的遊戲繁中版截圖。生命／攻擊／防禦會隨等級與星數變動，表內標示截圖當時的等級；技能敘述為遊戲原文。清單上另有 **伊絲娜**（姬絆 16、Lv.40），詳情頁尚未截到。",
+    "_gen": true
+   },
+   {
+    "type": "image",
+    "src": "assets/img/crew/crew-list.webp",
+    "alt": "乘員清單",
+    "caption": "乘員清單：每格顯示名字、姬絆等級（紫色愛心數字）、等級與星數。",
+    "_gen": true
+   },
+   {
+    "type": "table",
+    "headers": [
+     "乘員",
+     "截圖等級",
+     "生命",
+     "攻擊",
+     "防禦",
+     "乘員持有效果",
+     "乘員持有技能"
+    ],
+    "rows": [
+     [
+      "**黛莉亞**",
+      "Lv.40／皇冠（已滿星）",
+      "61267",
+      "1442",
+      "479",
+      "全域生命+18.00%",
+      "**發條超載**：生命、攻擊、防禦+20%，玩家傷害+3%"
+     ],
+     [
+      "**瑟蕾雅**",
+      "Lv.40／1★",
+      "35010",
+      "824",
+      "274",
+      "全域攻擊+6.00%",
+      "**晨星祝禱**：每普攻 7 次，回復 0.03% 最大生命"
+     ],
+     [
+      "**愛詩塔**",
+      "Lv.1／1★（未持有）",
+      "1201",
+      "28",
+      "9",
+      "全域攻擊+6.00%",
+      "**繁星聖劍**：敵方綜合減傷-5%"
+     ],
+     [
+      "**西西雅**",
+      "Lv.23／1★",
+      "16810",
+      "395",
+      "132",
+      "BOSS減傷+6.00%",
+      "**未完的童話**：玩家生命低於 40% 時，觸發「人魚之沫」，立即回復 20% 最大生命，冷卻 20 秒"
+     ],
+     [
+      "**秋比**",
+      "Lv.40／3★",
+      "41311",
+      "972",
+      "323",
+      "全域生命+10.00%",
+      "**童心暴走**：機群傷害+32%、機群攻擊速度+20%"
+     ],
+     [
+      "**雅迦**",
+      "Lv.40／3★",
+      "41311",
+      "972",
+      "323",
+      "全域防禦+10.00%",
+      "**期望誤差**：技能冷卻速度+17%、技能傷害+22%"
+     ],
+     [
+      "**薇拉**",
+      "Lv.30／2★",
+      "25774",
+      "605",
+      "201",
+      "全域攻擊+8.00%",
+      "**傳心之歌**：攻擊速度+12%、普攻傷害+25%"
+     ],
+     [
+      "**賽訶希絲**",
+      "Lv.38／1★",
+      "32691",
+      "769",
+      "256",
+      "全域生命+6.00%",
+      "**觸手狂歡**：每施放 2 次技能，召喚觸手，造成 1500% 技能範圍傷害"
+     ],
+     [
+      "**伊爾瓦**",
+      "Lv.40／1★",
+      "35010",
+      "824",
+      "274",
+      "攻擊速度+6.00%",
+      "**狼月狩獵**：每普攻 3 次，屬性傷害+80%（最多疊 3 層）"
+     ],
+     [
+      "**耶珥**",
+      "Lv.40／1★",
+      "35010",
+      "824",
+      "274",
+      "全域攻擊+6.00%",
+      "**亡魂詠唱**：每普攻 3 次召喚幽靈，造成 100% 屬性傷害"
+     ]
+    ],
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "黛莉亞",
+    "image": "assets/img/crew/delia.webp",
+    "role": "Legendary · 全域生命+18.00%",
+    "desc": "**乘員持有技能「發條超載」**：生命、攻擊、防禦+20%，玩家傷害+3%",
+    "notes": [
+     "截圖時 Lv.40、皇冠（已滿星）：生命 61267／攻擊 1442／防禦 479",
+     "姬絆等級 10"
+    ],
+    "nameEn": "Delia",
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "瑟蕾雅",
+    "image": "assets/img/crew/thalea.webp",
+    "role": "Legendary · 全域攻擊+6.00%",
+    "desc": "**乘員持有技能「晨星祝禱」**：每普攻 7 次，回復 0.03% 最大生命",
+    "notes": [
+     "截圖時 Lv.40、1★：生命 35010／攻擊 824／防禦 274",
+     "姬絆等級 20"
+    ],
+    "nameEn": "Thalea",
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "愛詩塔",
+    "image": "assets/img/crew/ishtar.webp",
+    "role": "Legendary · 全域攻擊+6.00%",
+    "desc": "**乘員持有技能「繁星聖劍」**：敵方綜合減傷-5%",
+    "notes": [
+     "截圖時 Lv.1、1★（未持有）：生命 1201／攻擊 28／防禦 9",
+     "未持有（數值為 Lv.1 初始值）"
+    ],
+    "nameEn": "Ishtar",
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "西西雅",
+    "image": "assets/img/crew/cecia.webp",
+    "role": "Legendary · BOSS減傷+6.00%",
+    "desc": "**乘員持有技能「未完的童話」**：玩家生命低於 40% 時，觸發「人魚之沫」，立即回復 20% 最大生命，冷卻 20 秒",
+    "notes": [
+     "截圖時 Lv.23、1★：生命 16810／攻擊 395／防禦 132",
+     "姬絆等級 14"
+    ],
+    "nameEn": "Cecia",
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "秋比",
+    "image": "assets/img/crew/chubi.webp",
+    "role": "Legendary · 全域生命+10.00%",
+    "desc": "**乘員持有技能「童心暴走」**：機群傷害+32%、機群攻擊速度+20%",
+    "notes": [
+     "截圖時 Lv.40、3★：生命 41311／攻擊 972／防禦 323",
+     "姬絆等級 10"
+    ],
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "雅迦",
+    "image": "assets/img/crew/yaga.webp",
+    "role": "Legendary · 全域防禦+10.00%",
+    "desc": "**乘員持有技能「期望誤差」**：技能冷卻速度+17%、技能傷害+22%",
+    "notes": [
+     "截圖時 Lv.40、3★：生命 41311／攻擊 972／防禦 323",
+     "姬絆等級 10"
+    ],
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "薇拉",
+    "image": "assets/img/crew/vera.webp",
+    "role": "Legendary · 全域攻擊+8.00%",
+    "desc": "**乘員持有技能「傳心之歌」**：攻擊速度+12%、普攻傷害+25%",
+    "notes": [
+     "截圖時 Lv.30、2★：生命 25774／攻擊 605／防禦 201",
+     "姬絆等級 20"
+    ],
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "賽訶希絲",
+    "image": "assets/img/crew/seqohesis.webp",
+    "role": "Legendary · 全域生命+6.00%",
+    "desc": "**乘員持有技能「觸手狂歡」**：每施放 2 次技能，召喚觸手，造成 1500% 技能範圍傷害",
+    "notes": [
+     "截圖時 Lv.38、1★：生命 32691／攻擊 769／防禦 256",
+     "姬絆等級 20"
+    ],
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "伊爾瓦",
+    "image": "assets/img/crew/ilva.webp",
+    "role": "Legendary · 攻擊速度+6.00%",
+    "desc": "**乘員持有技能「狼月狩獵」**：每普攻 3 次，屬性傷害+80%（最多疊 3 層）",
+    "notes": [
+     "截圖時 Lv.40、1★：生命 35010／攻擊 824／防禦 274",
+     "姬絆等級 15"
+    ],
+    "_gen": true
+   },
+   {
+    "type": "charcard",
+    "name": "耶珥",
+    "image": "assets/img/crew/yael.webp",
+    "role": "Legendary · 全域攻擊+6.00%",
+    "desc": "**乘員持有技能「亡魂詠唱」**：每普攻 3 次召喚幽靈，造成 100% 屬性傷害",
+    "notes": [
+     "截圖時 Lv.40、1★：生命 35010／攻擊 824／防禦 274",
+     "姬絆等級 15"
+    ],
+    "_gen": true
+   },
+   {
+    "type": "heading",
+    "level": 2,
     "text": "多語名稱對照"
    },
    {
@@ -3611,7 +3871,7 @@ window.WIKI_PAGES = [
     "items": [
      "本頁只提供官方公開的角色設定，戰鬥定位與強度請見[強度榜](#characters__tier-list)與[角色一覽](#characters__roster)。",
      "決定要培養誰之前，先看[抽取優先度](#characters__summon-priority)，別只看立繪。",
-     "選定角色後，羈絆培養方式請見[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)。",
+     "選定角色後，羈絆培養方式請見[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)。",
      "角色的實際名稱與譯名可能隨版本更新調整，請以遊戲內顯示為準。"
     ]
    },
@@ -3732,7 +3992,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "A 級角色在特定的[最佳隊伍](#characters__best-teams)裡經常會變成 S 級。B 級角色在前期也很堪用，只要她是從你的[洗初始帳號](#guides__reroll)掉出來的，能讓你一邊推劇情、一邊等待[當期活動](#events__current)裡更好的卡池。把你喜歡的 A 級角色羈絆養滿，往往勝過放著一個你從不送禮的 S 級角色不管（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)）。"
+    "text": "A 級角色在特定的[最佳隊伍](#characters__best-teams)裡經常會變成 S 級。B 級角色在前期也很堪用，只要她是從你的[洗初始帳號](#guides__reroll)掉出來的，能讓你一邊推劇情、一邊等待[當期活動](#events__current)裡更好的卡池。把你喜歡的 A 級角色羈絆養滿，往往勝過放著一個你從不送禮的 S 級角色不管（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)）。"
    },
    {
     "type": "heading",
@@ -3896,7 +4156,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "請把戰鬥定位對照[強度榜](#characters__tier-list)，並把情感投資的優先順序對照[姬絆](#guides__hime-bonds)／[伴侶](#guides__cumpanions)。"
+    "text": "請把戰鬥定位對照[強度榜](#characters__tier-list)，並把情感投資的優先順序對照[姬絆](#guides__hime-bonds)／[乘員](#guides__cumpanions)。"
    },
    {
     "type": "heading",
@@ -4156,7 +4416,7 @@ window.WIKI_PAGES = [
     "items": [
      "**一名主力** — 負責通關星球港、接收劇情免費六星材料，並支撐[最佳隊伍](#characters__best-teams)的那名角色。",
      "**一名續航或功能型輔助** — 減少彈幕關卡的重試次數，並讓掛機路線保持穩定（[戰鬥與掛機](#guides__combat-idle)）。",
-     "**在同樣這幾個名字上做羈絆催化** — 禮物與劇情給主力＋輔助，而不是整個角色池（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)）。",
+     "**在同樣這幾個名字上做羈絆催化** — 禮物與劇情給主力＋輔助，而不是整個角色池（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)）。",
      "**機動剋制位** — 只有當[星球攻略](#guides__planet-walkthrough)或[當期活動](#events__current)證明存在定位缺口時才考慮。",
      "**收集／奢侈抽** — 等嘉年華壓力下降、神器也能順利轉換之後再說。"
     ]
@@ -4246,7 +4506,7 @@ window.WIKI_PAGES = [
     "ordered": false,
     "items": [
      "等級明明夠卻還是被彈幕打死——在彈幕關卡的高牆前，續航或護盾定位很重要。",
-     "掛機收益已經正常，但主動通關仍然會超時——冷卻縮減或範圍傷害的舒適度模組會有幫助。",
+     "放置獎勵已經正常，但主動通關仍然會超時——冷卻縮減或範圍傷害的舒適度模組會有幫助。",
      "嘉年華任務要求羈絆行動——一名你真的會送禮的輔助，勝過一個你不理不睬的奢華輸出。"
     ]
    },
@@ -4471,7 +4731,7 @@ window.WIKI_PAGES = [
      "1 名主要輸出（S 或 A 級主力）",
      "1 名清波副輸出",
      "1 名續航或護盾輔助",
-     "羈絆重點：先透過[姬絆](#guides__hime-bonds)提升主力的好感度，接著在同一條線上深化[伴侶](#guides__cumpanions)"
+     "羈絆重點：先透過[姬絆](#guides__hime-bonds)提升主力的好感度，接著在同一條線上深化[乘員](#guides__cumpanions)"
     ]
    },
    {
@@ -4730,7 +4990,7 @@ window.WIKI_PAGES = [
      "從[強度榜](#characters__tier-list)挑目標，從[最佳隊伍](#characters__best-teams)挑配隊組合。",
      "在[角色一覽](#characters__roster)頁面學習各種定位。",
      "使用[神器](#items__divine-artifacts)配置模組。",
-     "透過[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)讓能量持續流動。",
+     "透過[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)讓能量持續流動。",
      "用[戰鬥與掛機](#guides__combat-idle)掌握通關節奏，並用[每日行程](#guides__daily-routine)維持穩定的行事曆。"
     ]
    },
@@ -4936,7 +5196,7 @@ window.WIKI_PAGES = [
      [
       "4",
       "主力的羈絆禮物",
-      "精神＋肉體兩條路線（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)）"
+      "精神＋肉體兩條路線（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)）"
      ],
      [
       "5",
@@ -5130,7 +5390,7 @@ window.WIKI_PAGES = [
      "綁定帳號＋領取信件（[上線獎勵](#events__launch-rewards)、[下載與電腦版](#guides__download-pc)）",
      "主力的等級與技能",
      "主力的[神器](#items__divine-artifacts)",
-     "主力＋輔助的[姬絆](#guides__hime-bonds)／[伴侶](#guides__cumpanions)",
+     "主力＋輔助的[姬絆](#guides__hime-bonds)／[乘員](#guides__cumpanions)",
      "[隊伍配置](#builds__team-builds)所需的第二名戰鬥角色",
      "提升遊玩體驗的商店購買（[貨幣資源](#items__currencies)）",
      "收集／外觀"
@@ -5414,7 +5674,7 @@ window.WIKI_PAGES = [
      "**機動位：** 從[角色一覽](#characters__roster)的原型中挑清波角色",
      "**支柱：** 續航輔助",
      "**神器：** 主力身上配爆發／續航的混合型（[神器](#items__divine-artifacts)）",
-     "**羈絆：** 主力 > 支柱（先[姬絆](#guides__hime-bonds)，再[伴侶](#guides__cumpanions)）",
+     "**羈絆：** 主力 > 支柱（先[姬絆](#guides__hime-bonds)，再[乘員](#guides__cumpanions)）",
      "**模式：** 卡關時手動操作彈幕；已通關的路線用掛機（[戰鬥與掛機](#guides__combat-idle)）"
     ]
    },
@@ -5549,7 +5809,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "替每個隊伍席次指定一個羈絆優先字母（A／B／C）。只有 A 和 B 會出現在每日的[羈絆檢查清單](#tools__bond-checklist)上；C 席次只拿週末剩下的資源。這種配線方式能避免[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)變成第二份全職工作，同時仍能把能量餵給你剛強化好的神器。"
+    "text": "替每個隊伍席次指定一個羈絆優先字母（A／B／C）。只有 A 和 B 會出現在每日的[羈絆檢查清單](#tools__bond-checklist)上；C 席次只拿週末剩下的資源。這種配線方式能避免[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)變成第二份全職工作，同時仍能把能量餵給你剛強化好的神器。"
    },
    {
     "type": "heading",
@@ -5661,7 +5921,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "在這款遊戲的設定裡，能提升[姬絆](#guides__hime-bonds)或[伴侶](#guides__cumpanions)的禮物並不是「無關緊要的裝飾」。好感度會供養能量轉換，而能量會驅動模組。一個強迫你做送禮任務的嘉年華週，骨子裡其實是一個神器週。"
+    "text": "在這款遊戲的設定裡，能提升[姬絆](#guides__hime-bonds)或[乘員](#guides__cumpanions)的禮物並不是「無關緊要的裝飾」。好感度會供養能量轉換，而能量會驅動模組。一個強迫你做送禮任務的嘉年華週，骨子裡其實是一個神器週。"
    },
    {
     "type": "heading",
@@ -5703,7 +5963,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "掛機收益偏好體力效率與範圍傷害友善的模組；彈幕檢定則偏好爆發模組與續航工具。刷素材時，請替掉落物標註它服務的是哪一種模式。這個標籤決定了某件道具屬於「立刻用在主力上」還是「暫存」。沒有標籤，背包就會變成博物館。"
+    "text": "放置獎勵偏好體力效率與範圍傷害友善的模組；彈幕檢定則偏好爆發模組與續航工具。刷素材時，請替掉落物標註它服務的是哪一種模式。這個標籤決定了某件道具屬於「立刻用在主力上」還是「暫存」。沒有標籤，背包就會變成博物館。"
    },
    {
     "type": "paragraph",
@@ -5825,7 +6085,7 @@ window.WIKI_PAGES = [
      ],
      [
       "羈絆禮物",
-      "[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)",
+      "[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)",
       "分散給 30 個角色"
      ],
      [
@@ -6117,7 +6377,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "當能量收入健康時，神器才會發光。如果模組表現不如預期，請先提升[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)，再去怪抽卡。也請確認你沒有因為錯誤的[貨幣](#items__currencies)花費而讓關卡缺體力。什麼時候該交給自動／掛機、什麼時候該手動操作，請在[戰鬥與掛機](#guides__combat-idle)裡練習。"
+    "text": "當能量收入健康時，神器才會發光。如果模組表現不如預期，請先提升[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)，再去怪抽卡。也請確認你沒有因為錯誤的[貨幣](#items__currencies)花費而讓關卡缺體力。什麼時候該交給自動／掛機、什麼時候該手動操作，請在[戰鬥與掛機](#guides__combat-idle)裡練習。"
    },
    {
     "type": "heading",
@@ -6174,7 +6434,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "如果某個道具說明提到共鳴、情感或飛船能量門檻，就請把好感度進度視為神器配置的一部分。先把[姬絆](#guides__hime-bonds)／[伴侶](#guides__cumpanions)提升到它提到的門檻，再重新測試傷害。許多「這模組根本沒用」的抱怨，其實是門檻沒充飽，而不是抽卡運不好。"
+    "text": "如果某個道具說明提到共鳴、情感或飛船能量門檻，就請把好感度進度視為神器配置的一部分。先把[姬絆](#guides__hime-bonds)／[乘員](#guides__cumpanions)提升到它提到的門檻，再重新測試傷害。許多「這模組根本沒用」的抱怨，其實是門檻沒充飽，而不是抽卡運不好。"
    },
    {
     "type": "heading",
@@ -6274,7 +6534,7 @@ window.WIKI_PAGES = [
   "title": "星慾姬絆 名詞解釋",
   "navTitle": "名詞解釋",
   "description": "星慾姬絆名詞解釋：姬絆、伴侶、神器、碎星、星鑽與上線期各項術語一次說明。（2026 年 8 月更新）",
-  "updated": "2026-08-08",
+  "updated": "2026-09-04",
   "blocks": [
    {
     "type": "paragraph",
@@ -6287,6 +6547,11 @@ window.WIKI_PAGES = [
    {
     "type": "paragraph",
     "text": "當朋友說「去領那個 5000 的東西」而你不確定那是信箱燃料還是兌換碼時，就用得上本頁。請把這些定義搭配[貨幣資源](#items__currencies)、[神器](#items__divine-artifacts)與[上線獎勵](#events__launch-rewards)一起看。"
+   },
+   {
+    "type": "callout",
+    "text": "**名詞校對狀態（2026-09-04）：** 本頁術語原本譯自英文社群站，已依遊戲繁中介面截圖逐一核對。確認不同的已改（伴侶→乘員、掛機收益→放置獎勵），標「遊戲內名稱待確認」的還在找對應畫面。下方「遊戲介面用語」是直接從遊戲截圖抄下來的，可放心使用。發現錯誤請用頁尾的回報按鈕。",
+    "_gen": true
    },
    {
     "type": "heading",
@@ -6312,36 +6577,168 @@ window.WIKI_PAGES = [
       "[姬絆](#guides__hime-bonds)"
      ],
      [
-      "**伴侶（Cumpanions）**",
-      "與姬絆平行的肉體伴侶／約會階段路線",
-      "[伴侶](#guides__cumpanions)"
+      "**乘員（Cumpanions）**",
+      "遊戲內的角色：可培養、可上場，各有「乘員持有效果」與「乘員持有技能」。原站描述的「肉體伴侶／約會階段」未在遊戲內看到",
+      "[乘員](#guides__cumpanions)、[角色圖鑑](#characters__profiles)"
      ],
      [
-      "**神器（Divine artifacts）**",
+      "**神器（Divine artifacts）**（遊戲內名稱待確認）",
       "由好感度能量鍛造出的戰鬥模組；能扭轉星球戰局",
       "[神器](#items__divine-artifacts)"
      ],
      [
-      "**星球港（Planet docks）**",
+      "**星球港（Planet docks）**（遊戲內名稱待確認）",
       "劇情巡禮的節點——每個停靠點都是一段星球冒險章節",
       "[星球攻略](#guides__planet-walkthrough)"
      ],
      [
-      "**掛機收益（Idle harvest）**",
-      "你不在時，飛船離線或掛著持續採集",
+      "**放置獎勵（Idle harvest）**",
+      "主畫面左側的按鈕，領取你不在時累積的資源",
       "[戰鬥與掛機](#guides__combat-idle)"
      ],
      [
-      "**彈幕關卡（Bullet-hell stages）**",
+      "**彈幕關卡（Bullet-hell stages）**（遊戲內名稱待確認）",
       "每個星球港內部主動閃避與射擊的通關內容",
       "[戰鬥與掛機](#guides__combat-idle)"
      ],
      [
-      "**能量轉換（Energy conversion）**",
+      "**能量轉換（Energy conversion）**（遊戲內名稱待確認）",
       "把羈絆進度條轉化成神器配方與欄位",
       "[神器與能量](#guides__artifacts-energy)"
      ]
     ]
+   },
+   {
+    "type": "heading",
+    "level": 2,
+    "text": "遊戲介面用語（依繁中版截圖）",
+    "_gen": true
+   },
+   {
+    "type": "image",
+    "src": "assets/img/crew/main-screen.webp",
+    "alt": "星慾姬絆主畫面",
+    "wide": true,
+    "caption": "主畫面（2026-09-04 截圖）。底部選單由左到右：艦長、機群、副本、基地、姬絆招募、商店。",
+    "_gen": true
+   },
+   {
+    "type": "table",
+    "headers": [
+     "介面上的字",
+     "在哪裡",
+     "意思／本站其他頁的寫法"
+    ],
+    "rows": [
+     [
+      "**艦長**",
+      "底部選單",
+      "玩家自己；本站沿用"
+     ],
+     [
+      "**機群**",
+      "底部選單",
+      "出戰的機體群；部分乘員技能會加「機群傷害」「機群攻擊速度」"
+     ],
+     [
+      "**副本**",
+      "底部選單",
+      "關卡；本站部分頁面寫的「星球港」「彈幕關卡」是否指此，待確認"
+     ],
+     [
+      "**基地**",
+      "底部選單",
+      "待確認內容"
+     ],
+     [
+      "**姬絆招募**",
+      "底部選單",
+      "抽角色的介面。本站其他頁寫的「召喚」「抽卡」「招募」都指這裡"
+     ],
+     [
+      "**商店**",
+      "底部選單",
+      "—"
+     ],
+     [
+      "**姬絆**",
+      "主畫面大按鈕",
+      "好感度系統；本站沿用"
+     ],
+     [
+      "**乘員**",
+      "乘員清單／乘員持有效果／乘員持有技能",
+      "角色。本站舊譯「伴侶」已改"
+     ],
+     [
+      "**升級／升星**",
+      "乘員詳情頁",
+      "提升等級／提升星數"
+     ],
+     [
+      "**生命／攻擊／防禦**",
+      "乘員詳情頁",
+      "三項基礎數值"
+     ],
+     [
+      "**Legendary**",
+      "乘員詳情頁的稀有度標籤",
+      "介面直接用英文"
+     ],
+     [
+      "**巡獵活動**",
+      "主畫面右側",
+      "限時巡獵（飛船巡獵、精粹巡獵等），內有**巡獵商店**；開放時程見[週期表](../cycles/)"
+     ],
+     [
+      "**放置獎勵**",
+      "主畫面左側",
+      "離線累積的資源；本站舊譯「掛機收益」已改"
+     ],
+     [
+      "**每日任務**",
+      "主畫面右側",
+      "—"
+     ],
+     [
+      "**巔峰競技場**",
+      "主畫面左側",
+      "PvP 競技場"
+     ],
+     [
+      "**特權通行證／三日姬絆禮／新人好禮**",
+      "主畫面左側",
+      "付費與新手禮包入口"
+     ],
+     [
+      "**戰鬥加速**",
+      "關卡列上方",
+      "加速戰鬥"
+     ],
+     [
+      "**挑戰**",
+      "畫面中央",
+      "挑戰目前關卡的頭目"
+     ],
+     [
+      "**屬性／進階**",
+      "姬絆按鈕右側",
+      "待確認內容"
+     ],
+     [
+      "**歸一 VII 6-1**",
+      "關卡列",
+      "關卡命名格式：章名＋羅馬數字＋節-關"
+     ]
+    ],
+    "_gen": true
+   },
+   {
+    "type": "image",
+    "src": "assets/img/crew/hunt-events.webp",
+    "alt": "巡獵活動視窗",
+    "caption": "巡獵活動視窗：同時開著飛船巡獵與精粹巡獵，各自顯示剩餘時間；右下角是巡獵商店。",
+    "_gen": true
    },
    {
     "type": "heading",
@@ -6471,7 +6868,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "一個高效率的上線夜晚，讀起來就像一個句子：綁定 EROLABS → 領取 **信箱** 的碎星禮物 → 朝著一名主力抽完 **新手招募** → 推進 **星球港** 取得劇情 **6★** 材料 → 執行 **姬絆** 與 **伴侶** → 把能量 **轉換** 成 **神器** → 通關 **彈幕** 檢定 → 登出前掛上 **掛機收益**。只要斷了任何一環，艦長就會開始怪抽卡——而其實只是飛船的電池空了。"
+    "text": "一個高效率的上線夜晚，讀起來就像一個句子：綁定 EROLABS → 領取 **信箱** 的碎星禮物 → 朝著一名主力抽完 **新手招募** → 推進 **星球港** 取得劇情 **6★** 材料 → 執行 **姬絆** 與 **伴侶** → 把能量 **轉換** 成 **神器** → 通關 **彈幕** 檢定 → 登出前掛上 **放置獎勵**。只要斷了任何一環，艦長就會開始怪抽卡——而其實只是飛船的電池空了。"
    },
    {
     "type": "heading",
@@ -6553,7 +6950,7 @@ window.WIKI_PAGES = [
     "answer": [
      {
       "type": "paragraph",
-      "text": "一個是精神面的好感度路線，一個是肉體面的伴侶階段；兩者都會供給能量——請見[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)。"
+      "text": "一個是精神面的好感度路線，一個是肉體面的伴侶階段；兩者都會供給能量——請見[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)。"
      }
     ]
    },
@@ -6681,7 +7078,7 @@ window.WIKI_PAGES = [
     "items": [
      "能強化你主力的限時商店道具（[養成進度](#builds__progression)）。",
      "會給召喚券的任務——先存著，直到[抽卡與召喚](#guides__gacha-summon)有明確目標。",
-     "[姬絆](#guides__hime-bonds)／[伴侶](#guides__cumpanions)的羈絆加成期間。",
+     "[姬絆](#guides__hime-bonds)／[乘員](#guides__cumpanions)的羈絆加成期間。",
      "能讓你學會[戰鬥與掛機](#guides__combat-idle)彈幕模式的變異關卡。",
      "可有可無的外觀放最後。"
     ]
@@ -6772,7 +7169,7 @@ window.WIKI_PAGES = [
   "title": "星慾姬絆 當期活動",
   "navTitle": "當期活動",
   "description": "2026 年 7 月 EROLABS 上線後的星慾姬絆當期活動與每週優先事項——卡池、商店與羈絆。（2026 年 8 月更新）",
-  "updated": "2026-08-06",
+  "updated": "2026-09-04",
   "blocks": [
    {
     "type": "paragraph",
@@ -6785,6 +7182,18 @@ window.WIKI_PAGES = [
    {
     "type": "paragraph",
     "text": "如果你還有第一天的信件沒領——約 **5000** 碎星、封測 **200%** 星鑽回饋、登入抽取、嘉年華獎勵——請先把[上線獎勵](#events__launch-rewards)處理完，再去最佳化某個隨機的支線任務板。"
+   },
+   {
+    "type": "callout",
+    "text": "**巡獵活動的開放時程**（飛船巡獵、精粹巡獵、神殿巡獵、星體巡獵、豐收巡獵等）跟著各伺服器的開服日走，本站另有依開服日推算的[週期表](../cycles/)，可填自己伺服器的開服日。",
+    "_gen": true
+   },
+   {
+    "type": "image",
+    "src": "assets/img/crew/hunt-events.webp",
+    "alt": "巡獵活動視窗",
+    "caption": "2026-09-04 的巡獵活動視窗：飛船巡獵剩 7 小時、精粹巡獵剩 2 天。",
+    "_gen": true
    },
    {
     "type": "heading",
@@ -6851,7 +7260,7 @@ window.WIKI_PAGES = [
      [
       "6",
       "在加成期間培養羈絆",
-      "[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)"
+      "[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)"
      ],
      [
       "7",
@@ -7141,7 +7550,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "請使用[新手第一週規劃](#guides__beginner-week)裡的行事曆。嘉年華任務通常會強迫你健康地混合[戰鬥與掛機](#guides__combat-idle)的通關，以及[姬絆](#guides__hime-bonds)／[伴侶](#guides__cumpanions)的互動行動。跳過親密度的日子，正是人們「任務做完了」卻還有召喚券沒領的原因。"
+    "text": "請使用[新手第一週規劃](#guides__beginner-week)裡的行事曆。嘉年華任務通常會強迫你健康地混合[戰鬥與掛機](#guides__combat-idle)的通關，以及[姬絆](#guides__hime-bonds)／[乘員](#guides__cumpanions)的互動行動。跳過親密度的日子，正是人們「任務做完了」卻還有召喚券沒領的原因。"
    },
    {
     "type": "paragraph",
@@ -7260,7 +7669,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "本作於 **2026 年 7 月 29 日** 上線。早期更新經常把信件發送、兌換介面與教學鎖定的緊急修復，和掛機收益或關卡修正值的首波平衡微調混在一起。如果更新後你的[上線獎勵](#events__launch-rewards)信件看起來不見了，請先重新領取，再去做理論推演。"
+    "text": "本作於 **2026 年 7 月 29 日** 上線。早期更新經常把信件發送、兌換介面與教學鎖定的緊急修復，和放置獎勵或關卡修正值的首波平衡微調混在一起。如果更新後你的[上線獎勵](#events__launch-rewards)信件看起來不見了，請先重新領取，再去做理論推演。"
    },
    {
     "type": "heading",
@@ -7333,11 +7742,11 @@ window.WIKI_PAGES = [
     "ordered": false,
     "items": [
      "新角色與機率提升（更新[角色一覽](#characters__roster)的心智模型）",
-     "羈絆／伴侶或能量轉換的微調（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)、[神器與能量](#guides__artifacts-energy)）",
+     "羈絆／伴侶或能量轉換的微調（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)、[神器與能量](#guides__artifacts-energy)）",
      "神器與模組的平衡",
      "兌換／信箱的 bug 修復（重新確認[可用兌換碼](#codes__active)與[兌換碼使用方式](#codes__how-to-redeem)）",
      "商店或 APK 的更新需求（[下載與電腦版](#guides__download-pc)、[帳號與綁定](#guides__account-erolabs)）",
-     "掛機收益率或彈幕關卡修正值的變動（[戰鬥與掛機](#guides__combat-idle)）"
+     "放置獎勵率或彈幕關卡修正值的變動（[戰鬥與掛機](#guides__combat-idle)）"
     ]
    },
    {
@@ -7417,7 +7826,7 @@ window.WIKI_PAGES = [
     "items": [
      "一個你以前打起來很輕鬆的劇情節點。",
      "[最佳隊伍](#characters__best-teams)裡模板 C 的一場頭目檢定。",
-     "一次掛機收益的比較（如果數字看得到，就前後各截一張圖）。",
+     "一次放置獎勵的比較（如果數字看得到，就前後各截一張圖）。",
      "如果有公告補償序號，就做一次兌換嘗試（[可用兌換碼](#codes__active)）。",
      "看一眼設定畫面，確認客戶端版本與你以為自己安裝的更新一致。"
     ]
@@ -7440,7 +7849,7 @@ window.WIKI_PAGES = [
      ],
      [
       "羈絆／能量",
-      "[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)、[神器與能量](#guides__artifacts-energy)"
+      "[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)、[神器與能量](#guides__artifacts-energy)"
      ],
      [
       "模組",
@@ -7622,7 +8031,7 @@ window.WIKI_PAGES = [
      "[當期活動](#events__current)——卡池週經常會伴隨直播序號。",
      "[貨幣資源](#items__currencies)——讓你分辨某項獎勵是碎星燃料還是付費星鑽。",
      "[戰鬥與掛機](#guides__combat-idle)——如果你兌換到能量道具、需要一套刷素材節奏。",
-     "[伴侶](#guides__cumpanions)與[姬絆](#guides__hime-bonds)——當獎勵包含好感度禮物時。"
+     "[乘員](#guides__cumpanions)與[姬絆](#guides__hime-bonds)——當獎勵包含好感度禮物時。"
     ]
    },
    {
@@ -7825,7 +8234,7 @@ window.WIKI_PAGES = [
     "items": [
      "**召喚券／星鑽** — 只投向你從[強度榜](#characters__tier-list)寫下的主力，以及來自[最佳隊伍](#characters__best-teams)的隊伍；並用[零課路線](#builds__f2p-plan)守住底線。",
      "**體力／能量道具** — 在你熟悉[戰鬥與掛機](#guides__combat-idle)節奏的同時，把它們燒在星球節點上。",
-     "**羈絆禮物** — 透過[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)餵給你的主力；不要撒滿整個角色池。",
+     "**羈絆禮物** — 透過[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)餵給你的主力；不要撒滿整個角色池。",
      "**碎星／強化材料** — 照著[養成優先度](#builds__progression)走，並在[貨幣資源](#items__currencies)確認資源去向。"
     ]
    },
@@ -8062,7 +8471,7 @@ window.WIKI_PAGES = [
      "走一遍[兌換碼使用方式](#codes__how-to-redeem)的錯誤對照表（打錯字、已使用、教學未解鎖）。",
      "透過[上線獎勵](#events__launch-rewards)領取剩下的上線信件。",
      "把嘉年華／登入的天數清掉，別讓自己一邊「等兌換碼」、一邊讓召喚券爛在那裡沒領。",
-     "在下一場直播醞釀期間，透過[戰鬥與掛機](#guides__combat-idle)、[養成進度](#builds__progression)與羈絆循環（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)）推進戰力。"
+     "在下一場直播醞釀期間，透過[戰鬥與掛機](#guides__combat-idle)、[養成進度](#builds__progression)與羈絆循環（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)）推進戰力。"
     ]
    },
    {
@@ -8342,7 +8751,7 @@ window.WIKI_PAGES = [
      "把成功的提示訊息截圖，以備客服的特殊狀況。",
      "在[貨幣資源](#items__currencies)辨識獎勵的類型。",
      "只在[新手第一週規劃](#guides__beginner-week)的計畫內、朝著[強度榜](#characters__tier-list)的目標花掉召喚券。",
-     "把羈絆禮物導向你戰鬥核心的[姬絆](#guides__hime-bonds)／[伴侶](#guides__cumpanions)。",
+     "把羈絆禮物導向你戰鬥核心的[姬絆](#guides__hime-bonds)／[乘員](#guides__cumpanions)。",
      "透過[戰鬥與掛機](#guides__combat-idle)把體力消耗掉，而不是永遠囤到超過軟上限。"
     ]
    },
@@ -8466,7 +8875,7 @@ window.WIKI_PAGES = [
     "ordered": true,
     "items": [
      "使用兌換碼工具之前先讀[兌換碼使用方式](#codes__how-to-redeem)——也請讀[上線獎勵](#events__launch-rewards)，才不會把信箱禮物記錄成「失敗的兌換碼」。",
-     "使用羈絆工具之前先讀[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)。",
+     "使用羈絆工具之前先讀[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)。",
      "把結果搭配[養成進度](#builds__progression)與[新手第一週規劃](#guides__beginner-week)的決策一起看。",
      "在直播的夜晚，大量兌換之前先交叉確認[當期活動](#events__current)。"
     ]
@@ -8832,7 +9241,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "羈絆檢查清單能避免[姬絆](#guides__hime-bonds)與[伴侶](#guides__cumpanions)在忙碌的日子裡被遺漏。列出你的核心成員，勾選對話／贈禮／任務行動，隔天再重置。在《星慾姬絆》裡，好感度不只是劇情——它會供養能量轉換，而能量轉換會在掛機＋彈幕的循環中驅動[神器](#items__divine-artifacts)（[戰鬥與掛機](#guides__combat-idle)）。"
+    "text": "羈絆檢查清單能避免[姬絆](#guides__hime-bonds)與[乘員](#guides__cumpanions)在忙碌的日子裡被遺漏。列出你的核心成員，勾選對話／贈禮／任務行動，隔天再重置。在《星慾姬絆》裡，好感度不只是劇情——它會供養能量轉換，而能量轉換會在掛機＋彈幕的循環中驅動[神器](#items__divine-artifacts)（[戰鬥與掛機](#guides__combat-idle)）。"
    },
    {
     "type": "paragraph",
@@ -8947,7 +9356,7 @@ window.WIKI_PAGES = [
    },
    {
     "type": "paragraph",
-    "text": "把清單保持在「能在第一次掛機收益開始之前做完」的長度。"
+    "text": "把清單保持在「能在第一次放置獎勵開始之前做完」的長度。"
    },
    {
     "type": "heading",
@@ -9244,7 +9653,7 @@ window.WIKI_PAGES = [
     "items": [
      "用精練的隊伍通關某個星球港的關卡（[最佳隊伍](#characters__best-teams)）",
      "交替進行 **彈幕** 的操作壓力與 **掛機** 採集（[戰鬥與掛機](#guides__combat-idle)）",
-     "在真正重要的角色身上培養羈絆（[姬絆](#guides__hime-bonds)、[伴侶](#guides__cumpanions)）",
+     "在真正重要的角色身上培養羈絆（[姬絆](#guides__hime-bonds)、[乘員](#guides__cumpanions)）",
      "把能量轉換成神器（[神器與能量](#guides__artifacts-energy)）",
      "只在卡池符合你[強度榜](#characters__tier-list)計畫時才抽（[抽卡與召喚](#guides__gacha-summon)）"
     ]
@@ -9711,4 +10120,4 @@ window.WIKI_PAGES = [
    }
   ]
  }
-];
+]

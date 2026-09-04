@@ -63,7 +63,8 @@
   function inline(text) {
     var out = esc(text)
     out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, target) {
-      if (/^#/.test(target)) {
+      if (/^#/.test(target) || /^\.\.?\//.test(target)) {
+        // 站內 hash 連結，或相對路徑（例：../cycles/ 週期表）
         return '<a href="' + esc(target) + '">' + label + '</a>'
       }
       if (/^https?:\/\//i.test(target)) {
