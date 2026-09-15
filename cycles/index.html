@@ -24,7 +24,7 @@
 <main class="cy-wrap">
   <header class="cy-head">
     <h1>活動日誌 <span class="tag">星慾姬絆</span></h1>
-    <p class="sub">巡獵與活動跟著「開服第幾天」走，每個伺服器的開服日不同，所以日期一律由開服日＋天數推算，不綁星期幾。對照遊戲內「活動日誌」與實際觀察整理。</p>
+    <p class="sub">巡獵走兩條獨立軌道：<b>每週一</b>開一個主巡獵、持續 7 天無縫接續；<b>每週二</b>開一個短巡獵、3～4 天。開服前三週是新手期，跟著開服天數走。順序由實際觀察累積，每週校正。</p>
   </header>
 
   <!-- 資料狀態標籤：整頁層級，訪客一眼看出哪些不能盡信 -->
@@ -35,9 +35,10 @@
     </div>
     <div class="stat-row stat-foot">
       <span id="stat-meta" class="stat-meta"></span>
-      <a id="stat-report" class="stat-link" href="#" target="_blank" rel="noopener">回報修正 ↗</a>
+      <a id="stat-report" class="stat-link" href="#board">回報修正</a>
     </div>
     <p id="stat-note" class="stat-note" hidden></p>
+    <p id="stat-warn" class="stat-warn" hidden></p>
   </section>
 
   <!-- 伺服器開服日：訪客可換成自己的，只存在自己瀏覽器 -->
@@ -51,19 +52,25 @@
     </form>
   </section>
 
+  <!-- 雙軌時間軸：一列一週，兩條軌道並排 -->
   <section class="rot">
     <div class="rot-head">
-      <h2>輪替總表</h2>
-      <p id="rot-now" class="rot-now"></p>
+      <h2>雙軌時間軸</h2>
+      <p class="rot-now">標「實測」的是實際看到過的，其餘為推算。</p>
     </div>
-    <div class="rot-scroll">
-      <table class="rot-table">
-        <thead><tr><th>官方週次</th><th>開服第幾天</th><th>活動</th><th>日期（依上方開服日）</th></tr></thead>
-        <tbody id="rot-body"></tbody>
-      </table>
-    </div>
-    <div id="rot-rules" class="rot-rules"></div>
-    <p id="rot-note" class="rot-note" hidden></p>
+    <div class="tl-scroll"><div id="tl" class="tl"></div></div>
+    <ul id="tl-notes" class="tl-notes"></ul>
+  </section>
+
+  <!-- 新手期：只發生一次 -->
+  <section class="lc" id="launch" hidden>
+    <details>
+      <summary>開服新手期（Day 1–21）—— 只發生一次</summary>
+      <div class="lc-body">
+        <p id="launch-note" class="lc-sub"></p>
+        <div id="launch-body"></div>
+      </div>
+    </details>
   </section>
 
   <section class="bar">
@@ -77,6 +84,8 @@
       <div id="more-menu" class="menu" hidden>
         <button data-act="export"><b>匯出 cycles.json</b><small>覆蓋 data/cycles.json 再 commit，才會更新站上內容</small></button>
         <button data-act="calibrate"><b>設定基準服開服日…</b><small>填日期，或填「今天是開服第幾天」反推</small></button>
+        <button data-act="seq-main"><b>改主巡獵順序…</b><small>週一軌；改完會重新對答案</small></button>
+        <button data-act="seq-short"><b>改短巡獵順序…</b><small>週二軌；改完會重新對答案</small></button>
         <button data-act="copy">複製 JSON 到剪貼簿</button>
         <button data-act="import">匯入 JSON 檔…</button>
         <hr>
@@ -92,13 +101,11 @@
   <div id="list" class="cards"></div>
   <p id="empty" class="empty" hidden>沒有符合條件的項目。</p>
 
-  <p class="credit">Day N 指開服第 N 天（開服當天＝Day 1），W1–W7 是官方活動日誌的週次標籤。日期為推算值，實際以遊戲內為準。</p>
+  <p class="credit">兩條軌道的循環長度都還沒驗證過第二輪，愈往後的預測愈不可靠。看到實際開放請回報，累積夠多就能確定。日期為推算值，實際以遊戲內為準。</p>
 
   <section class="board">
     <h2 id="board">回報與討論</h2>
-    <p class="board-sub">歡迎回報你伺服器上實際觀察到的開放時間，或指出名詞、日期的錯誤。用右下角或這裡的「回報修正」表單即可，不需要任何帳號。</p>
-    <div id="giscus"></div>
-    <p id="giscus-off" class="board-off" hidden></p>
+    <p class="board-sub">最有用的回報是「<b>哪一天</b>開了<b>哪個巡獵</b>」，一句話就夠 —— 那正是校正軌道順序需要的資料。也歡迎指出名詞或日期的錯誤。用右下角的回報鈕即可，不需要任何帳號。</p>
   </section>
 </main>
 
@@ -111,15 +118,10 @@
       <label>別名／實際內容<input type="text" id="f-aka" maxlength="60" placeholder="例：技能巡獵、機群巡獵"></label>
       <label>分類<input type="text" id="f-category" list="cat-list" maxlength="20" placeholder="分類名稱"></label>
       <datalist id="cat-list"></datalist>
-      <label class="wide">開放日（開服第幾天，逗號分隔；一輪內可多次，例：1, 27）<input type="text" id="f-days" maxlength="60" placeholder="例：1, 27" inputmode="numeric"></label>
+      <label>軌道<select id="f-track"></select></label>
       <label>開放時刻<input type="time" id="f-openTime"></label>
-      <div class="wide">
-        <span class="lb">官方週次標籤（可複選，順序與上面的開放日逐一對應）</span>
-        <div class="wd" id="f-weeks"></div>
-      </div>
       <label>持續天數<input type="number" id="f-durationDays" min="0" max="365" step="1"></label>
       <label>持續時數<input type="number" id="f-durationHours" min="0" max="23" step="1"></label>
-      <label>最近一次開放<input type="date" id="f-lastSeen"></label>
       <label class="chk-field"><input type="checkbox" id="f-archived"> 封存（不再追蹤）</label>
       <label class="chk-field"><input type="checkbox" id="f-verified"> 資料待確認</label>
       <label class="wide">待確認什麼<input type="text" id="f-todo" maxlength="200" placeholder="還缺哪些資訊、要在遊戲裡核對什麼"></label>

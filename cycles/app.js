@@ -1,21 +1,23 @@
 /* 星慾姬絆 活動日誌
-   內容是公開的：任何人打開都看得到輪替表，資料就是 data/cycles.json。
+   內容是公開的：任何人打開都看得到，資料就是 data/cycles.json。
    編輯功能藏在管理員密碼後面 —— 但要講清楚，這道門只擋 UI：
    站上真正的內容由 repo 裡的 cycles.json 決定，所以實際的修改權限
    等於 git push 權限。管理員在自己瀏覽器改完後匯出 JSON、commit，才會影響別人。
 
-   資料模型（v3）：巡獵時程跟著「開服第幾天」走，每個伺服器開服日不同，
-   所以日期一律由 開服日 + 天數 推算，不綁星期幾。
-   - rotation.serverOpenDate：本站基準服的開服日（Day 1）
-   - rotation.cycleDays：一輪幾天（官方活動日誌畫到 Week 7 = 49 天）
-   - entry.days：該活動在一輪裡的第幾天開（1-based），與 entry.weeks（官方週次標籤）逐一對應
-   - rotation.phase2：{ fromDay, weekday } —— 兩個伺服器實測：前 21 天純看開服天數，
-     Day 22 起貼齊到第一個週四（官方圖 Week 4「Starts Thu.」），之後的 Day 從那個週四往後數。
-     所以 Day ≥ fromDay 的值是「週四開服」的名義日曆，實際日期會依開服日的星期偏移 0–6 天。
-   訪客可以填自己伺服器的開服日，只存在自己瀏覽器，不影響站上資料。 */
+   資料模型（v4，雙軌）：實測發現巡獵走兩條獨立軌道 ——
+   - 主巡獵：每週一開一個，持續 7 天，前一個結束隔天下一個就開，中間不留空窗
+   - 短巡獵：每週二開一個，持續 3～4 天，結束後空到下週二
+   每條軌道有一個 sequence（依實際觀察累積的順序），週復一週輪替。
+   **循環長度尚未確定**：兩軌都只完整走過一輪，還沒看到第二輪重複，
+   所以預測愈遠愈不可靠，要靠每週補一筆觀察長期校正。
+
+   軌道起點由開服日推得，跨伺服器通用：
+     新手期 Day 1–21 跟著開服天數走 → Day 22 起第一個週四是第一次豐收
+     → 那之後的下一個週一，主軌從 sequence[0] 開始；短軌晚一週（+8 天）從週二開始。
+   每筆 sighting（實際觀察）都會跟預測比對，不符就在頁面上標出來，提醒該修 sequence。 */
 
 const DATA_URL = 'data/cycles.json';
-const LS_KEY = 'roe-cycles-draft-v3';   // 管理員尚未匯出的草稿
+const LS_KEY = 'roe-cycles-draft-v4';   // 管理員尚未匯出的草稿
 const LS_ADMIN = 'roe-cycles-admin-v1'; // 這台瀏覽器已通過管理員驗證
 const LS_OPEN = 'roe-cycles-open-v1';   // 訪客自己伺服器的開服日
 const PBKDF2_ITER = 250000;
@@ -24,23 +26,17 @@ const ADMIN_SALT = 'roe-cycles-admin';  // 固定 salt，只為了讓暴力破�
 // 管理員密碼的 PBKDF2-SHA256 雜湊（hex）。空字串＝尚未設定，編輯功能停用。
 const ADMIN_HASH = 'cc06ce05dc09f374f90620b8f1d465b035082768c0034e0ff7aeeaf8a151a768';
 
-// 回報管道
-// giscus 留言板：留言存在 GitHub Discussions，訪客需有 GitHub 帳號。
-// CATEGORY_ID 要等 repo 開啟 Discussions 後才拿得到；留空則改顯示全站回報表單的按鈕。
-const GISCUS_REPO = 'pinpin12040720-hub/roe';
-const GISCUS_REPO_ID = 'R_kgDOTJWkkA';
-const GISCUS_CATEGORY = 'General';
-const GISCUS_CATEGORY_ID = '';
-
 const WD = ['', '週一', '週二', '週三', '週四', '週五', '週六', '週日'];
 const DAY = 86400000;
+const TIMELINE_BACK = 3;    // 時間軸往回顯示幾週
+const TIMELINE_FWD = 5;     // 往後顯示幾週
 
 let db = null;            // 目前資料
 let published = null;     // 站上那份（data/cycles.json），用來判斷草稿有沒有差異
 let isAdmin = false;
 let editingId = null;     // 正在編輯的項目 id；null = 新增
 let visitorOpen = '';     // 訪客自己填的開服日（YYYY-MM-DD），空＝用基準服
-const openComments = new Set();   // 展開留言的項目 id
+const openCards = new Set();   // 展開觀察紀錄的項目 id
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -64,231 +60,18 @@ async function checkPassword(password) {
   return await hashPassword(password) === ADMIN_HASH;
 }
 
-/* ---------- 資料層 ---------- */
-
-function blankEntry() {
-  return {
-    id: 'c-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    name: '', aka: '', category: '', weeks: [], days: [], openTime: '',
-    verified: false, todo: '',
-    durationDays: null, durationHours: null, lastSeen: '',
-    note: '', raw: '', archived: false, comments: [],
-    createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
-  };
-}
-
-const DEFAULT_ROTATION = {
-  cycleDays: 49, serverOpenDate: '', serverLabel: '本站基準服',
-  phase2: null, rules: [], openNote: '', adminNote: '',
-};
-const DEFAULT_STATUS = { level: 'unverified', basis: '', note: '' };
+/* ---------- 小工具 ---------- */
 
 const isoDate = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const validIso = s => /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(new Date(s + 'T00:00:00').getTime());
+const tsOf = s => new Date(s + 'T00:00:00').getTime();
+const isoDay = d => ((d.getDay() + 6) % 7) + 1;   // 1=週一 … 7=週日
+const esc = s => String(s).replace(/[&<>"']/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-// 補齊缺欄位，容忍手改過的 JSON；v2（週一對齊的七週輪替）會自動換算成天數
-function migrate(data) {
-  const num = v => (v === null || v === undefined || v === '' ? null : Number(v));
-  const r = data.rotation || {};
-  const isV2 = !r.cycleDays && r.anchorDate;   // 舊模型：anchorDate（某次 Week 1 的週一）+ totalWeeks
-  const totalWeeks = Number(r.totalWeeks) || 7;
-  const cycleDays = Number(r.cycleDays) || totalWeeks * 7;
-
-  // v2 → v3：基準服 07-29 開服、舊錨點 07-27，Day = (week-1)*7 + startDay - 2
-  let serverOpen = String(r.serverOpenDate || '');
-  let v2Shift = 0;
-  if (isV2 && !serverOpen) {
-    serverOpen = data.serverOpenDate || '2026-07-29';
-    const a = new Date(r.anchorDate + 'T00:00:00'), o = new Date(serverOpen + 'T00:00:00');
-    v2Shift = Math.round((o - a) / DAY);   // 開服日比錨點晚幾天
-  }
-
-  const out = {
-    schema: 'cycles-v3',
-    title: data.title || '活動日誌',
-    source: data.source || '',
-    updatedAt: data.updatedAt || '',
-    status: {
-      ...DEFAULT_STATUS,
-      ...(data.status || {}),
-      level: (data.status && data.status.level) || 'unverified',
-    },
-    rotation: {
-      ...DEFAULT_ROTATION,
-      serverLabel: String(r.serverLabel || DEFAULT_ROTATION.serverLabel),
-      cycleDays,
-      serverOpenDate: validIso(serverOpen) ? serverOpen : '',
-      rules: Array.isArray(r.rules) ? r.rules.map(String) : [],
-      // 第二階段對齊星期：fromDay 起貼到第一個 weekday（1=週一…7=週日）；沒設就純看天數
-      phase2: (p => (p && Number(p.fromDay) >= 1 && Number(p.weekday) >= 1 && Number(p.weekday) <= 7)
-        ? { fromDay: Number(p.fromDay), weekday: Number(p.weekday), note: String(p.note || '') }
-        : null)(r.phase2),
-      openNote: String(r.openNote || ''),
-      adminNote: String(r.adminNote || r.anchorNote || ''),
-    },
-    weeks: [],
-    entries: [],
-  };
-
-  // 週次表（官方活動日誌的標籤）：補滿 1..N，缺的用空的
-  const totalLabels = Math.max(1, Math.round(cycleDays / 7));
-  const given = Array.isArray(data.weeks) ? data.weeks : [];
-  for (let n = 1; n <= totalLabels; n++) {
-    const w = given.find(x => Number(x.n) === n) || {};
-    out.weeks.push({
-      n,
-      label: String(w.label || ''),
-      activities: (Array.isArray(w.activities) ? w.activities : []).map(String),
-    });
-  }
-
-  const list = Array.isArray(data.entries) ? data.entries : [];
-  out.entries = list.map(e => {
-    const b = blankEntry();
-    const weeks = (Array.isArray(e.weeks) ? e.weeks : [])
-      .map(Number).filter(n => n >= 1 && n <= totalLabels).sort((a, c) => a - c);
-    let days = (Array.isArray(e.days) ? e.days : [])
-      .map(Number).filter(n => n >= 1 && n <= cycleDays).sort((a, c) => a - c);
-    if (!days.length && isV2 && weeks.length) {
-      // 舊資料只有 weeks + startDay：Week 1–3 官方本來就寫 Day 1–21（從開服日起算），
-      // Week 4 起才對齊週一，換算時要扣掉開服日與錨點的差
-      const sd = Number(e.startDay) >= 1 ? Number(e.startDay) : 1;
-      days = weeks.map(w => (w <= 3 ? (w - 1) * 7 + sd : (w - 1) * 7 + sd - v2Shift))
-        .filter(n => n >= 1 && n <= cycleDays);
-    }
-    return {
-      ...b, ...e,
-      id: e.id || b.id,
-      name: String(e.name || ''),
-      aka: String(e.aka || ''),
-      // 舊資料沒有 verified 就當已確認，免得整批被標成待確認
-      verified: e.verified === undefined ? true : !!e.verified,
-      todo: String(e.todo || ''),
-      category: String(e.category || ''),
-      weeks,
-      days,
-      openTime: String(e.openTime || ''),
-      durationDays: num(e.durationDays),
-      durationHours: num(e.durationHours),
-      lastSeen: String(e.lastSeen || ''),
-      note: String(e.note || ''),
-      raw: String(e.raw || ''),
-      archived: !!e.archived,
-      comments: (Array.isArray(e.comments) ? e.comments : []).map(c => ({
-        id: c.id || 'm-' + Math.random().toString(36).slice(2, 8),
-        text: String(c.text || ''),
-        at: c.at || new Date().toISOString(),
-      })),
-    };
-  }).map(e => { delete e.startDay; return e; });
-  return out;
-}
-
-// 只有管理員會產生草稿；訪客不寫入任何東西（訪客的開服日另存，見 setVisitorOpen）
-function save() {
-  if (!isAdmin) return;
-  db.updatedAt = new Date().toISOString().slice(0, 10);
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify(db));
-  } catch (err) {
-    note('草稿存檔失敗（瀏覽器儲存空間可能已滿）：' + err.message);
-  }
-}
-
-function entry(id) { return db.entries.find(e => e.id === id); }
-
-/* ---------- 開服日推算 ---------- */
-
-function isoDay(d) { return ((d.getDay() + 6) % 7) + 1; }   // 1=週一 … 7=週日
-
-// 目前用哪個開服日：訪客自己填的優先，否則基準服
-function openDate() {
-  const s = visitorOpen || (db && db.rotation.serverOpenDate) || '';
-  if (!validIso(s)) return null;
-  return new Date(s + 'T00:00:00').getTime();
-}
-
-// 開服第幾天（Day 1 = 開服當天）。沒有開服日就算不出來。
-function serverDay(ts = Date.now()) {
-  const open = openDate();
-  if (open === null) return null;
-  return Math.floor((ts - open) / DAY) + 1;
-}
-
-// 目前落在第幾輪的第幾天
-function cyclePos(ts = Date.now()) {
-  const day = serverDay(ts);
-  if (day === null) return null;
-  const total = db.rotation.cycleDays;
-  const idx = Math.floor((day - 1) / total);          // 第 0 輪 = 開服後第一輪
-  const pos = ((((day - 1) % total) + total) % total) + 1;
-  return { day, cycle: idx, pos, total, cycleStart: openDate() + idx * total * DAY };
-}
-
-// 第二階段起點：該輪 Day fromDay 之後（含）第一個指定星期的 00:00
-function phaseStart(cycle) {
-  const p = db.rotation.phase2;
-  const base = openDate() + (cycle * db.rotation.cycleDays + p.fromDay - 1) * DAY;
-  const shift = (p.weekday - isoDay(new Date(base)) + 7) % 7;
-  return base + shift * DAY;
-}
-
-// 某輪某 Day 的 00:00：前段純看天數；到了 phase2 就從貼齊後的那天往後數
-function dayStart(cycle, day) {
-  const p = db.rotation.phase2;
-  if (p && day >= p.fromDay) return phaseStart(cycle) + (day - p.fromDay) * DAY;
-  return openDate() + (cycle * db.rotation.cycleDays + day - 1) * DAY;
-}
-
-// 某週次列在一輪裡的起始天（該列活動裡最早的 Day），沒資料回 null
-function weekStartDay(w) {
-  const days = w.activities.map(nm => {
-    const e = db.entries.find(x => x.name === nm && !x.archived) || db.entries.find(x => x.name === nm);
-    if (!e) return null;
-    const i = e.weeks.indexOf(w.n);
-    return i >= 0 && e.days[i] ? e.days[i] : (e.days[0] || null);
-  }).filter(d => d !== null);
-  return days.length ? Math.min(...days) : null;
-}
-
-// 目前對應官方哪一個 Week：這一輪裡最後一個「起始時刻 <= 現在」的列
-function currentWeekLabel(cur, ts = Date.now()) {
-  let best = null, bestTs = -Infinity;
-  db.weeks.forEach(w => {
-    const s = weekStartDay(w);
-    if (s === null) return;
-    const t = dayStart(cur.cycle, s);
-    if (t <= ts && t >= bestTs) { best = w; bestTs = t; }
-  });
-  return best;
-}
-
-// 活動每一場的開始時刻：該 Day 的 00:00 + 開放時刻
-function occurrenceStart(e, cycle, day) {
-  let t = dayStart(cycle, day);
-  const m = /^(\d{2}):(\d{2})$/.exec(e.openTime || '');
-  if (m) t += (Number(m[1]) * 60 + Number(m[2])) * 60000;
-  return t;
-}
-
-// 某活動的狀態：live（開放中）/ upcoming（還沒到）/ unknown
-function activityState(e, ts = Date.now()) {
-  const cur = cyclePos(ts);
-  const days = e.days || [];
-  if (!cur || !days.length) return { status: 'unknown' };
-  const span = (e.durationDays || 0) * DAY + (e.durationHours || 0) * 3600e3;
-
-  // 從上一輪掃到下一輪，找第一個還沒結束的場次
-  for (let c = cur.cycle - 1; c <= cur.cycle + 1; c++) {
-    for (const d of days) {
-      const start = occurrenceStart(e, c, d);
-      // 沒填持續時間就當它開 7 天
-      const end = start + (span > 0 ? span : 7 * DAY);
-      if (ts >= start && ts < end) return { status: 'live', day: d, cycle: c, start, end };
-      if (ts < start) return { status: 'upcoming', day: d, cycle: c, start, end };
-    }
-  }
-  return { status: 'unknown' };
+function fmtDate(ts) {
+  const t = new Date(ts);
+  return `${t.getMonth() + 1}/${t.getDate()}（${WD[isoDay(t)]}）`;
 }
 
 function fmtDur(ms) {
@@ -302,31 +85,236 @@ function fmtDur(ms) {
   return `${m} 分`;
 }
 
-function fmtDate(ts) {
-  const t = new Date(ts);
-  return `${t.getMonth() + 1}/${t.getDate()}（${WD[isoDay(t)]}）`;
+/* ---------- 資料層 ---------- */
+
+function blankEntry() {
+  return {
+    id: 'c-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    name: '', aka: '', category: '', track: '',
+    durationDays: null, durationHours: null, openTime: '',
+    sightings: [], verified: false, todo: '',
+    note: '', raw: '', archived: false, comments: [],
+  };
 }
 
-function nextHtml(e) {
-  const s = activityState(e);
-  if (s.status === 'unknown') {
-    return !(e.days || []).length
-      ? `<span class="lbl">開放日</span>尚未設定`
-      : `<span class="lbl">開放日</span>需要先填開服日才能推算`;
+const DEFAULT_STATUS = { level: 'unverified', basis: '', note: '' };
+
+// 補齊缺欄位，容忍手改過的 JSON。v3（一輪 49 天＋days）的舊資料只保留基本欄位，
+// 軌道與觀察紀錄無法自動推得（v3 的 days 是推算值不是觀察值），留給管理員重填。
+function migrate(data) {
+  const num = v => (v === null || v === undefined || v === '' ? null : Number(v));
+  const srv = data.server || {};
+  const legacyOpen = (data.rotation && data.rotation.serverOpenDate) || '';
+  const open = String(srv.openDate || legacyOpen || '');
+
+  const out = {
+    schema: 'cycles-v4',
+    title: data.title || '活動日誌',
+    source: data.source || '',
+    updatedAt: data.updatedAt || '',
+    status: { ...DEFAULT_STATUS, ...(data.status || {}) },
+    server: {
+      openDate: validIso(open) ? open : '',
+      label: String(srv.label || (data.rotation && data.rotation.serverLabel) || '本站基準服'),
+    },
+    tracks: (Array.isArray(data.tracks) ? data.tracks : []).map(t => ({
+      id: String(t.id || ''),
+      label: String(t.label || ''),
+      weekday: Number(t.weekday) >= 1 && Number(t.weekday) <= 7 ? Number(t.weekday) : 1,
+      durationDays: num(t.durationDays),
+      // 相對主軌起點的天數位移：主軌 0、短軌 8（晚一週的週二）
+      startOffsetDays: Number.isFinite(Number(t.startOffsetDays)) ? Number(t.startOffsetDays)
+        : (String(t.id) === 'short' ? 8 : 0),
+      sequence: (Array.isArray(t.sequence) ? t.sequence : []).map(String),
+      note: String(t.note || ''),
+    })),
+    launch: {
+      label: String((data.launch && data.launch.label) || '開服新手期'),
+      note: String((data.launch && data.launch.note) || ''),
+      events: ((data.launch && Array.isArray(data.launch.events)) ? data.launch.events : [])
+        .map(e => ({ day: Number(e.day) || 0, name: String(e.name || '') }))
+        .filter(e => e.day > 0).sort((a, b) => a.day - b.day),
+      firstHarvest: (data.launch && data.launch.firstHarvest) ? {
+        date: String(data.launch.firstHarvest.date || ''),
+        name: String(data.launch.firstHarvest.name || ''),
+        durationDays: num(data.launch.firstHarvest.durationDays),
+        note: String(data.launch.firstHarvest.note || ''),
+      } : null,
+    },
+    entries: [],
+  };
+
+  const list = Array.isArray(data.entries) ? data.entries : [];
+  out.entries = list.map(e => {
+    const b = blankEntry();
+    return {
+      ...b, ...e,
+      id: e.id || b.id,
+      name: String(e.name || ''),
+      aka: String(e.aka || ''),
+      category: String(e.category || ''),
+      track: String(e.track || ''),
+      durationDays: num(e.durationDays),
+      durationHours: num(e.durationHours),
+      openTime: String(e.openTime || ''),
+      sightings: (Array.isArray(e.sightings) ? e.sightings : [])
+        .map(s => ({
+          date: String(s.date || ''),
+          source: s.source === 'other' ? 'other' : s.source === 'inferred' ? 'inferred' : 'self',
+          note: String(s.note || ''),
+        }))
+        .filter(s => validIso(s.date))
+        .sort((a, c) => a.date.localeCompare(c.date)),
+      // 舊資料沒有 verified 就當已確認，免得整批被標成待確認
+      verified: e.verified === undefined ? true : !!e.verified,
+      todo: String(e.todo || ''),
+      note: String(e.note || ''),
+      raw: String(e.raw || ''),
+      archived: !!e.archived,
+      comments: (Array.isArray(e.comments) ? e.comments : []).map(c => ({
+        id: c.id || 'm-' + Math.random().toString(36).slice(2, 8),
+        text: String(c.text || ''),
+        at: c.at || new Date().toISOString(),
+      })),
+    };
+  }).map(e => {
+    // v3 殘留欄位在新模型下沒有意義
+    delete e.days; delete e.weeks; delete e.startDay; delete e.lastSeen;
+    return e;
+  });
+  return out;
+}
+
+// 只有管理員會產生草稿；訪客不寫入任何東西（訪客的開服日另存，見 setVisitorOpen）
+function save() {
+  if (!isAdmin) return;
+  db.updatedAt = isoDate(new Date());
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(db));
+  } catch (err) {
+    note('草稿存檔失敗（瀏覽器儲存空間可能已滿）：' + err.message);
   }
-  const dayLbl = `Day ${s.day}${s.cycle > 0 ? ` · 第 ${s.cycle + 1} 輪` : ''}`;
-  if (s.status === 'live') {
-    return `<span class="lbl">開放中 · ${dayLbl}</span>`
-      + `剩 ${fmtDur(s.end - Date.now())}　·　${fmtDate(s.end)} 結束`;
+}
+
+function entry(id) { return db.entries.find(e => e.id === id); }
+function trackOf(e) { return db.tracks.find(t => t.id === e.track) || null; }
+function entryName(id) { const e = entry(id); return e ? e.name : id; }
+
+/* ---------- 軌道推算 ---------- */
+
+// 目前用哪個開服日：訪客自己填的優先，否則基準服
+function openTs() {
+  const s = visitorOpen || (db && db.server.openDate) || '';
+  return validIso(s) ? tsOf(s) : null;
+}
+
+// 開服第幾天（Day 1 = 開服當天）
+function serverDay(ts = Date.now()) {
+  const o = openTs();
+  return o === null ? null : Math.floor((ts - o) / DAY) + 1;
+}
+
+// 新手期結束後的第一次豐收：Day 22 起（含）第一個週四
+function firstHarvestTs() {
+  const o = openTs();
+  if (o === null) return null;
+  const d22 = o + 21 * DAY;
+  return d22 + ((4 - isoDay(new Date(d22)) + 7) % 7) * DAY;
+}
+
+// 主軌起點：第一次豐收之後的下一個週一
+function mainStartTs() {
+  const h = firstHarvestTs();
+  return h === null ? null : h + 4 * DAY;
+}
+
+// 某軌道第 k 週（0-based）的開始時刻
+function trackWeekTs(track, k) {
+  const m = mainStartTs();
+  return m === null ? null : m + track.startOffsetDays * DAY + k * 7 * DAY;
+}
+
+// 某軌道第 k 週開哪個活動
+function trackEntryAt(track, k) {
+  const L = track.sequence.length;
+  if (!L) return null;
+  return track.sequence[((k % L) + L) % L];
+}
+
+// 某活動在某軌道的位置；-1 = 不在這條軌道上
+function seqIndex(e) {
+  const t = trackOf(e);
+  return t ? t.sequence.indexOf(e.id) : -1;
+}
+
+function spanOf(e) {
+  const t = trackOf(e);
+  const days = e.durationDays !== null ? e.durationDays : (t && t.durationDays !== null ? t.durationDays : null);
+  const hours = e.durationHours || 0;
+  const ms = (days || 0) * DAY + hours * 3600e3;
+  return ms > 0 ? ms : 7 * DAY;   // 沒填就當開滿一週
+}
+
+function startOf(e, k) {
+  const t = trackOf(e);
+  let ts = trackWeekTs(t, k);
+  if (ts === null) return null;
+  const m = /^(\d{2}):(\d{2})$/.exec(e.openTime || '');
+  if (m) ts += (Number(m[1]) * 60 + Number(m[2])) * 60000;
+  return ts;
+}
+
+// 某活動的狀態：live（開放中）/ upcoming（還沒到）/ unknown（沒軌道或算不出來）
+function activityState(e, ts = Date.now()) {
+  const t = trackOf(e);
+  const idx = seqIndex(e);
+  const m = mainStartTs();
+  if (!t || idx < 0 || m === null) return { status: 'unknown' };
+  const L = t.sequence.length;
+  const span = spanOf(e);
+
+  // 這個活動出現在第 idx、idx+L、idx+2L… 週；往回找一次、往前找到第一個沒結束的
+  let k = idx;
+  while (startOf(e, k) + span <= ts) k += L;
+  while (k - L >= 0 && startOf(e, k - L) + span > ts) k -= L;
+  const start = startOf(e, k);
+  const end = start + span;
+  if (ts >= start && ts < end) return { status: 'live', k, start, end };
+  return { status: 'upcoming', k, start, end };
+}
+
+// 把每一筆觀察拿去跟模型對答案 —— 長期校正就靠這個
+function checkSighting(e, s) {
+  const t = trackOf(e);
+  const m = mainStartTs();
+  const idx = seqIndex(e);
+  const ts = tsOf(s.date);
+  if (!t || idx < 0 || m === null) return { ok: null, msg: '' };
+  const base = m + t.startOffsetDays * DAY;
+  if (ts < base) return { ok: null, msg: '在軌道起點之前（新手期）' };
+  const week = Math.round((ts - base) / (7 * DAY));
+  const expectId = trackEntryAt(t, week);
+  const expectTs = base + week * 7 * DAY;
+  if (expectTs !== ts) {
+    return { ok: false, msg: `模型預測這一輪的${t.label}在 ${fmtDate(expectTs)} 開，與觀察差 ${Math.round((ts - expectTs) / DAY)} 天` };
   }
-  return `<span class="lbl">下次 · ${dayLbl}</span>`
-    + `${fmtDate(s.start)} 開　·　還有 ${fmtDur(s.start - Date.now())}`;
+  if (expectId !== e.id) {
+    return { ok: false, msg: `模型預測 ${fmtDate(ts)} 開的是「${entryName(expectId)}」，順序需要修正` };
+  }
+  return { ok: true, msg: '與模型一致' };
+}
+
+// 全部觀察的命中統計：連續命中愈多，循環長度愈可信
+function sightingStats() {
+  let hit = 0, miss = 0, skip = 0;
+  db.entries.forEach(e => e.sightings.forEach(s => {
+    const r = checkSighting(e, s);
+    if (r.ok === true) hit++; else if (r.ok === false) miss++; else skip++;
+  }));
+  return { hit, miss, skip, total: hit + miss + skip };
 }
 
 /* ---------- 畫面 ---------- */
-
-const esc = s => String(s).replace(/[&<>"']/g, c =>
-  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 function visible() {
   const q = $('#q').value.trim().toLowerCase();
@@ -336,7 +324,8 @@ function visible() {
     if (!arch && e.archived) return false;
     if (cat && e.category !== cat) return false;
     if (!q) return true;
-    const hay = [e.name, e.aka, e.category, e.note, e.todo, e.raw, ...e.comments.map(c => c.text)]
+    const hay = [e.name, e.aka, e.category, e.note, e.todo, e.raw,
+      ...e.sightings.map(s => s.date + ' ' + s.note), ...e.comments.map(c => c.text)]
       .join(' ').toLowerCase();
     return hay.includes(q);
   });
@@ -347,7 +336,8 @@ const RANK = { live: 0, upcoming: 1, unknown: 2 };
 function render() {
   renderStatus();
   renderServer();
-  renderRotation();
+  renderTimeline();
+  renderLaunch();
 
   const list = visible().sort((a, b) => {
     if (a.archived !== b.archived) return a.archived ? 1 : -1;
@@ -366,107 +356,142 @@ function render() {
 // 資料狀態標籤：整頁層級的「這些能不能盡信」
 function renderStatus() {
   const st = db.status;
-  const unverified = db.entries.filter(e => !e.archived && !e.verified).length;
-  const total = db.entries.filter(e => !e.archived).length;
+  const stats = sightingStats();
   const lvl = st.level === 'verified' ? '已確認' : st.level === 'partial' ? '部分確認' : '待確認';
   $('#stat-level').textContent = lvl;
   $('#stat-level').className = 'stat-tag ' + (st.level === 'verified' ? 'ok' : 'todo');
   $('#stat-basis').textContent = st.basis || '';
   $('#stat-meta').textContent = [
     db.updatedAt ? `最後更新 ${db.updatedAt}` : '',
-    total ? `${total} 個活動中 ${unverified} 個待確認` : '',
+    stats.total ? `${stats.total} 筆實際觀察，${stats.hit} 筆與模型相符${stats.miss ? `，${stats.miss} 筆不符` : ''}` : '尚無觀察紀錄',
   ].filter(Boolean).join('　·　');
   $('#stat-note').textContent = st.note || '';
   $('#stat-note').hidden = !st.note;
-  $('#stat-report').href = '#';
-  $('#stat-report').setAttribute('data-report', '');
-  $('#stat-report').setAttribute('data-report-type', 'schedule');
-  $('#stat-report').setAttribute('data-report-message', issueUrl(null));
-  $('#stat-report').removeAttribute('target');
+  $('#stat-warn').hidden = !stats.miss;
+  if (stats.miss) {
+    $('#stat-warn').textContent = `有 ${stats.miss} 筆觀察與目前的軌道順序對不上 —— 下方卡片會標出是哪幾筆，順序可能要改。`;
+  }
 }
 
 // 伺服器列：目前用哪個開服日在算
 function renderServer() {
-  const base = db.rotation.serverOpenDate;
+  const base = db.server.openDate;
   const using = visitorOpen || base;
   const day = serverDay();
+  const m = mainStartTs();
   $('#srv-open').value = visitorOpen || '';
   $('#srv-open').placeholder = base || 'YYYY-MM-DD';
   $('#srv-reset').hidden = !visitorOpen;
   $('#srv-now').innerHTML = using
-    ? `${visitorOpen ? '你的伺服器' : esc(db.rotation.serverLabel)} <b>${esc(using)}</b> 開服`
+    ? `${visitorOpen ? '你的伺服器' : esc(db.server.label)} <b>${esc(using)}</b> 開服`
       + (day !== null ? `　·　今天是開服第 <b>${day}</b> 天` : '')
+      + (m !== null ? `　·　雙軌循環自 <b>${fmtDate(m)}</b> 起` : '')
     : '<b>尚未設定開服日</b> —— 填了才能推算日期。';
 }
 
-// 輪替總表：官方活動日誌的內容，目前這一列會被標出來
-function renderRotation() {
-  const cur = cyclePos();
-  const r = db.rotation;
-  const curW = cur ? currentWeekLabel(cur) : null;
+// 雙軌時間軸：每一列是一週，兩條軌道並排
+function renderTimeline() {
+  const m = mainStartTs();
+  const box = $('#tl');
+  if (m === null) {
+    box.innerHTML = '<p class="tl-empty">設定開服日後才能推算軌道。</p>';
+    return;
+  }
+  const now = Date.now();
+  const curWeek = Math.floor((now - m) / (7 * DAY));
+  const from = Math.max(0, curWeek - TIMELINE_BACK);
+  const to = curWeek + TIMELINE_FWD;
 
-  $('#rot-now').innerHTML = cur
-    ? `目前是第 <b>${cur.cycle + 1}</b> 輪 <b>Day ${cur.pos}</b>`
-      + (curW ? `　·　對應官方 <b>Week ${curW.n}</b>` : '')
-      + (r.phase2 ? `　·　Day ${r.phase2.fromDay} 起貼齊${WD[r.phase2.weekday]}（${fmtDate(phaseStart(cur.cycle))}）` : '')
-    : '<b>尚未設定開服日</b> —— 填了才能推算目前進度與倒數。';
+  const head = `<div class="tl-row tl-head"><div class="tl-wk">週</div>` +
+    db.tracks.map(t => `<div class="tl-cell">${esc(t.label)}<small>${WD[t.weekday]}開${
+      t.durationDays ? ` · ${t.durationDays} 天` : ''}</small></div>`).join('') + '</div>';
 
-  $('#rot-body').innerHTML = db.weeks.map(w => {
-    const on = curW && curW.n === w.n;
-    const startDay = weekStartDay(w);
-    let dates = '';
-    if (cur && startDay !== null) {
-      // 這一列在目前這一輪的日期；已經過了就顯示下一輪的
-      let c = cur.cycle;
-      if (dayStart(c, startDay) < Date.now() && !on) c += 1;
-      dates = fmtDate(dayStart(c, startDay)) + (c !== cur.cycle ? '（下一輪）' : '');
-    }
-    const chips = w.activities.map(nm => {
-      const e = db.entries.find(x => x.name === nm);
-      const i = e ? e.weeks.indexOf(w.n) : -1;
-      const d = e && i >= 0 && e.days[i] ? e.days[i] : null;
-      const unv = e && !e.verified;
-      const p = db.rotation.phase2;
-      const dayTxt = d ? (p && d >= p.fromDay ? `Day ${d}·${WD[p.weekday]}起算` : `Day ${d}`) : '';
-      return `<span class="chip${unv ? ' unv' : ''}" title="${unv ? '待確認' : ''}">${esc(nm)}${
-        dayTxt ? `<small>${dayTxt}</small>` : ''}</span>`;
+  const rows = [];
+  for (let k = from; k <= to; k++) {
+    const cells = db.tracks.map(t => {
+      const kk = k - Math.round(t.startOffsetDays / 7);   // 短軌晚一週起算
+      if (kk < 0) return '<div class="tl-cell tl-none">—</div>';
+      const id = trackEntryAt(t, kk);
+      const e = id ? entry(id) : null;
+      if (!e) return '<div class="tl-cell tl-none">—</div>';
+      const st = trackWeekTs(t, kk);
+      const span = spanOf(e);
+      const live = now >= st && now < st + span;
+      const past = now >= st + span;
+      const seen = e.sightings.some(s => tsOf(s.date) === st);
+      return `<div class="tl-cell${live ? ' live' : ''}${past ? ' past' : ''}">
+        <b>${esc(e.name)}</b>
+        <small>${fmtDate(st)}${seen ? ' <span class="tl-seen" title="這一次有實際觀察紀錄">實測</span>' : ''}</small>
+      </div>`;
     }).join('');
-    return `<tr class="${on ? 'now' : ''}">
-      <td class="wk">Week ${w.n}${on ? ' <span class="badge">目前</span>' : ''}</td>
-      <td class="when">${esc(w.label || '—')}</td>
-      <td class="acts">${chips || '—'}</td>
-      <td class="dt">${dates ? dates + ' 起' : ''}</td>
-    </tr>`;
-  }).join('');
+    const weekTs = m + k * 7 * DAY;
+    const isNow = k === curWeek;
+    rows.push(`<div class="tl-row${isNow ? ' now' : ''}">
+      <div class="tl-wk">${fmtDate(weekTs).split('（')[0]}${isNow ? '<span class="badge">本週</span>' : ''}</div>
+      ${cells}</div>`);
+  }
+  box.innerHTML = head + rows.join('');
 
-  const rules = (r.rules || []).map(x => `<li>${esc(x)}</li>`).join('');
-  $('#rot-rules').innerHTML = rules ? `<ul>${rules}</ul>` : '';
-  // openNote 是給所有人看的（哪裡還沒確認）；adminNote 是推導過程，只給管理員
-  $('#rot-note').textContent = isAdmin
-    ? [r.openNote, r.adminNote].filter(Boolean).join('　')
-    : (r.openNote || '');
-  $('#rot-note').hidden = !$('#rot-note').textContent;
+  $('#tl-notes').innerHTML = db.tracks.map(t =>
+    `<li><b>${esc(t.label)}</b>：${esc(t.note)}<br><small>目前順序：${
+      t.sequence.map(id => esc(entryName(id))).join(' → ')} →（循環）</small></li>`).join('');
+}
+
+// 新手期：只發生一次，收在摺疊區
+function renderLaunch() {
+  const L = db.launch;
+  const o = openTs();
+  const box = $('#launch-body');
+  if (!L.events.length && !L.firstHarvest) { $('#launch').hidden = true; return; }
+  $('#launch').hidden = false;
+  $('#launch-note').textContent = L.note || '';
+  const rows = L.events.map(ev => `<tr><td>Day ${ev.day}</td><td>${esc(ev.name)}</td>
+    <td>${o !== null ? fmtDate(o + (ev.day - 1) * DAY) : ''}</td></tr>`).join('');
+  const fh = L.firstHarvest;
+  const h = firstHarvestTs();
+  const fhRow = fh ? `<tr class="fh"><td>Day 22 起<br>第一個週四</td><td>${esc(fh.name)}${
+    fh.durationDays ? `<small>${fh.durationDays} 天</small>` : ''}</td>
+    <td>${h !== null ? fmtDate(h) : ''}</td></tr>` : '';
+  box.innerHTML = `<table class="lc-table"><thead><tr><th>開服第幾天</th><th>活動</th><th>日期</th></tr></thead>
+    <tbody>${rows}${fhRow}</tbody></table>` + (fh && fh.note ? `<p class="lc-note">${esc(fh.note)}</p>` : '');
+}
+
+function nextHtml(e) {
+  const s = activityState(e);
+  if (s.status === 'unknown') {
+    return !e.track
+      ? '<span class="lbl">軌道</span>尚未歸類，無法推算'
+      : '<span class="lbl">軌道</span>需要先設定開服日';
+  }
+  const t = trackOf(e);
+  if (s.status === 'live') {
+    return `<span class="lbl">開放中 · ${esc(t.label)}</span>`
+      + `剩 ${fmtDur(s.end - Date.now())}　·　${fmtDate(s.end)} 結束`;
+  }
+  return `<span class="lbl">下次 · ${esc(t.label)}</span>`
+    + `${fmtDate(s.start)} 開　·　還有 ${fmtDur(s.start - Date.now())}`;
 }
 
 function cardHtml(e) {
   const s = activityState(e);
-  const days = (e.days || []).length
-    ? e.days.map((d, i) => `Day ${d}${e.weeks[i] ? `<small>W${e.weeks[i]}</small>` : ''}`).join('、') : '—';
-  const dur = (e.durationDays || e.durationHours)
+  const t = trackOf(e);
+  const span = e.durationDays || e.durationHours
     ? fmtDur((e.durationDays || 0) * DAY + (e.durationHours || 0) * 3600e3) : '—';
-  const open = openComments.has(e.id);
+  const open = openCards.has(e.id);
+  const bad = e.sightings.map(x => checkSighting(e, x)).filter(r => r.ok === false).length;
 
   return `<article class="card ${s.status === 'live' ? 'live' : ''} ${e.archived ? 'archived' : ''}" data-id="${e.id}">
     <div class="top">
       <div class="nm">${esc(e.name) || '（未命名）'}${
         e.aka ? `<span class="aka">${esc(e.aka)}</span>` : ''}</div>
+      ${bad ? '<span class="cat bad-tag" title="有觀察與模型對不上">對不上</span>' : ''}
       ${!e.verified ? '<span class="cat todo-tag">待確認</span>' : ''}
-      ${e.category ? `<span class="cat">${esc(e.category)}</span>` : ''}
+      ${t ? `<span class="cat">${esc(t.label)}</span>` : '<span class="cat">未歸類</span>'}
     </div>
     <div class="when">
-      <span>開放日：<b>${days}</b>${e.openTime ? ' ' + esc(e.openTime) : ''}</span>
-      <span>持續：<b>${dur}</b></span>
-      ${e.lastSeen ? `<span>最近：<b>${esc(e.lastSeen)}</b></span>` : ''}
+      <span>軌道：<b>${t ? `${esc(t.label)}・${WD[t.weekday]}開` : '—'}</b></span>
+      <span>持續：<b>${span}</b>${e.openTime ? ' ' + esc(e.openTime) + ' 開' : ''}</span>
+      <span>觀察：<b>${e.sightings.length}</b> 次</span>
     </div>
     <div class="next ${s.status}">${nextHtml(e)}</div>
     ${e.note ? `<div class="note">${esc(e.note)}</div>` : ''}
@@ -474,46 +499,33 @@ function cardHtml(e) {
     ${e.raw ? `<div class="raw">手寫筆記：${esc(e.raw)}</div>` : ''}
     <div class="acts">
       ${isAdmin ? `<button class="btn small" data-act="edit">編輯</button>
-      <button class="btn small" data-act="dup">複製</button>` : ''}
-      <button class="btn small" data-act="toggle-cm">${isAdmin ? '筆記' : '觀察紀錄'} ${e.comments.length ? `(${e.comments.length})` : ''}</button>
-      <a class="btn small" href="#" data-report data-report-type="schedule" data-report-subject="週期表：${esc(e.name)}" data-report-message="${esc(issueUrl(e))}">回報修正</a>
+      <button class="btn small primary" data-act="add-sight">記一次觀察</button>` : ''}
+      <button class="btn small" data-act="toggle">觀察紀錄 ${e.sightings.length ? `(${e.sightings.length})` : ''}</button>
       ${isAdmin ? `<button class="btn small danger" data-act="del">刪除</button>` : ''}
     </div>
-    ${open ? commentsHtml(e) : ''}
+    ${open ? sightingsHtml(e) : ''}
   </article>`;
 }
 
-// 回報表單（assets/report.js）的預填文字：活動名、站上寫的 Day、伺服器開服日先帶好，回報的人只要補觀察到的日期
-function issueUrl(e) {
-  const srv = visitorOpen ? `我的伺服器開服日：${visitorOpen}` : `伺服器：${db.rotation.serverLabel}（${db.rotation.serverOpenDate} 開服）`;
-  if (e) {
-    return `活動：${e.name}\n目前站上寫的開放日：${(e.days || []).map(d => 'Day ' + d).join('、') || '未填'}\n${srv}\n\n`
-      + `實際觀察到的開放日期／時刻：\n\n持續多久：\n\n其他補充：\n`;
-  }
-  return `${srv}\n\n要修正的地方：\n\n實際觀察：\n`;
+const SRC_LABEL = { self: '本服實測', other: '他服回報', inferred: '推算' };
+
+function sightingsHtml(e) {
+  const items = e.sightings.length
+    ? e.sightings.map(s => {
+      const r = checkSighting(e, s);
+      const cls = r.ok === true ? 'ok' : r.ok === false ? 'bad' : '';
+      return `<div class="sg-item ${cls}" data-date="${s.date}">
+        <div class="meta"><span><b>${fmtDate(tsOf(s.date))}</b>　${SRC_LABEL[s.source]}</span>
+        ${isAdmin ? '<button class="del" data-act="del-sight" title="刪除這筆觀察">刪除</button>' : ''}</div>
+        ${s.note ? `<div class="txt">${esc(s.note)}</div>` : ''}
+        ${r.msg ? `<div class="chk">${r.ok === false ? '⚠ ' : ''}${esc(r.msg)}</div>` : ''}
+      </div>`;
+    }).join('')
+    : '<div class="sg-none">還沒有觀察紀錄。看到這個活動開了，請用頁面右下的回報鈕告訴我們日期。</div>';
+  return `<div class="sg"><div class="sg-list">${items}</div></div>`;
 }
 
-function commentsHtml(e) {
-  const items = e.comments.length
-    ? e.comments.map(c => `<div class="cm-item" data-cid="${c.id}">
-        <div class="meta"><span>${esc(new Date(c.at).toLocaleString('zh-TW', { hour12: false }))}</span>
-        ${isAdmin ? `<button class="del" data-act="del-cm" title="刪除這則筆記">刪除</button>` : ''}</div>
-        <div class="txt">${esc(c.text)}</div>
-      </div>`).join('')
-    : `<div class="cm-none">還沒有觀察紀錄。</div>`;
-
-  const form = isAdmin ? `<div class="cm-form">
-      <textarea rows="1" placeholder="記下這期的觀察…（Ctrl+Enter 送出）" data-role="cm-input"></textarea>
-      <button class="btn small primary" data-act="add-cm">送出</button>
-    </div>` : '';
-
-  return `<div class="cm">
-    <div class="cm-list">${items}</div>
-    ${form}
-  </div>`;
-}
-
-// 只更新倒數，避免蓋掉正在輸入的留言
+// 只更新倒數，避免整頁重畫
 function tick() {
   $$('.card').forEach(card => {
     const e = entry(card.dataset.id);
@@ -540,7 +552,7 @@ function note(msg) {
   el.textContent = msg;
   el.hidden = false;
   clearTimeout(note._t);
-  note._t = setTimeout(() => { el.hidden = true; }, 6000);
+  note._t = setTimeout(() => { el.hidden = true; }, 7000);
 }
 
 /* ---------- 訪客：自己伺服器的開服日 ---------- */
@@ -570,10 +582,9 @@ function openFromDayCount(n, ts = Date.now()) {
 
 /* ---------- 編輯 ---------- */
 
-function buildWeekBoxes() {
-  const total = (db && db.weeks.length) || 7;
-  $('#f-weeks').innerHTML = Array.from({ length: total }, (_, i) => i + 1).map(n =>
-    `<label><input type="checkbox" value="${n}">W${n}</label>`).join('');
+function buildTrackOptions(sel) {
+  sel.innerHTML = '<option value="">未歸類</option>' +
+    db.tracks.map(t => `<option value="${esc(t.id)}">${esc(t.label)}（${WD[t.weekday]}開）</option>`).join('');
 }
 
 function openEdit(id) {
@@ -583,27 +594,19 @@ function openEdit(id) {
   $('#f-name').value = e.name;
   $('#f-aka').value = e.aka;
   $('#f-category').value = e.category;
+  buildTrackOptions($('#f-track'));
+  $('#f-track').value = e.track;
   $('#f-verified').checked = !e.verified;
   $('#f-todo').value = e.todo;
-  $('#f-days').value = (e.days || []).join(', ');
   $('#f-openTime').value = e.openTime;
   $('#f-durationDays').value = e.durationDays ?? '';
   $('#f-durationHours').value = e.durationHours ?? '';
-  $('#f-lastSeen').value = e.lastSeen;
   $('#f-archived').checked = e.archived;
   $('#f-note').value = e.note;
   $('#f-raw').value = e.raw;
-  $$('#f-weeks input').forEach(cb => { cb.checked = e.weeks.includes(Number(cb.value)); });
   if (!id) openEdit._draft = e;
   $('#dlg').showModal();
   $('#f-name').focus();
-}
-
-// 「1, 27」→ [1, 27]；超出一輪天數的丟掉
-function parseDays(text) {
-  const total = db.rotation.cycleDays;
-  return [...new Set(String(text).split(/[、,，/\s]+/).map(Number)
-    .filter(n => Number.isInteger(n) && n >= 1 && n <= total))].sort((a, b) => a - b);
 }
 
 function commitEdit() {
@@ -617,18 +620,15 @@ function commitEdit() {
     name,
     aka: $('#f-aka').value.trim(),
     category: $('#f-category').value.trim(),
+    track: $('#f-track').value,
     verified: !$('#f-verified').checked,
     todo: $('#f-todo').value.trim(),
-    days: parseDays($('#f-days').value),
     openTime: $('#f-openTime').value,
     durationDays: numOrNull('#f-durationDays'),
     durationHours: numOrNull('#f-durationHours'),
-    lastSeen: $('#f-lastSeen').value,
     archived: $('#f-archived').checked,
     note: $('#f-note').value.trim(),
     raw: $('#f-raw').value.trim(),
-    weeks: $$('#f-weeks input:checked').map(cb => Number(cb.value)).sort((a, b) => a - b),
-    updatedAt: new Date().toISOString(),
   };
   if (editingId) {
     Object.assign(entry(editingId), patch);
@@ -639,31 +639,71 @@ function commitEdit() {
   render();
 }
 
-// 管理員：設定基準服的開服日（直接填日期，或填「今天是開服第幾天」反推）
+// 記一次觀察：這才是長期校正的入口
+function addSighting(e) {
+  const def = isoDate(new Date());
+  const ans = prompt(`「${e.name}」是哪一天開的？（YYYY-MM-DD）\n\n填了之後系統會自動跟軌道順序對答案。`, def);
+  if (ans === null) return;
+  const d = ans.trim();
+  if (!validIso(d)) return note('日期格式要是 YYYY-MM-DD。');
+  if (e.sightings.some(s => s.date === d)) return note('這一天已經記過了。');
+  const memo = prompt('備註（可留空）：例如遊戲內顯示剩多久、持續幾天', '') || '';
+  e.sightings.push({ date: d, source: 'self', note: memo.trim() });
+  e.sightings.sort((a, b) => a.date.localeCompare(b.date));
+  openCards.add(e.id);
+  save();
+  render();
+  const r = checkSighting(e, { date: d });
+  note(r.ok === false ? `已記錄，但與模型對不上：${r.msg}` : `已記錄 ${d}。${r.msg || ''}記得匯出 JSON 並 commit。`);
+}
+
+// 管理員：設定基準服開服日
 function calibrate() {
-  const cur = cyclePos();
+  const day = serverDay();
   const ans = prompt(
-    `基準服的開服日（YYYY-MM-DD），或直接填「今天是開服第幾天」的數字。\n\n`
-    + `目前：${db.rotation.serverOpenDate || '未設定'}${cur ? `（今天是開服第 ${cur.day} 天）` : ''}`,
-    db.rotation.serverOpenDate || '');
+    '基準服的開服日（YYYY-MM-DD），或直接填「今天是開服第幾天」的數字。\n\n'
+    + `目前：${db.server.openDate || '未設定'}${day !== null ? `（今天是開服第 ${day} 天）` : ''}`,
+    db.server.openDate || '');
   if (ans === null) return;
   const s = ans.trim();
   let iso = '';
   if (/^\d+$/.test(s) && Number(s) >= 1) iso = openFromDayCount(Number(s));
   else if (validIso(s)) iso = s;
   if (!iso) return note('要填 YYYY-MM-DD 或開服第幾天的數字。');
-
-  db.rotation.serverOpenDate = iso;
-  db.rotation.adminNote = `${db.rotation.adminNote ? db.rotation.adminNote + '　' : ''}由管理員於 ${isoDate(new Date())} 將基準服開服日設為 ${iso}。`;
+  db.server.openDate = iso;
   save();
   render();
   note(`已設定基準服開服日 ${iso}。記得匯出 JSON 並 commit。`);
 }
 
+// 管理員：調整某條軌道的順序
+function editSequence(trackId) {
+  const t = db.tracks.find(x => x.id === trackId);
+  if (!t) return;
+  const cur = t.sequence.map(id => entryName(id)).join('、');
+  const ans = prompt(
+    `「${t.label}」的輪替順序（用、或逗號分隔活動名稱）：\n\n`
+    + '改完後所有觀察紀錄會重新對答案。', cur);
+  if (ans === null) return;
+  const names = ans.split(/[、,，/\s]+/).map(x => x.trim()).filter(Boolean);
+  const ids = [];
+  for (const n of names) {
+    const e = db.entries.find(x => x.name === n);
+    if (!e) return note(`找不到叫「${n}」的活動。`);
+    ids.push(e.id);
+    e.track = t.id;
+  }
+  t.sequence = ids;
+  save();
+  render();
+  const st = sightingStats();
+  note(`順序已更新。${st.total} 筆觀察中 ${st.hit} 筆相符${st.miss ? `、${st.miss} 筆仍對不上` : '，全部吻合'}。`);
+}
+
 /* ---------- JSON 匯出／匯入 ---------- */
 
 function jsonText() {
-  return JSON.stringify({ ...db, schema: 'cycles-v3' }, null, 2) + '\n';
+  return JSON.stringify({ ...db, schema: 'cycles-v4' }, null, 2) + '\n';
 }
 
 function download(text, filename) {
@@ -697,7 +737,6 @@ function doImport(file) {
       if (!Array.isArray(parsed.entries)) throw new Error('JSON 裡找不到 entries 陣列');
       if (!confirm(`匯入 ${parsed.entries.length} 筆資料，將覆蓋目前內容。確定嗎？`)) return;
       db = migrate(parsed);
-      buildWeekBoxes();
       save();
       render();
       note(`已匯入 ${db.entries.length} 筆。`);
@@ -755,6 +794,8 @@ function bind() {
     const act = btn.dataset.act;
     menu.hidden = true;
     if (act === 'calibrate') calibrate();
+    if (act === 'seq-main') editSequence('main');
+    if (act === 'seq-short') editSequence('short');
     if (act === 'export') doExport();
     if (act === 'copy') doCopy();
     if (act === 'import') $('#file-input').click();
@@ -769,7 +810,6 @@ function bind() {
       if (!confirm('捨棄尚未匯出的草稿，改用站上版本？')) return;
       try { localStorage.removeItem(LS_KEY); } catch (err) { /* ignore */ }
       db = migrate(structuredClone(published));
-      buildWeekBoxes();
       render();
       note('已改用站上版本。');
     }
@@ -787,58 +827,33 @@ function bind() {
     const id = card.dataset.id;
     const e = entry(id);
     if (!e) return;
-
-    // 訪客只能展開觀察紀錄；其餘動作即使被人手動塞回 DOM 也不執行
     const act = btn.dataset.act;
-    if (act !== 'toggle-cm' && !isAdmin) return;
+    // 訪客只能展開觀察紀錄；其餘動作即使被人手動塞回 DOM 也不執行
+    if (act !== 'toggle' && !isAdmin) return;
 
     switch (act) {
       case 'edit':
         openEdit(id);
         break;
-      case 'dup': {
-        // 沿用原項目所有欄位，只換掉 id／名稱／時間戳，筆記不跟著複製
-        const fresh = blankEntry();
-        db.entries.push({
-          ...structuredClone(e),
-          id: fresh.id,
-          name: e.name + '（複本）',
-          comments: [],
-          createdAt: fresh.createdAt,
-          updatedAt: fresh.updatedAt,
-        });
-        save();
-        render();
+      case 'add-sight':
+        addSighting(e);
         break;
-      }
       case 'del':
-        if (!confirm(`刪除「${e.name}」？連同 ${e.comments.length} 則筆記一起移除，無法復原。`)) return;
+        if (!confirm(`刪除「${e.name}」？連同 ${e.sightings.length} 筆觀察紀錄一起移除，無法復原。`)) return;
         db.entries = db.entries.filter(x => x.id !== id);
-        openComments.delete(id);
+        db.tracks.forEach(t => { t.sequence = t.sequence.filter(x => x !== id); });
+        openCards.delete(id);
         save();
         render();
         break;
-      case 'toggle-cm':
-        openComments.has(id) ? openComments.delete(id) : openComments.add(id);
+      case 'toggle':
+        openCards.has(id) ? openCards.delete(id) : openCards.add(id);
         render();
         break;
-      case 'add-cm': {
-        const ta = $('[data-role="cm-input"]', card);
-        const text = ta.value.trim();
-        if (!text) return;
-        e.comments.push({
-          id: 'm-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
-          text, at: new Date().toISOString(),
-        });
-        e.updatedAt = new Date().toISOString();
-        save();
-        render();
-        break;
-      }
-      case 'del-cm': {
-        const cid = btn.closest('.cm-item').dataset.cid;
-        if (!confirm('刪除這則筆記？')) return;
-        e.comments = e.comments.filter(c => c.id !== cid);
+      case 'del-sight': {
+        const d = btn.closest('.sg-item').dataset.date;
+        if (!confirm(`刪除 ${d} 這筆觀察？`)) return;
+        e.sightings = e.sightings.filter(s => s.date !== d);
         save();
         render();
         break;
@@ -846,13 +861,12 @@ function bind() {
     }
   });
 
-  // Ctrl+Enter 送出筆記
-  $('#list').addEventListener('keydown', ev => {
-    if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey) &&
-        ev.target.dataset.role === 'cm-input') {
-      ev.preventDefault();
-      $('[data-act="add-cm"]', ev.target.closest('.card')).click();
-    }
+  // 時間軸下方的軌道順序，管理員點了可以改
+  $('#tl-notes').addEventListener('click', ev => {
+    if (!isAdmin) return;
+    const li = ev.target.closest('li');
+    if (!li) return;
+    editSequence(db.tracks[[...li.parentNode.children].indexOf(li)].id);
   });
 }
 
@@ -871,11 +885,9 @@ function applyRole() {
 function showDraftBadge() {
   const el = $('#draft');
   if (!isAdmin || !published || !db) return void (el.hidden = true);
-  const a = JSON.stringify({ e: db.entries, w: db.weeks, r: db.rotation, s: db.status });
-  const p = migrate(published);
-  const b = JSON.stringify({ e: p.entries, w: p.weeks, r: p.rotation, s: p.status });
-  el.hidden = a === b;
-  if (a !== b) {
+  const pick = x => JSON.stringify({ e: x.entries, t: x.tracks, s: x.status, v: x.server, l: x.launch });
+  el.hidden = pick(db) === pick(migrate(published));
+  if (!el.hidden) {
     el.textContent = '這台瀏覽器有尚未匯出的草稿 —— 站上看到的還是舊版。'
       + '要讓別人看到，請「資料 → 匯出 cycles.json」覆蓋 data/cycles.json 再 commit。';
   }
@@ -930,30 +942,6 @@ function loadDraft() {
   } catch (err) { /* 損毀就沿用站上版本 */ }
 }
 
-// 留言板：giscus 接好就載入；沒接好就給全站回報表單的按鈕，訪客一樣有地方回報
-function mountGiscus() {
-  const off = $('#giscus-off');
-  if (!GISCUS_CATEGORY_ID) {
-    off.hidden = false;
-    off.innerHTML = `看到時程或名詞不對，直接用站上的回報表單（不需帳號）：`
-      + `<a class="btn small" href="#" data-report data-report-type="schedule" data-report-message="${esc(issueUrl(null))}">回報修正</a>`
-      + (isAdmin ? `<br><small>管理員：repo 要先開啟 Discussions、安裝 giscus app，再把 category id 填進 app.js 的 GISCUS_CATEGORY_ID。</small>` : '');
-    return;
-  }
-  const sc = document.createElement('script');
-  sc.src = 'https://giscus.app/client.js';
-  sc.async = true;
-  sc.crossOrigin = 'anonymous';
-  Object.entries({
-    repo: GISCUS_REPO, repoId: GISCUS_REPO_ID,
-    category: GISCUS_CATEGORY, categoryId: GISCUS_CATEGORY_ID,
-    mapping: 'pathname', strict: '0', reactionsEnabled: '1',
-    emitMetadata: '0', inputPosition: 'bottom',
-    theme: 'transparent_dark', lang: 'zh-TW', loading: 'lazy',
-  }).forEach(([k, v]) => sc.setAttribute('data-' + k.replace(/[A-Z]/g, c => '-' + c.toLowerCase()), v));
-  $('#giscus').appendChild(sc);
-}
-
 async function init() {
   loadVisitorOpen();
   bind();
@@ -975,10 +963,8 @@ async function init() {
   try { isAdmin = localStorage.getItem(LS_ADMIN) === '1' && !!ADMIN_HASH; } catch (e) { /* ignore */ }
   if (isAdmin) loadDraft();
 
-  buildWeekBoxes();
   applyRole();
   render();
-  mountGiscus();
 }
 
 init();
