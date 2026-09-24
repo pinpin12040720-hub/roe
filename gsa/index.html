@@ -28,16 +28,19 @@
   </header>
 
   <section class="stat" aria-label="資料狀態">
-    <span class="stat-tag">封測期 2026-09-17 ～ 09-30</span>
+    <span class="stat-tag">2026-09-22 正式上線</span>
     <span>遊戲版本 v3.5.0</span>
     <span>整理日期 2026-09-24</span>
-    <span>資料源：GachaWiki（解包遊戲檔）</span>
+    <span>資料源：GachaWiki 解包 ＋ EROLABS 官方論壇實戰帖</span>
   </section>
 
   <div class="callout warn">
-    <b>先說清楚這頁的可信度。</b>角色數值、技能、分級全部來自 <b>GachaWiki 的解包資料</b>，不是玩家實戰心得，也不是官方 patch notes。
-    <b>中文圈目前沒有任何攻略內容</b>（巴哈哈啦板只有宣傳轉載），所以沒有第二個來源可以交叉驗證。
-    角色的<b>中文譯名是依讀音推測的，尚未與遊戲內繁中版核對</b>，看到跟遊戲不一樣請以遊戲為準。
+    <b>先說清楚這頁的可信度。</b>本頁有兩個來源，性質完全不同：
+    <b>數值／技能／分級來自 GachaWiki 的解包資料</b>（datamine，不是官方公告也不是實戰心得）；
+    <b>第 07 節的開局與養成建議來自 EROLABS 官方論壇的玩家實戰帖</b>（單一玩家體感，不是統計）。
+    兩者對同一隻角色的評價<b>有明顯出入</b>，第 08 節整理了這些落差。
+    巴哈哈啦板目前只有 1 篇邀請碼文，中文圈沒有其他攻略。
+    角色的<b>中文譯名多為依讀音推測，只有少數幾個經官方頁面或論壇確認</b>，跟遊戲內不一樣請以遊戲為準。
   </div>
 
   <nav class="jump" aria-label="段落">
@@ -47,7 +50,8 @@
     <a href="#tier">角色分級</a>
     <a href="#roster">41 角色表</a>
     <a href="#gacha">卡池保底</a>
-    <a href="#start">開局建議</a>
+    <a href="#start">開局與養成</a>
+    <a href="#gap">數據 vs 實戰</a>
     <a href="#log">更新紀錄</a>
     <a href="#refs">出處</a>
   </nav>
@@ -129,7 +133,7 @@
 <div class="tg"><h3>突擊 Striker<span class="cnt">10 人</span></h3>
 <div class="tr-row"><span class="rk rk-SS">SS</span><span class="who"><b>Victoria</b>維多莉亞</span></div>
 <div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Milena</b>米蕾娜、<b>Yulia</b>尤莉亞</span></div>
-<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Annabelle</b>安娜貝爾、<b>Chloe</b>克蘿伊、<b>Danxin</b>丹心、<b>Komachi Sayaka</b>小町清香、<b>Li Mu</b>李沐、<b>Aira</b>艾拉</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Annabelle</b>安娜貝爾、<b>Chloe</b>克蘿伊、<b>Danxin</b>丹心、<b>Komachi Sayaka</b>小町咲香、<b>Li Mu</b>李沐、<b>Aira</b>艾拉</span></div>
 <div class="tr-row"><span class="rk rk-B">B</span><span class="who"><b>Theodore</b>西奧多</span></div>
 </div>
 <div class="tg"><h3>狙擊 Sniper<span class="cnt">8 人</span></h3>
@@ -141,7 +145,7 @@
 <div class="tg"><h3>支援 Support<span class="cnt">9 人</span></h3>
 <div class="tr-row"><span class="rk rk-SS">SS</span><span class="who"><b>Jessica</b>潔西卡、<b>Lin Lan</b>林嵐</span></div>
 <div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Elena</b>艾蓮娜</span></div>
-<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Lin Lin</b>琳琳、<b>Ruby</b>露比、<b>Sugimoto Arina</b>杉本亞莉奈、<b>Katya</b>卡佳</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Lin Lin</b>琳琳、<b>Ruby</b>露比、<b>Sugimoto Arina</b>杉本有步菜、<b>Katya</b>卡佳</span></div>
 <div class="tr-row"><span class="rk rk-B">B</span><span class="who"><b>Belle (Cowgirl)</b>貝兒・牛仔、<b>Bernardo</b>貝納多</span></div>
 </div>
 <div class="tg"><h3>破壞 Breaker<span class="cnt">7 人</span></h3>
@@ -191,14 +195,14 @@
 <tr><td class="nm" data-l="">Annabelle<span class="zh">安娜貝爾</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">突擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Shackled Saintess</td></tr>
 <tr><td class="nm" data-l="">Chloe<span class="zh">克蘿伊</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Sacrificial Lamb</td></tr>
 <tr><td class="nm" data-l="">Danxin<span class="zh">丹心</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Second Generation Dragon</td></tr>
-<tr><td class="nm" data-l="">Komachi Sayaka<span class="zh">小町清香</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Moonlit Courtesan</td></tr>
+<tr><td class="nm" data-l="">Komachi Sayaka<span class="zh">小町咲香</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Moonlit Courtesan</td></tr>
 <tr><td class="nm" data-l="">Li Mu<span class="zh">李沐</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Icy Femme Fatale</td></tr>
 <tr><td class="nm" data-l="">Aira<span class="zh">艾拉</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Hot-Blooded Detective</td></tr>
 <tr><td class="nm" data-l="">Amelie<span class="zh">艾蜜莉</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Heart-Stealer</td></tr>
 <tr><td class="nm" data-l="">Ojima Erina<span class="zh">尾島繪里奈</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Sugar-Sweet Maid</td></tr>
 <tr><td class="nm" data-l="">Lin Lin<span class="zh">琳琳</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Divine Oracle</td></tr>
 <tr><td class="nm" data-l="">Ruby<span class="zh">露比</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Radiant Diva</td></tr>
-<tr><td class="nm" data-l="">Sugimoto Arina<span class="zh">杉本亞莉奈</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Soothing Touch</td></tr>
+<tr><td class="nm" data-l="">Sugimoto Arina<span class="zh">杉本有步菜</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Soothing Touch</td></tr>
 <tr><td class="nm" data-l="">Katya<span class="zh">卡佳</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Bomber Matriarch</td></tr>
 <tr><td class="nm" data-l="">Rachel<span class="zh">瑞秋</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">破壞</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Iron Law Sentinel</td></tr>
 <tr><td class="nm" data-l="">Theodore<span class="zh">西奧多</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Argent Wolf・主角・不在卡池</td></tr>
@@ -212,6 +216,8 @@
   </table>
   </div>
   <p class="sub" style="margin-top:10px">
+    <b>譯名可信度分三級</b>：<b>官方確認</b>——荻野瑠衣、小町咲香、藤原亞璃紗（日文官網漢字），瑞秋、露比、夏洛特、杉本有步菜、西奧多、托比亞（繁中論壇與媒體稿）；
+    其餘<b>全是依讀音推測</b>，未與遊戲內核對。<br>
     <b>Belle 有兩個版本</b>（Spacey 光/狙擊、Cowgirl 土/支援），是不同單位不是造型。
     <b>Theodore 標記「不在卡池」</b>，應為劇情贈送，但分級表又把他列進開局推薦隊，來源沒說明怎麼取得。
   </p>
@@ -232,7 +238,7 @@
     </div>
     <div class="bn">
       <span class="bn-n">繁華遊廓的月之華<small>2026-09-17 開服</small></span>
-      <span class="up">小町清香（水/突擊）＋ 土方千鶴（土/防護）</span>
+      <span class="up">小町咲香（水/突擊）＋ 土方千鶴（土/防護）</span>
       <span class="pity">120 抽保底</span>
     </div>
   </div>
@@ -253,14 +259,14 @@
       <tr><td class="nm" data-l="">Rookie Summon</td><td data-l="保底">—</td><td data-l="說明">新帳號一次免費</td></tr>
       <tr><td class="nm" data-l="">Unlimited Summon</td><td data-l="保底">—</td><td data-l="說明"><b>免費無限 reroll</b>，對應官方宣傳的「無限召喚」</td></tr>
       <tr><td class="nm" data-l="">Mirror Gacha</td><td data-l="保底">—</td><td data-l="說明">服裝池，六大主題分類</td></tr>
-      <tr><td class="nm" data-l="">單 UP 輪換</td><td data-l="保底">100 抽</td><td data-l="說明">荻野瑠衣、杉本亞莉奈、米蕾娜、琳琳、安娜貝爾 輪流</td></tr>
+      <tr><td class="nm" data-l="">單 UP 輪換</td><td data-l="保底">100 抽</td><td data-l="說明">荻野瑠衣、杉本有步菜、米蕾娜、琳琳、安娜貝爾 輪流</td></tr>
     </tbody>
   </table>
   </div>
   <p><b>抽卡機率表未公開</b>，全網找不到 SSR/SR 的實際百分比。已知的只有上面這些保底數字。</p>
 
   <!-- ===== 07 開局 ===== -->
-  <h2 id="start"><span class="n">07</span>開局建議</h2>
+  <h2 id="start"><span class="n">07</span>開局與養成</h2>
   <div class="callout ok">
     <b>開服發無限重抽券</b>（Unlimited Summon），可以一直抽到滿意的 SSR 再開始，不用手動洗帳號。
   </div>
@@ -277,12 +283,73 @@
     </tbody>
   </table>
   </div>
+  <h3>零氪開荒實戰建議</h3>
+  <p class="sub" style="margin:0 0 10px">以下整理自 EROLABS 官方論壇繁中板的零氪開荒攻略（作者 姬邦映，2026-09-23）。這是<b>單一玩家的實戰體感</b>，不是統計數據，但目前全網只有這一篇講到實際養成雷點。</p>
+
+  <div class="callout ok">
+    <b>奶媽一定要選杉本有步菜（Sugimoto Arina）。</b>
+    遊戲送的免費治癒角，大招是全隊回血但<b>有施法時間、容易被打斷</b>；杉本是<b>瞬發</b>，小技能還能同時回 2 人。
+    原文說法是「就算滿星都比不上這個一星」。開局沒選到她，之後只能花首充 200 e幣補，「不然之後寸步難行」。
+  </div>
+
+  <h4 style="margin:18px 0 6px;font-size:15px;color:#f3d7e8">輸出與前排</h4>
+  <ul>
+    <li><b>最強精英 SSR：瑞秋 Rachel</b>。普攻與小技能專秒後排，大招全體傷害，配滿專屬裝備「秒天秒地」。同資源下<b>五星六階瑞秋的戰力比免費 SSR 露比 Ruby 高一倍，光攻擊力就差 4000 多</b>。</li>
+    <li><b>前排：夏洛特 Charlotte</b>。血厚、天賦是護盾，大招造成「審判」，接瑞秋大招可直接製裁，打厚血前排很好用。</li>
+  </ul>
+
+  <h4 style="margin:18px 0 6px;font-size:15px;color:#f3d7e8">資源雷點（這段最值錢）</h4>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>資源</th><th>該怎麼用</th></tr></thead>
+    <tbody>
+      <tr><td class="nm" data-l="">金磚</td><td data-l="用法">全部拿去<b>交易所金磚商店換精英卡</b>，能換的都換，不要亂花</td></tr>
+      <tr><td class="nm" data-l="">屬性晶石</td><td data-l="用法"><b>千萬別亂用</b>。打屬性共鳴關卡後在成就領，量很大；亂用會導致裝備升不了金色</td></tr>
+      <tr><td class="nm" data-l="">鍛鋼</td><td data-l="用法"><b>別拿去研究室賭裝備</b>（原作者自承浪費 4000）。紫裝升滿階後，要用對應屬性的鍛鋼才能升金色</td></tr>
+      <tr><td class="nm" data-l="">紫色裝備</td><td data-l="用法">升星到滿階需要一個本體。SSR 掛牌交易所可換瑞秋專武</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4 style="margin:18px 0 6px;font-size:15px;color:#f3d7e8">課金與保底的真相</h4>
+  <ul>
+    <li><b>白嫖只能到 VIP3，VIP4 抽卡才有保底。</b>另有回報指出紫色卡池 100 抽無 SSR、查機率也沒有保底說明。</li>
+    <li>金票發放極少。金磚買金票有上限：<b>每週 1 次 4000 金磚</b>，VIP4 可額外 1 次 2000 金磚。</li>
+    <li>活動池有保底幾乎必得，但有玩家用 3 個帳號實測，<b>抽到的 SSR 約 95% 是沒用的常駐角</b>。</li>
+    <li><b>自動戰鬥 AI 會把主力輸出的技能排到最後</b>，常常先套盾放大招、其他人依序放小技能，輪到主 C 時場面已崩。<b>技能優先度設定要課金才能解鎖</b>。對手戰力在自己 ±20 萬內時約 90% 會遇到這問題。</li>
+  </ul>
+
+  <h4 style="margin:18px 0 6px;font-size:15px;color:#f3d7e8">CG 與會館</h4>
+  <ul>
+    <li>人物 CG 在<b>好感度滿 15 級</b>解鎖，消耗特殊體力對話後開啟，該體力回復很快。</li>
+    <li><b>會館</b>共三關：噴水槍、直播、繩藝，每天開放不同關卡。免費次數不夠打到最後，通關至少要多玩 5 次（原作者開三張月卡只為每天多拿 3 張遊玩券）。</li>
+    <li>每日簽到可得抽獎券，抽中會由「會館的會長親自接待」。</li>
+  </ul>
+
   <h3>兌換碼怎麼輸</h3>
   <p>遊戲內路徑：<b>Account 帳號 → Settings 設定 → Input Code 輸入兌換碼</b>，獎勵到 <b>Storage 倉庫</b>領取。官網活動頁會發免費兌換碼。</p>
   <p>另有網頁版入口 <code>game.erolabsshare.live</code>，官方 iOS／Android 安裝走 EROLABS 自有通道（沒有上架 Google Play 與 App Store）。</p>
 
-  <!-- ===== 08 更新 ===== -->
-  <h2 id="log"><span class="n">08</span>更新紀錄</h2>
+  <!-- ===== 08 落差 ===== -->
+  <h2 id="gap"><span class="n">08</span>解包數據 vs 實戰體感：三個明顯落差</h2>
+  <p>第 04 節的分級來自<b>解包資料</b>（後期滿星強度），第 07 節來自<b>實際在玩的玩家</b>。兩邊對同一隻角色的評價有出入，這裡直接攤開，不幫任何一邊背書。</p>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>角色</th><th>解包分級</th><th>實戰說法</th><th>可能原因</th></tr></thead>
+    <tbody>
+      <tr><td class="nm" data-l="">瑞秋 Rachel</td><td data-l="解包">Breaker <b>A</b></td><td data-l="實戰"><b>最強精英 SSR</b>，配專武秒天秒地</td><td data-l="原因">解包評的是滿星後期；實戰講的是精英卡可換、容易養起來</td></tr>
+      <tr><td class="nm" data-l="">杉本有步菜 Arina</td><td data-l="解包">Support <b>A</b></td><td data-l="實戰"><b>零氪必選</b>，不選之後寸步難行</td><td data-l="原因">解包看數值上限，實戰看「瞬發 vs 可被打斷」這種數值表看不出的差別</td></tr>
+      <tr><td class="nm" data-l="">露比 Ruby</td><td data-l="解包">Support A・<b>開局推薦</b></td><td data-l="實戰">戰力只有同階瑞秋的一半</td><td data-l="原因">解包推薦是因為「重複可由任務取得」，實戰比的是實際輸出</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout warn">
+    <b>怎麼看這件事。</b>解包分級的強項是完整（41 隻全有）與客觀（數值就是數值），弱項是看不出施法時間、AI 行為、養成難易度。
+    實戰帖的強項正好相反。<b>兩邊都不該當成定論</b>——這遊戲上線才兩天，沒有任何人有足夠樣本。
+  </div>
+
+  <!-- ===== 09 更新 ===== -->
+  <h2 id="log"><span class="n">09</span>更新紀錄</h2>
   <h3>v3.5.0 — 2026-09-22 音行自鳴</h3>
   <ul>
     <li>新角色：<b>清音</b>（風/破壞 SSR，專打 Electrocuted 感電目標、Overload 追擊）、<b>冷真</b>（水/破壞 SSR，替隊伍充 EN、附加 Freeze 凍結）</li>
@@ -296,10 +363,13 @@
   <ul><li>54 個角色檔案、39 個進卡池；繁華遊廓的月之華開服池；常駐單 UP 輪換啟動</li></ul>
 
   <!-- ===== 09 出處 ===== -->
-  <h2 id="refs"><span class="n">09</span>出處與現況</h2>
-  <h3>唯一有實質攻略內容的來源</h3>
+  <h2 id="refs"><span class="n">10</span>出處與現況</h2>
+  <h3>有實質內容的兩個來源</h3>
   <ul>
-    <li><a href="https://gachawiki.info/guides/gene-sys-adam/" target="_blank" rel="noopener">GachaWiki — Gene-Sys: Adam</a>（MIT 授權、GitHub 開源）。子頁：
+    <li><b>EROLABS 官方論壇繁中板</b>（<a href="https://www.ero-labs.com/zh/forum_board.html?forum_id=30" target="_blank" rel="noopener">forum_id=30</a>）——147 篇，但約三分之二是邀請碼互填洗版。
+      真正有料的是<a href="https://www.ero-labs.com/zh/forum_content.html?forum_id=30&amp;article_id=6cd7a5ee-f056-5196-4f58-487d863499ca" target="_blank" rel="noopener">〈黑色基因零氪開荒攻略〉</a>（姬邦映，2026-09-23），即第 07 節的來源。
+      同一批文章有日／韓／英機翻版，內容相同。</li>
+    <li><a href="https://gachawiki.info/guides/gene-sys-adam/" target="_blank" rel="noopener">GachaWiki — Gene-Sys: Adam</a>（MIT 授權、GitHub 開源，解包資料）。子頁：
       <a href="https://gachawiki.info/guides/gene-sys-adam/characters/" target="_blank" rel="noopener">角色庫</a>、
       <a href="https://gachawiki.info/guides/gene-sys-adam/tier-list/" target="_blank" rel="noopener">分級</a>、
       <a href="https://gachawiki.info/guides/gene-sys-adam/banners/" target="_blank" rel="noopener">卡池</a>、
@@ -309,8 +379,21 @@
   <h3>官方</h3>
   <ul>
     <li><a href="https://www.genesys-adam.com/landing_page_en.html" target="_blank" rel="noopener">官方網站</a>（日／繁中／簡中／英／韓 五語）</li>
-    <li><a href="https://www.youtube.com/@Gene-SysAdam" target="_blank" rel="noopener">官方 YouTube</a>　·　<a href="https://x.com/GeneSysAdamEN" target="_blank" rel="noopener">官方 X（英）</a>　·　<a href="https://www.facebook.com/GeneSysAdamOfficial" target="_blank" rel="noopener">官方 Facebook</a></li>
+    <li><a href="https://www.youtube.com/@Gene-SysAdam" target="_blank" rel="noopener">官方 YouTube</a>　·　<a href="https://www.facebook.com/GeneSysAdamOfficial" target="_blank" rel="noopener">官方 Facebook</a>　·　<a href="https://discord.gg/h6q59YNwGW" target="_blank" rel="noopener">官方 Discord</a></li>
+    <li>官方 X 分語系：<a href="https://x.com/GeneSysAdamEN" target="_blank" rel="noopener">英</a>　·　<a href="https://x.com/GeneSysAdamZH" target="_blank" rel="noopener">中</a>　·　<a href="https://x.com/GeneSysAdamJP" target="_blank" rel="noopener">日</a>　·　<a href="https://x.com/GeneSysAdamKR" target="_blank" rel="noopener">韓</a></li>
   </ul>
+  <h3>各語系正式名稱（不是直譯，用錯關鍵字會搜不到）</h3>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>語言</th><th>正式名稱</th></tr></thead>
+    <tbody>
+      <tr><td class="nm" data-l="">繁中／簡中</td><td data-l="名稱">黑色基因</td></tr>
+      <tr><td class="nm" data-l="">英文</td><td data-l="名稱">Gene-Sys: Adam</td></tr>
+      <tr><td class="nm" data-l="">日文</td><td data-l="名稱"><b>創生記：アダム</b>（不是「ジーンシス：アダム」）</td></tr>
+      <tr><td class="nm" data-l="">韓文</td><td data-l="名稱"><b>던 오프 아담</b>（Dawn of Adam，不是「진시스 아담」）</td></tr>
+    </tbody>
+  </table>
+  </div>
   <h3>中文媒體（只有宣傳稿，無攻略內容）</h3>
   <ul>
     <li><a href="https://gnn.gamer.com.tw/detail.php?sn=308852" target="_blank" rel="noopener">巴哈 GNN</a>　·　<a href="https://forum.gamer.com.tw/B.php?bsn=85974" target="_blank" rel="noopener">巴哈哈啦板</a></li>
@@ -318,13 +401,22 @@
   </ul>
 
   <h3>查過但完全沒有的</h3>
-  <p>Reddit、官方 Discord、TierMaker、QooApp、TapTap、Google Play／App Store、模擬器官方部落格（BlueStacks／LDPlayer／MuMu）、Fandom、英文攻略站（Game8／Sportskeeda）、越南／印尼／菲律賓網站——<b>全部查無本作內容</b>。R18 遊戲不上架一般商店，這些平台自然不會碰。</p>
-  <p>也<b>沒有任何人做過</b>：reroll 指南、關卡／王攻略、隊伍搭配指南、無課課金規劃、兌換碼集中串、CBT 與正式版差異比較。</p>
+  <p><b>英文圈</b>：Reddit、TierMaker、QooApp、TapTap、Google Play／App Store、模擬器官方部落格（BlueStacks／LDPlayer／MuMu）、Fandom、英文攻略站（Game8／Sportskeeda）——全部查無。R18 不上架一般商店，這些平台不會碰。</p>
+  <p><b>日文圈完全真空</b>：GameWith、Game8、AppMedia、神ゲー攻略、アルテマ、Gamerch、wikiwiki／seesaa／atwiki、DMM／FANZA、5ch、niconico、日文 YouTube——<b>全部沒有立項</b>（不是空頁面，是根本沒有條目）。
+  <b>韓文圈</b>只有 2026-07-26 一篇通稿（<a href="https://www.gamechosun.co.kr/webzine/article/view.php?no=223670" target="_blank" rel="noopener">게임조선</a>），루리웹／인벤／디시／나무위키皆無。
+  <b>東南亞</b>只有泰國 mustplay.in.th 一篇（遊戲內建泰文）；越南、印尼、菲律賓查無。</p>
+  <p>也<b>沒有任何人做過</b>：完整 reroll 指南、關卡／王攻略、隊伍搭配指南、兌換碼集中串、封測與正式版差異比較。</p>
+  <div class="callout">
+    <b>兩處「查不到」不等於「沒有」：</b>日韓官方 X 帳號被平台擋住爬蟲（HTTP 402／鏡像 451）、
+    naver 部落格封鎖非瀏覽器存取。這兩個地方要人工用瀏覽器開才能確認。
+  </div>
 
   <div class="callout warn">
     <b>劇情設定</b>：192 年，世界曾遭「大瘟疫」肆虐。疫苗控制了病毒，但倖存者出現副作用——慾望肆虐、理智瓦解。
     主角<b>西奧多 Theodore</b>，人稱「斯薩魯的銀狼」，身上帶有會引發強烈反應的「特殊基因」，重返墮落城市<b>托比亞 Tobia</b>，追查改變一切的「慘案」真相。
-    開發商 A/Art Studio，原公告 2026 Q4 上線。
+    病毒名為 <b>Y 病毒</b>，倖存者基因異變而覺醒超常力量。
+    <b>開發商說法不一</b>：媒體稿寫 A/Art Studio，EROLABS 官方 API 的 developer 欄位卻寫 Neversoft，兩者無法判定何者正確。
+    原公告 2026 Q4 上線，實際 <b>9/17 不刪檔封測、9/22 正式上線</b>。
   </div>
 </main>
 
