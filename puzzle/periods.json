@@ -1,0 +1,40 @@
+[
+  {
+    "period": "2026-09",
+    "stages": [
+      {
+        "stage": "9",
+        "n": 5,
+        "steps": 13,
+        "goal_img": "p2026-09_stage9_goal.webp"
+      },
+      {
+        "stage": "10",
+        "n": 5,
+        "steps": 14,
+        "goal_img": "p2026-09_stage10_goal.webp"
+      }
+    ],
+    "extra": "",
+    "built": "2026-09-24"
+  },
+  {
+    "period": "2026-08",
+    "stages": [
+      {
+        "stage": "9",
+        "n": 5,
+        "steps": 13,
+        "goal_img": "p2026-08_stage9_goal.webp"
+      },
+      {
+        "stage": "10",
+        "n": 5,
+        "steps": 14,
+        "goal_img": "p2026-08_stage10_goal.webp"
+      }
+    ],
+    "extra": "",
+    "built": "2026-09-24"
+  }
+]
