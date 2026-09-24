@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黑色基因 情報總覽</title>
+<meta name="description" content="黑色基因（Gene-Sys: Adam）情報總覽：六元素克制、五職業、★重複養成機制、41 角色分級與屬性表、卡池保底與活動時程。">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ED-CHROME -->
+<div class="ed-topbar">
+  <div class="ed-games">GAME：<a href="../">慾神幻想</a>⇄<a href="../enemyfinder/">愛慾轉生</a>⇄<a href="../sa/">星慾姬絆</a>⇄<a href="../majo/">魔女之夜</a>⇄<a href="../cherrytale/">櫻境物語</a>⇄<span class="cur">黑色基因</span></div>
+  <nav class="ed-tools">
+    <a href="./" class="cur">情報總覽</a>
+    <a href="https://gachawiki.info/guides/gene-sys-adam/" target="_blank" rel="noopener">GachaWiki ↗</a>
+  </nav>
+</div>
+
+<main class="ga-wrap">
+  <header>
+    <h1>情報總覽 <span class="tag">黑色基因</span><span class="en">Gene-Sys: Adam — EROLABS</span></h1>
+    <p class="sub">暗黑都會復仇 RPG，即時小隊戰鬥。這頁把目前全網僅有的資料整理成一份：元素與職業怎麼吃、養成為什麼綁「重複數」、41 名角色的分級與屬性、卡池保底多少。</p>
+  </header>
+
+  <section class="stat" aria-label="資料狀態">
+    <span class="stat-tag">封測期 2026-09-17 ～ 09-30</span>
+    <span>遊戲版本 v3.5.0</span>
+    <span>整理日期 2026-09-24</span>
+    <span>資料源：GachaWiki（解包遊戲檔）</span>
+  </section>
+
+  <div class="callout warn">
+    <b>先說清楚這頁的可信度。</b>角色數值、技能、分級全部來自 <b>GachaWiki 的解包資料</b>，不是玩家實戰心得，也不是官方 patch notes。
+    <b>中文圈目前沒有任何攻略內容</b>（巴哈哈啦板只有宣傳轉載），所以沒有第二個來源可以交叉驗證。
+    角色的<b>中文譯名是依讀音推測的，尚未與遊戲內繁中版核對</b>，看到跟遊戲不一樣請以遊戲為準。
+  </div>
+
+  <nav class="jump" aria-label="段落">
+    <a href="#core">核心機制</a>
+    <a href="#elem">元素克制</a>
+    <a href="#star">★級解鎖</a>
+    <a href="#tier">角色分級</a>
+    <a href="#roster">41 角色表</a>
+    <a href="#gacha">卡池保底</a>
+    <a href="#start">開局建議</a>
+    <a href="#log">更新紀錄</a>
+    <a href="#refs">出處</a>
+  </nav>
+
+  <!-- ===== 01 核心機制 ===== -->
+  <h2 id="core"><span class="n">01</span>最該先懂的一件事：養成綁「重複數」</h2>
+  <div class="callout">
+    <b>角色升階（class up）受限於你持有的重複數，抽不到重複就升不上去。</b>
+    這直接決定了抽卡策略：<b>SR 角色早期反而比 SSR 好用</b>——好抽、好疊重複，是最便宜的養成對象。
+    GachaWiki 的原話是「invested SRs carry your account early」。SSR 上限高，但你湊不到重複就卡在低星，技能格都開不出來。
+  </div>
+  <p>因此本作有明顯的<b>早期與後期優先度分裂</b>：下面第 04 節的分級是<b>後期滿星強度</b>，開局請直接看第 07 節。</p>
+
+  <h3>三個互相獨立的分類軸</h3>
+  <div class="axis">
+    <div class="a"><div class="k">AXIS 1</div><div class="t">元素</div><p>火、風、土、水、光、暗，六種。決定克制關係，±30%。</p></div>
+    <div class="a"><div class="k">AXIS 2</div><div class="t">職業</div><p>Guardian 防護、Striker 突擊、Sniper 狙擊、Support 支援、Breaker 破壞。</p></div>
+    <div class="a"><div class="k">AXIS 3</div><div class="t">傷害屬性</div><p>Physical 物理 / Energy 能量，每角色固定一種。與元素、職業無關。</p></div>
+  </div>
+
+  <h3>養成軸</h3>
+  <ul>
+    <li>角色等級上限 <b>Lv 50</b></li>
+    <li>每個技能獨立升級 <b>Lv 1–99</b></li>
+    <li>角色 <b>Rank 0–9</b></li>
+    <li>星級 <b>1★ → 6★</b>，另有 <b>7★ SP</b> 突破上限</li>
+    <li>部分技能有「<b>覺醒 awakened</b>」數值，例：Jessica 護盾 795% → 940%、Lin Lan 被動護盾 160% → 224%</li>
+  </ul>
+
+  <!-- ===== 02 元素 ===== -->
+  <h2 id="elem"><span class="n">02</span>元素克制鏈</h2>
+  <p>克制幅度固定 <b>±30%</b>：打到被你剋的元素 +30% 傷害，被剋你的元素打到 −30%。</p>
+  <div class="chain">
+    <span class="e e-fire">火 Fire</span><span class="arw">→</span>
+    <span class="e e-wind">風 Wind</span><span class="arw">→</span>
+    <span class="e e-earth">土 Earth</span><span class="arw">→</span>
+    <span class="e e-water">水 Water</span><span class="arw">→</span>
+    <span class="e e-fire">火</span>
+  </div>
+  <div class="chain">
+    <span class="e e-light">光 Light</span><span class="arw">⇄ 互剋 ⇄</span><span class="e e-dark">暗 Dark</span>
+  </div>
+  <p class="sub" style="margin-top:10px">箭頭＝剋制。光暗是雙向互剋，彼此都吃 +30%／−30%，不進四元素環。</p>
+  <details class="fold">
+    <summary>這條鏈是怎麼驗出來的（逐角色核對）</summary>
+    <ul>
+      <li><b>Theodore / Ogino Rui</b>（火）：對風 +30%、受水 −30%　→ 火剋風、水剋火</li>
+      <li><b>Victoria</b>（土）：對水 +30%、受風 −30%　→ 土剋水、風剋土</li>
+      <li><b>Jessica</b>（光）：對暗 +30%、受暗 −30%</li>
+      <li><b>Kurosawa Shion</b>（暗）：對光 +30%、受光 −30%</li>
+    </ul>
+    <p>四條合起來就是 火→風→土→水→火。網路上有把環寫成「火→風→水→土」的整理，那是錯的：土對水 +30% 代表<b>土剋水</b>，不是水剋土。</p>
+  </details>
+
+  <!-- ===== 03 星級 ===== -->
+  <h2 id="star"><span class="n">03</span>★級解鎖表</h2>
+  <p>星級靠<b>重複抽到同一角色</b>推進，每一階解鎖新的技能格。這就是第 01 節說的「養成綁重複數」的具體長相。</p>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>星級</th><th>解鎖內容</th></tr></thead>
+    <tbody>
+      <tr><td class="nm" data-l="">1★</td><td data-l="解鎖">Loop 技（循環技）＋ 第三技能格</td></tr>
+      <tr><td class="nm" data-l="">2★</td><td data-l="解鎖">Ultimate 大招（消耗 3 EN）</td></tr>
+      <tr><td class="nm" data-l="">4★</td><td data-l="解鎖">Passive 1 ＋ 第四技能格</td></tr>
+      <tr><td class="nm" data-l="">6★</td><td data-l="解鎖">Passive 2 ＋ 第五技能格</td></tr>
+      <tr><td class="nm" data-l="">7★ SP</td><td data-l="解鎖">Passive 3 ＋ 突破等級上限</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>技能結構：普攻 ＋ 主動技 ×2 ＋ Loop 技 ＋ 被動 ×2 ＋ 大招。<b>2★ 以前連大招都沒有</b>，這是評估一隻角色能不能用的第一道門檻。</p>
+
+  <!-- ===== 04 分級 ===== -->
+  <h2 id="tier"><span class="n">04</span>角色分級（後期滿星強度）</h2>
+  <div class="callout warn">
+    <b>這是「職業內」的相對評價，不是跨職業的絕對強度。</b>Guardian 的 S 跟 Striker 的 S 不能直接比。
+    而且評的是<b>後期</b>——開局該練誰請看第 07 節。
+  </div>
+  <div class="tiers">
+<div class="tg"><h3>突擊 Striker<span class="cnt">10 人</span></h3>
+<div class="tr-row"><span class="rk rk-SS">SS</span><span class="who"><b>Victoria</b>維多莉亞</span></div>
+<div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Milena</b>米蕾娜、<b>Yulia</b>尤莉亞</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Annabelle</b>安娜貝爾、<b>Chloe</b>克蘿伊、<b>Danxin</b>丹心、<b>Komachi Sayaka</b>小町清香、<b>Li Mu</b>李沐、<b>Aira</b>艾拉</span></div>
+<div class="tr-row"><span class="rk rk-B">B</span><span class="who"><b>Theodore</b>西奧多</span></div>
+</div>
+<div class="tg"><h3>狙擊 Sniper<span class="cnt">8 人</span></h3>
+<div class="tr-row"><span class="rk rk-SS">SS</span><span class="who"><b>Kurosawa Shion</b>黑澤紫苑、<b>Ogino Rui</b>荻野瑠衣</span></div>
+<div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Andou Kana</b>安藤加奈、<b>Adele</b>艾黛兒</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Amelie</b>艾蜜莉、<b>Ojima Erina</b>尾島繪里奈</span></div>
+<div class="tr-row"><span class="rk rk-B">B</span><span class="who"><b>Ruo Lan</b>若蘭、<b>Belle (Spacey)</b>貝兒・迷糊</span></div>
+</div>
+<div class="tg"><h3>支援 Support<span class="cnt">9 人</span></h3>
+<div class="tr-row"><span class="rk rk-SS">SS</span><span class="who"><b>Jessica</b>潔西卡、<b>Lin Lan</b>林嵐</span></div>
+<div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Elena</b>艾蓮娜</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Lin Lin</b>琳琳、<b>Ruby</b>露比、<b>Sugimoto Arina</b>杉本亞莉奈、<b>Katya</b>卡佳</span></div>
+<div class="tr-row"><span class="rk rk-B">B</span><span class="who"><b>Belle (Cowgirl)</b>貝兒・牛仔、<b>Bernardo</b>貝納多</span></div>
+</div>
+<div class="tg"><h3>破壞 Breaker<span class="cnt">7 人</span></h3>
+<div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Leng Zhen</b>冷真、<b>Qing Yin</b>清音、<b>Shiraishi Ai</b>白石愛、<b>Thalia</b>塔莉亞</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Rachel</b>瑞秋</span></div>
+<div class="tr-row"><span class="rk rk-B">B</span><span class="who"><b>Connie</b>康妮、<b>Denice</b>丹妮絲</span></div>
+</div>
+<div class="tg"><h3>防護 Guardian<span class="cnt">7 人</span></h3>
+<div class="tr-row"><span class="rk rk-S">S</span><span class="who"><b>Hijikata Chizuru</b>土方千鶴、<b>Takajou Ranka</b>高城蘭華</span></div>
+<div class="tr-row"><span class="rk rk-A">A</span><span class="who"><b>Amber</b>安珀、<b>Charlotte</b>夏洛特、<b>Liz</b>莉茲、<b>Mudia</b>穆蒂亞、<b>Vera</b>薇拉</span></div>
+</div>
+  </div>
+
+  <!-- ===== 05 角色總表 ===== -->
+  <h2 id="roster"><span class="n">05</span>41 角色總表</h2>
+  <p>含元素、職業、傷害屬性與分級。手機上可橫向捲動。</p>
+  <div class="callout">
+    <b>角色數字對不上：</b>GachaWiki 總覽頁寫 39、角色庫列出 41、更新紀錄說開服有 <b>54 個角色檔案</b>，
+    官網另外還有一位 <b>Fujiwara Arisa 藤原亞里沙</b>不在這 41 人裡。
+    所以 41 只能當「目前已建檔的可戰鬥角色」，不等於實際登場數。
+  </div>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>角色</th><th>元素</th><th>職業</th><th>屬性</th><th>評級</th><th>稱號</th></tr></thead>
+    <tbody>
+<tr><td class="nm" data-l="">Victoria<span class="zh">維多莉亞</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">突擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-SS">SS</span></td><td data-l="稱號">Machiavellian Witch</td></tr>
+<tr><td class="nm" data-l="">Kurosawa Shion<span class="zh">黑澤紫苑</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-SS">SS</span></td><td data-l="稱號">Meta-Research Freak</td></tr>
+<tr><td class="nm" data-l="">Ogino Rui<span class="zh">荻野瑠衣</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">狙擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-SS">SS</span></td><td data-l="稱號">Yandere Maid</td></tr>
+<tr><td class="nm" data-l="">Jessica<span class="zh">潔西卡</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-SS">SS</span></td><td data-l="稱號">Seraphim Diva</td></tr>
+<tr><td class="nm" data-l="">Lin Lan<span class="zh">林嵐</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-SS">SS</span></td><td data-l="稱號">Azure Gale Phantom</td></tr>
+<tr><td class="nm" data-l="">Hijikata Chizuru<span class="zh">土方千鶴</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">防護</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Immovable Sword Maiden</td></tr>
+<tr><td class="nm" data-l="">Takajou Ranka<span class="zh">高城蘭華</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">防護</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Rebel Wildflower</td></tr>
+<tr><td class="nm" data-l="">Milena<span class="zh">米蕾娜</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Black-Sector Inker</td></tr>
+<tr><td class="nm" data-l="">Yulia<span class="zh">尤莉亞</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">突擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Tonfa Brawler</td></tr>
+<tr><td class="nm" data-l="">Andou Kana<span class="zh">安藤加奈</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Scholastic Agent</td></tr>
+<tr><td class="nm" data-l="">Adele<span class="zh">艾黛兒</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Shadow Dagger</td></tr>
+<tr><td class="nm" data-l="">Elena<span class="zh">艾蓮娜</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Rebellious Red Thorn</td></tr>
+<tr><td class="nm" data-l="">Leng Zhen<span class="zh">冷真</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">破壞</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Soulless Executioner</td></tr>
+<tr><td class="nm" data-l="">Qing Yin<span class="zh">清音</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">破壞</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Siren of a Fallen City</td></tr>
+<tr><td class="nm" data-l="">Shiraishi Ai<span class="zh">白石愛</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">破壞</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Gentle Manager</td></tr>
+<tr><td class="nm" data-l="">Thalia<span class="zh">塔莉亞</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">破壞</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-S">S</span></td><td data-l="稱號">Vulpine Reaper</td></tr>
+<tr><td class="nm" data-l="">Amber<span class="zh">安珀</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">防護</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Elegant Croupier</td></tr>
+<tr><td class="nm" data-l="">Charlotte<span class="zh">夏洛特</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">防護</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Silvergun Sweetheart</td></tr>
+<tr><td class="nm" data-l="">Liz<span class="zh">莉茲</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">防護</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Bare-Knuckle Bodyguard</td></tr>
+<tr><td class="nm" data-l="">Mudia<span class="zh">穆蒂亞</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">防護</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Graffiti Brawler</td></tr>
+<tr><td class="nm" data-l="">Vera<span class="zh">薇拉</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">防護</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Blood Moon Sentinel</td></tr>
+<tr><td class="nm" data-l="">Annabelle<span class="zh">安娜貝爾</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">突擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Shackled Saintess</td></tr>
+<tr><td class="nm" data-l="">Chloe<span class="zh">克蘿伊</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Sacrificial Lamb</td></tr>
+<tr><td class="nm" data-l="">Danxin<span class="zh">丹心</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Second Generation Dragon</td></tr>
+<tr><td class="nm" data-l="">Komachi Sayaka<span class="zh">小町清香</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Moonlit Courtesan</td></tr>
+<tr><td class="nm" data-l="">Li Mu<span class="zh">李沐</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Icy Femme Fatale</td></tr>
+<tr><td class="nm" data-l="">Aira<span class="zh">艾拉</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Hot-Blooded Detective</td></tr>
+<tr><td class="nm" data-l="">Amelie<span class="zh">艾蜜莉</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Heart-Stealer</td></tr>
+<tr><td class="nm" data-l="">Ojima Erina<span class="zh">尾島繪里奈</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">狙擊</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Sugar-Sweet Maid</td></tr>
+<tr><td class="nm" data-l="">Lin Lin<span class="zh">琳琳</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Divine Oracle</td></tr>
+<tr><td class="nm" data-l="">Ruby<span class="zh">露比</span></td><td data-l="元素"><span class="e-wind">風</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Radiant Diva</td></tr>
+<tr><td class="nm" data-l="">Sugimoto Arina<span class="zh">杉本亞莉奈</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">支援</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Soothing Touch</td></tr>
+<tr><td class="nm" data-l="">Katya<span class="zh">卡佳</span></td><td data-l="元素"><span class="e-water">水</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Bomber Matriarch</td></tr>
+<tr><td class="nm" data-l="">Rachel<span class="zh">瑞秋</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">破壞</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-A">A</span></td><td data-l="稱號">Iron Law Sentinel</td></tr>
+<tr><td class="nm" data-l="">Theodore<span class="zh">西奧多</span></td><td data-l="元素"><span class="e-fire">火</span></td><td data-l="職業">突擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Argent Wolf・主角・不在卡池</td></tr>
+<tr><td class="nm" data-l="">Ruo Lan<span class="zh">若蘭</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">狙擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Fiscal Fixer</td></tr>
+<tr><td class="nm" data-l="">Belle (Spacey)<span class="zh">貝兒・迷糊</span></td><td data-l="元素"><span class="e-light">光</span></td><td data-l="職業">狙擊</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Spacey Sweetheart</td></tr>
+<tr><td class="nm" data-l="">Belle (Cowgirl)<span class="zh">貝兒・牛仔</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Clumsy Cowgirl</td></tr>
+<tr><td class="nm" data-l="">Bernardo<span class="zh">貝納多</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">支援</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Apex Dominator</td></tr>
+<tr><td class="nm" data-l="">Connie<span class="zh">康妮</span></td><td data-l="元素"><span class="e-dark">暗</span></td><td data-l="職業">破壞</td><td data-l="屬性">物理</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Flawless Goddess</td></tr>
+<tr><td class="nm" data-l="">Denice<span class="zh">丹妮絲</span></td><td data-l="元素"><span class="e-earth">土</span></td><td data-l="職業">破壞</td><td data-l="屬性">能量</td><td data-l="評級"><span class="t rk-B">B</span></td><td data-l="稱號">Master Strategist</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="sub" style="margin-top:10px">
+    <b>Belle 有兩個版本</b>（Spacey 光/狙擊、Cowgirl 土/支援），是不同單位不是造型。
+    <b>Theodore 標記「不在卡池」</b>，應為劇情贈送，但分級表又把他列進開局推薦隊，來源沒說明怎麼取得。
+  </p>
+
+  <!-- ===== 06 卡池 ===== -->
+  <h2 id="gacha"><span class="n">06</span>卡池與保底</h2>
+  <h3>限時池</h3>
+  <div class="banners">
+    <div class="bn now">
+      <span class="bn-n">音行自鳴 Lingering Echoes<small>2026-09-22 起・目前開放中</small></span>
+      <span class="up">清音（風/破壞）＋ 冷真（水/破壞）雙 UP</span>
+      <span class="pity">120 抽保底</span>
+    </div>
+    <div class="bn">
+      <span class="bn-n">戰爭與音樂 War &amp; Music<small>開服週</small></span>
+      <span class="up">艾蓮娜（火/支援）＋ 維多莉亞（土/突擊）</span>
+      <span class="pity">120 抽保底</span>
+    </div>
+    <div class="bn">
+      <span class="bn-n">繁華遊廓的月之華<small>2026-09-17 開服</small></span>
+      <span class="up">小町清香（水/突擊）＋ 土方千鶴（土/防護）</span>
+      <span class="pity">120 抽保底</span>
+    </div>
+  </div>
+
+  <h3>票券池（不吃鑽石）</h3>
+  <ul>
+    <li><b>Black Gold Hunter</b>：牛仔貝兒（土/支援）</li>
+    <li><b>Heaven's Door</b>：康妮（暗/破壞）、潔西卡（光/支援）——票券靠特殊任務取得</li>
+  </ul>
+
+  <h3>常駐池</h3>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>池名</th><th>保底</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td class="nm" data-l="">Standard Summon</td><td data-l="保底">100 抽</td><td data-l="說明">標準池</td></tr>
+      <tr><td class="nm" data-l="">Advanced Summon</td><td data-l="保底">120 抽</td><td data-l="說明">有 <b>wishlist 心願單</b>機制</td></tr>
+      <tr><td class="nm" data-l="">Rookie Summon</td><td data-l="保底">—</td><td data-l="說明">新帳號一次免費</td></tr>
+      <tr><td class="nm" data-l="">Unlimited Summon</td><td data-l="保底">—</td><td data-l="說明"><b>免費無限 reroll</b>，對應官方宣傳的「無限召喚」</td></tr>
+      <tr><td class="nm" data-l="">Mirror Gacha</td><td data-l="保底">—</td><td data-l="說明">服裝池，六大主題分類</td></tr>
+      <tr><td class="nm" data-l="">單 UP 輪換</td><td data-l="保底">100 抽</td><td data-l="說明">荻野瑠衣、杉本亞莉奈、米蕾娜、琳琳、安娜貝爾 輪流</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><b>抽卡機率表未公開</b>，全網找不到 SSR/SR 的實際百分比。已知的只有上面這些保底數字。</p>
+
+  <!-- ===== 07 開局 ===== -->
+  <h2 id="start"><span class="n">07</span>開局建議</h2>
+  <div class="callout ok">
+    <b>開服發無限重抽券</b>（Unlimited Summon），可以一直抽到滿意的 SSR 再開始，不用手動洗帳號。
+  </div>
+  <p>GachaWiki 建議的開局五人：</p>
+  <div class="tbl-scroll">
+  <table class="roster">
+    <thead><tr><th>角色</th><th>稀有度</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr><td class="nm" data-l="">Theodore 西奧多</td><td data-l="稀有度">SR</td><td data-l="理由">武器可取得、SR 重複好湊</td></tr>
+      <tr><td class="nm" data-l="">Adele 艾黛兒</td><td data-l="稀有度">SR</td><td data-l="理由">同上</td></tr>
+      <tr><td class="nm" data-l="">Belle 貝兒</td><td data-l="稀有度">SR</td><td data-l="理由">同上</td></tr>
+      <tr><td class="nm" data-l="">Ruby 露比</td><td data-l="稀有度">SSR</td><td data-l="理由">重複可由任務取得，是少數能穩定升星的 SSR</td></tr>
+      <tr><td class="nm" data-l="">第五位</td><td data-l="稀有度">—</td><td data-l="理由">你重複數最高的 SSR，或任務能湊重複的 SR，優先挑輸出</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>兌換碼怎麼輸</h3>
+  <p>遊戲內路徑：<b>Account 帳號 → Settings 設定 → Input Code 輸入兌換碼</b>，獎勵到 <b>Storage 倉庫</b>領取。官網活動頁會發免費兌換碼。</p>
+  <p>另有網頁版入口 <code>game.erolabsshare.live</code>，官方 iOS／Android 安裝走 EROLABS 自有通道（沒有上架 Google Play 與 App Store）。</p>
+
+  <!-- ===== 08 更新 ===== -->
+  <h2 id="log"><span class="n">08</span>更新紀錄</h2>
+  <h3>v3.5.0 — 2026-09-22 音行自鳴</h3>
+  <ul>
+    <li>新角色：<b>清音</b>（風/破壞 SSR，專打 Electrocuted 感電目標、Overload 追擊）、<b>冷真</b>（水/破壞 SSR，替隊伍充 EN、附加 Freeze 凍結）</li>
+    <li><b>平衡調整：維多莉亞被動重做、康妮技能組補完</b>（上線時康妮的技能是空的）</li>
+    <li>新增 90 項道具，含「Source of Chaos」活動預載內容</li>
+    <li>抽卡機台數上限提升到 25</li>
+  </ul>
+  <h3>開服週 — 戰爭與音樂</h3>
+  <ul><li>新角色：艾蓮娜、維多莉亞（皆 SSR）；Phantom Emblem 收集活動＋兌換商店</li></ul>
+  <h3>2026-09-17 — 全球上線</h3>
+  <ul><li>54 個角色檔案、39 個進卡池；繁華遊廓的月之華開服池；常駐單 UP 輪換啟動</li></ul>
+
+  <!-- ===== 09 出處 ===== -->
+  <h2 id="refs"><span class="n">09</span>出處與現況</h2>
+  <h3>唯一有實質攻略內容的來源</h3>
+  <ul>
+    <li><a href="https://gachawiki.info/guides/gene-sys-adam/" target="_blank" rel="noopener">GachaWiki — Gene-Sys: Adam</a>（MIT 授權、GitHub 開源）。子頁：
+      <a href="https://gachawiki.info/guides/gene-sys-adam/characters/" target="_blank" rel="noopener">角色庫</a>、
+      <a href="https://gachawiki.info/guides/gene-sys-adam/tier-list/" target="_blank" rel="noopener">分級</a>、
+      <a href="https://gachawiki.info/guides/gene-sys-adam/banners/" target="_blank" rel="noopener">卡池</a>、
+      <a href="https://gachawiki.info/guides/gene-sys-adam/updates/" target="_blank" rel="noopener">更新</a>
+    </li>
+  </ul>
+  <h3>官方</h3>
+  <ul>
+    <li><a href="https://www.genesys-adam.com/landing_page_en.html" target="_blank" rel="noopener">官方網站</a>（日／繁中／簡中／英／韓 五語）</li>
+    <li><a href="https://www.youtube.com/@Gene-SysAdam" target="_blank" rel="noopener">官方 YouTube</a>　·　<a href="https://x.com/GeneSysAdamEN" target="_blank" rel="noopener">官方 X（英）</a>　·　<a href="https://www.facebook.com/GeneSysAdamOfficial" target="_blank" rel="noopener">官方 Facebook</a></li>
+  </ul>
+  <h3>中文媒體（只有宣傳稿，無攻略內容）</h3>
+  <ul>
+    <li><a href="https://gnn.gamer.com.tw/detail.php?sn=308852" target="_blank" rel="noopener">巴哈 GNN</a>　·　<a href="https://forum.gamer.com.tw/B.php?bsn=85974" target="_blank" rel="noopener">巴哈哈啦板</a></li>
+    <li><a href="https://www.4gamers.com.tw/news/detail/82206/erolabs-gene-sys-adam-launch" target="_blank" rel="noopener">4Gamers 上線報導</a>　·　<a href="https://www.2000fun.com/290724" target="_blank" rel="noopener">2000Fun 封測報導</a></li>
+  </ul>
+
+  <h3>查過但完全沒有的</h3>
+  <p>Reddit、官方 Discord、TierMaker、QooApp、TapTap、Google Play／App Store、模擬器官方部落格（BlueStacks／LDPlayer／MuMu）、Fandom、英文攻略站（Game8／Sportskeeda）、越南／印尼／菲律賓網站——<b>全部查無本作內容</b>。R18 遊戲不上架一般商店，這些平台自然不會碰。</p>
+  <p>也<b>沒有任何人做過</b>：reroll 指南、關卡／王攻略、隊伍搭配指南、無課課金規劃、兌換碼集中串、CBT 與正式版差異比較。</p>
+
+  <div class="callout warn">
+    <b>劇情設定</b>：192 年，世界曾遭「大瘟疫」肆虐。疫苗控制了病毒，但倖存者出現副作用——慾望肆虐、理智瓦解。
+    主角<b>西奧多 Theodore</b>，人稱「斯薩魯的銀狼」，身上帶有會引發強烈反應的「特殊基因」，重返墮落城市<b>托比亞 Tobia</b>，追查改變一切的「慘案」真相。
+    開發商 A/Art Studio，原公告 2026 Q4 上線。
+  </div>
+</main>
+
+<script src="../assets/report.js" defer></script>
+</body>
+</html>
