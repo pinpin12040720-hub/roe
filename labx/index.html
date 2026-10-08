@@ -345,6 +345,14 @@ const baseMap = {};
 BASES.forEach(b => baseMap[b.name] = b.f);
 const RLAB = {trial: "試產", round1: "第一批", round2: "第二批", round3: "第三批", round4: "第四批", round5: "第五批"};
 
+// 資源路徑：file:// 直讀相對路徑；網頁版走 jsDelivr CDN（亞洲節點快），失敗回退原站
+const IS_FILE = location.protocol === "file:";
+const CDN = "https://cdn.jsdelivr.net/gh/pinpin12040720-hub/roe@main/labx/";
+const A = p => (IS_FILE || p.startsWith("data:")) ? p : CDN + p;
+const T = p => p.startsWith("data:") ? p : p.replace("img/", "thumb/");
+const PAGE = 96;
+let limit = PAGE;
+
 const sel = {ev: "all", w: "all", r: "all"};
 function chipRow(id, key, vals) {
   const row = document.getElementById(id);
@@ -368,18 +376,31 @@ let shown = [];
 function render() {
   shown = ITEMS.filter(i => (sel.ev === "all" || i.ev === sel.ev)
     && (sel.w === "all" || i.w === sel.w) && (sel.r === "all" || i.r === sel.r));
-  document.getElementById("shown").textContent = `顯示 ${shown.length} / ${ITEMS.length} 張`;
+  limit = PAGE;
+  draw();
+}
+function draw() {
+  document.getElementById("shown").textContent = `顯示 ${Math.min(limit, shown.length)} / ${shown.length} 張（全庫 ${ITEMS.length}）`;
   const g = document.getElementById("grid");
   g.innerHTML = "";
-  shown.forEach((it, idx) => {
+  shown.slice(0, limit).forEach((it, idx) => {
     const c = document.createElement("div");
     c.className = "cell";
-    c.innerHTML = `<img loading="lazy" src="${it.f}" alt="${it.el}（${it.wl}）">
+    const tp = T(it.f);
+    c.innerHTML = `<img loading="lazy" decoding="async" src="${A(tp)}" onerror="this.onerror=null;this.src='${tp}'" alt="${it.el}（${it.wl}）">
       <div class="cap"><b>${it.el}</b><span class="mini-tag">${it.wl}</span>
       <span class="mini-tag">#${it.k}</span><span class="mini-tag ${it.r === "round2" ? "r2" : ""}">${RLAB[it.r]}</span></div>`;
     c.onclick = () => openLb(idx);
     g.appendChild(c);
   });
+  if (shown.length > limit) {
+    const b = document.createElement("button");
+    b.className = "chip"; b.type = "button";
+    b.style.cssText = "grid-column:1/-1;padding:12px;font-size:14px";
+    b.textContent = `載入更多（還有 ${shown.length - limit} 張）`;
+    b.onclick = () => { limit += PAGE; draw(); };
+    g.appendChild(b);
+  }
 }
 render();
 
@@ -392,7 +413,8 @@ BASES.forEach(b => {
 [...groups.values()].forEach(b => {
   const c = document.createElement("div");
   c.className = "cell";
-  c.innerHTML = `<img loading="lazy" src="${b.f}" alt="路口底圖 ${b.canon}">
+  const btp = T(b.f);
+  c.innerHTML = `<img loading="lazy" decoding="async" src="${A(btp)}" onerror="this.onerror=null;this.src='${btp}'" alt="路口底圖 ${b.canon}">
     <div class="cap"><b>${b.site}</b><span class="mini-tag">${b.canon}</span>
     <span class="mini-tag">用於 ${b.used} 張</span></div>`;
   bg.appendChild(c);
@@ -404,10 +426,13 @@ function openLb(i) {
   cur = i;
   const it = shown[i];
   document.getElementById("lb-title").textContent = `${it.el} · ${it.wl} · 種子${it.k}（${RLAB[it.r]}）`;
-  document.getElementById("lb-gen").src = it.f;
+  const gen = document.getElementById("lb-gen");
+  gen.onerror = () => { gen.onerror = null; gen.src = it.f; };
+  gen.src = A(it.f);
   const bimg = document.getElementById("lb-base");
   const bf = baseMap[it.base];
-  bimg.src = bf || ""; bimg.hidden = !bf;
+  if (bf) { bimg.onerror = () => { bimg.onerror = null; bimg.src = bf; }; bimg.src = A(bf); }
+  bimg.hidden = !bf;
   document.getElementById("lb-meta").innerHTML = [
     ["seed", it.seed], ["底圖", it.base], ["時間", it.ts], ["SHA-256", it.sha + "…"]
   ].map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
