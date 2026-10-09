@@ -554,8 +554,9 @@ revSend.onclick = () => {
   const body = JSON.stringify(payload);
   Promise.allSettled([
     fetch(REV_EP, { method: "POST", mode: "no-cors", body }),
-    fetch("https://ntfy.sh/labx-rev-922b7fe3c0f46eccb0dcf728",
-          { method: "POST", body, headers: { "Title": "labx-review" } }),
+    fetch("https://ntfy.sh", { method: "POST",
+          body: JSON.stringify({ topic: "labx-rev-922b7fe3c0f46eccb0dcf728",
+                                 title: "labx-review", message: body }) }),
   ])
     .finally(() => {
       REVD[stem] = { v: revVerdict, n: revNote.value.trim(), t: Date.now() };
