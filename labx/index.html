@@ -89,6 +89,16 @@ nav a:hover{color:var(--accent)}
 #lb button{background:var(--panel2);border:1px solid var(--line);color:var(--fg);
   border-radius:6px;padding:4px 14px;cursor:pointer;font-family:inherit;font-size:14px}
 #lb button:hover{border-color:var(--accent)}
+#lb button.on{background:var(--accent);color:#1a1205;border-color:var(--accent);font-weight:700}
+/* 並排比對（預設模式） */
+.sbs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#000}
+.sbs .half{position:relative;min-width:0}
+.sbs .half[hidden]{display:none}
+.sbs img{width:100%;aspect-ratio:16/9;object-fit:contain;display:block;background:#000}
+.sbs .lab{position:absolute;top:8px;left:8px;font-family:var(--mono);font-size:11px;
+  background:rgba(10,13,12,.72);color:var(--fg);padding:2px 8px;border-radius:4px;pointer-events:none}
+.sbs:has(.half[hidden]){grid-template-columns:1fr}
+@media (max-width:640px){.sbs{grid-template-columns:1fr}}
 .cmp{position:relative;aspect-ratio:16/9;background:#000;touch-action:none;cursor:ew-resize}
 .cmp img{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
 .cmp .base{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
@@ -159,7 +169,7 @@ a{color:var(--accent)}
 </nav>
 
 <h2 id="gal">圖庫</h2>
-<p class="count" style="margin-top:10px">點圖開啟比對燈箱：左右拖曳分隔線比對<b>原始幀</b>與<b>生成圖</b>，路緣、車道線、斑馬線對齊即幾何鎖定成功。</p>
+<p class="count" style="margin-top:10px">點圖開啟比對燈箱：預設<b>並排</b>顯示原始幀與生成圖（窄屏自動上下堆疊），可切「滑桿」模式拖曳比對；路緣、車道線、斑馬線對齊即幾何鎖定成功。</p>
 <div class="chips" id="f-ev"><span class="lab">事件</span></div>
 <div class="chips" id="f-w"><span class="lab">天候</span></div>
 <div class="chips" id="f-p"><span class="lab">管線</span></div>
@@ -357,11 +367,17 @@ a{color:var(--accent)}
   <div class="box">
     <div class="bar-top">
       <h3 id="lb-title"></h3><span class="sp"></span>
+      <button id="md-sbs" type="button">並排</button>
+      <button id="md-sld" type="button">滑桿</button>
       <button id="lb-prev" type="button">‹ 上一張</button>
       <button id="lb-next" type="button">下一張 ›</button>
       <button id="lb-close" type="button">關閉 ✕</button>
     </div>
-    <div class="cmp" id="lb-cmp">
+    <div class="sbs" id="lb-sbs">
+      <div class="half" id="sbs-bhalf"><img id="sbs-base" alt="原始幀"><span class="lab">原始幀</span></div>
+      <div class="half"><img id="sbs-gen" alt="生成"><span class="lab">生成</span></div>
+    </div>
+    <div class="cmp" id="lb-cmp" hidden>
       <img id="lb-gen" alt="生成圖">
       <img id="lb-base" class="base" alt="原始幀">
       <span class="bar"></span><span class="lab l">原始幀</span><span class="lab r">生成</span>
@@ -489,13 +505,15 @@ function openLb(i) {
   const it = shown[i];
   document.getElementById("lb-title").innerHTML =
     `${it.el} · ${it.wl} · 種子${it.k} <span class="ptag p-${PIPE[it.r]}">${PLAB[PIPE[it.r]]}</span> <span class="mini-tag">${RLAB[it.r]}</span>`;
-  const gen = document.getElementById("lb-gen");
-  gen.onerror = () => { gen.onerror = null; gen.src = it.f; };
-  gen.src = A(it.f);
-  const bimg = document.getElementById("lb-base");
   const bf = baseMap[it.base];
-  if (bf) { bimg.onerror = () => { bimg.onerror = null; bimg.src = bf; }; bimg.src = A(bf); }
+  const setImg = (el, src) => { el.onerror = () => { el.onerror = null; el.src = src; }; el.src = A(src); };
+  setImg(document.getElementById("lb-gen"), it.f);
+  setImg(document.getElementById("sbs-gen"), it.f);
+  const bimg = document.getElementById("lb-base");
+  if (bf) { setImg(bimg, bf); setImg(document.getElementById("sbs-base"), bf); }
   bimg.hidden = !bf;
+  document.getElementById("sbs-bhalf").hidden = !bf;
+  applyMode();
   document.getElementById("lb-meta").innerHTML = [
     ["seed", it.seed], ["底圖", it.base], ["時間", it.ts], ["SHA-256", it.sha + "…"], ["語意QA", it.qa === 1 ? "✓ VLM判定符合事件" : it.qa === 0 ? "✗ VLM判定不符" : "未檢"]
   ].map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
@@ -514,6 +532,22 @@ addEventListener("keydown", e => {
   if (e.key === "ArrowLeft") document.getElementById("lb-prev").click();
   if (e.key === "ArrowRight") document.getElementById("lb-next").click();
 });
+// ===== 比對模式（預設並排） =====
+let CMPMODE = "sbs";
+try { CMPMODE = localStorage.getItem("labx_cmpmode") || "sbs"; } catch (e) {}
+function applyMode() {
+  document.getElementById("lb-sbs").hidden = CMPMODE !== "sbs";
+  document.getElementById("lb-cmp").hidden = CMPMODE !== "sld";
+  document.getElementById("md-sbs").classList.toggle("on", CMPMODE === "sbs");
+  document.getElementById("md-sld").classList.toggle("on", CMPMODE === "sld");
+}
+document.getElementById("md-sbs").onclick = () => {
+  CMPMODE = "sbs"; try { localStorage.setItem("labx_cmpmode", "sbs"); } catch (e) {} applyMode();
+};
+document.getElementById("md-sld").onclick = () => {
+  CMPMODE = "sld"; try { localStorage.setItem("labx_cmpmode", "sld"); } catch (e) {} applyMode();
+};
+
 // ===== 人工復查 =====
 const REV_EP = "https://script.google.com/macros/s/AKfycbzi80QrqbU0jEUVC_ZvlYyzA4YU1ESImh6ZLFKxjfNXkJC91WejtL5mWGpY-685eB_Jeg/exec";
 function revSave() { try { localStorage.setItem("labx_rev", JSON.stringify(REVD)); } catch (e) {} }
