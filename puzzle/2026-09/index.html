@@ -3,73 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吉克接龍 2026-09 攻略</title>
+<title>吉克接龍 2026-09 攻略【愛慾轉生】</title>
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="吉克接龍（拼圖）2026-09 期每關最少步數解法，含目標配置與逐步圖解。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="吉克接龍（拼圖）2026-09 期每關最少步數解法，含步驟表、完成配置與逐步圖解。">
 <style>
-:root{--bg:#140c1c;--panel:rgba(255,255,255,.045);--border:rgba(255,255,255,.12);
- --text:#efe6f5;--dim:#b9a6c9;--pink:#e79cc9;--grad:linear-gradient(120deg,#c23b8a,#7a4ec2)}
+:root{
+ --bg-top:#e8fafc;--bg-bot:#f6e4fe;
+ --panel:#fff;--panel-2:#eef3fc;--line:#c1c6d9;
+ --navy:#123354;--purple:#7d68c8;
+ --green:#2f9e44;--red:#d6336c;
+ --text:#23262f;--dim:#5d6475}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
- font-family:"Outfit",system-ui,"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.7}
-a{color:var(--pink)}
-.wrap{max-width:1180px;margin:0 auto;padding:22px 16px 70px}
-h1{font-size:clamp(22px,4.4vw,32px);margin:.2em 0 .1em}
-h1 .tag{font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;
- background:var(--grad);vertical-align:middle;margin-left:8px}
-.sub{color:var(--dim);font-size:14px;margin:.2em 0 1.4em}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:14px;
- padding:16px 18px;margin:0 0 22px}
-.card h2{font-size:19px;margin:.1em 0 .5em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.badge{font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:var(--grad)}
-.badge.alt{background:rgba(255,255,255,.1);color:var(--dim)}
-ol,ul{padding-left:1.3em;margin:.4em 0}
-li{margin:.25em 0}
-.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
-@media(max-width:820px){.grid2{grid-template-columns:1fr}}
-figure{margin:0}
-figcaption{color:var(--dim);font-size:13px;margin-top:6px}
-img.shot{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);background:#0d0713;cursor:zoom-in}
-.steps{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
-.steps th,.steps td{border-bottom:1px solid var(--border);padding:6px 8px;text-align:left;vertical-align:top}
-.steps th{color:var(--dim);font-weight:700;font-size:13px}
-.steps td.n{color:var(--dim);width:3em}
-.steps code{background:rgba(255,255,255,.07);padding:1px 6px;border-radius:6px;
- font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
-.steps .to code{color:#ffb3d9}
-.note{font-size:13.5px;color:var(--dim);border-left:3px solid var(--pink);
- padding:2px 0 2px 12px;margin:12px 0}
-.tblwrap{overflow-x:auto}
-table.goal{border-collapse:collapse;font-size:14px;margin:.4em 0}
-table.goal td,table.goal th{border:1px solid var(--border);padding:5px 10px;text-align:center;min-width:2.6em}
-table.goal th{color:var(--dim);font-weight:700;background:rgba(255,255,255,.04)}
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:200;
- align-items:center;justify-content:center;padding:16px;cursor:zoom-out;overflow:auto}
-.lb.on{display:flex}
-.lb img{max-width:100%;max-height:none;border-radius:8px}
-footer{color:var(--dim);font-size:12.5px;text-align:center;margin-top:30px;
- border-top:1px solid var(--border);padding-top:14px}
+html{background:linear-gradient(180deg,var(--bg-top),var(--bg-bot)) fixed}
+body{margin:0;color:var(--text);font:15px/1.6 "Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif}
+a{color:var(--purple)}
+.page{max-width:1040px;margin:0 auto;padding:14px 12px 60px}
 
-/* ===== 期數切換與索引（2026-09-24 分期改版） ===== */
-.periods{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}
-.periods a,.periods span{font-size:13px;font-weight:700;text-decoration:none;
- padding:6px 13px;border-radius:999px;border:1px solid var(--border);color:var(--dim);white-space:nowrap}
-.periods a:hover{border-color:var(--pink);color:#fff}
-.periods .cur{background:var(--grad);color:#fff;border-color:transparent}
-.periods .back{border-style:dashed}
-.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin:16px 0}
-.pcard{background:var(--panel);border:1px solid var(--border);border-radius:14px;
- overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:.15s}
-.pcard:hover{border-color:var(--pink);transform:translateY(-2px)}
-.pcard .thumb{aspect-ratio:16/10;background:#0d0713;overflow:hidden;display:block}
-.pcard .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.pcard .body{padding:12px 15px 14px}
-.pcard .p{font-size:18px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.pcard .meta{color:var(--dim);font-size:13px;margin-top:5px}
-.pcard .meta b{color:var(--text)}
+.head{background:var(--panel);border:1px solid var(--line);border-radius:4px;margin-bottom:10px}
+.head h1{margin:0;padding:10px 14px;font-size:20px;border-bottom:3px solid var(--navy)}
+.head h1 small{font-size:13px;font-weight:normal;color:var(--dim);margin-left:8px}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 14px;font-size:13px;color:var(--dim)}
+.meta b{color:var(--text)}
+
+.tabs{display:flex;flex-wrap:wrap;margin:14px 0 0}
+.tabs a,.tabs span{padding:6px 14px;font-size:14px;text-decoration:none;color:var(--dim);
+ border:1px solid var(--line);border-bottom:none;background:var(--panel-2);margin-right:-1px}
+.tabs span{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:bold}
+.tabs a:hover{color:var(--navy);background:#fff}
+
+h2{margin:18px 0 0;padding:6px 12px;font-size:16px;color:#fff;background:var(--navy);border-radius:3px 3px 0 0}
+h2.flush{margin-top:0;border-radius:0}
+h2 .n{float:right;font-weight:normal;font-size:14px}
+.box{background:var(--panel);border:1px solid var(--line);border-top:none;padding:10px 12px}
+
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--line);padding:4px 8px;text-align:center}
+th{background:var(--panel-2);font-weight:bold;color:var(--navy)}
+.sum td:first-child{font-weight:bold}
+.big{font-size:18px;font-weight:bold;color:var(--red)}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:12px;align-items:start}
+@media(max-width:720px){.cols{grid-template-columns:1fr}.goal{max-width:300px;margin:0 auto}}
+.steps td{white-space:nowrap}
+.steps td.k{width:2.6em;color:var(--dim)}
+.steps td.f{color:var(--green);font-weight:bold}
+.steps td.t{color:var(--red);font-weight:bold}
+.steps td.ar{width:1.6em;color:var(--dim)}
+.steps tr:nth-child(even) td{background:#f7f9fe}
+.goal img{width:100%;border:1px solid var(--line);display:block;cursor:zoom-in}
+.cap{font-size:12px;color:var(--dim);margin:3px 0 0}
+table.gt{margin-top:8px;font-size:13px}
+table.gt td,table.gt th{padding:2px 4px}
+table.gt td{font-weight:bold}
+.full{margin-top:10px}
+.full summary{cursor:pointer;color:var(--purple);font-size:14px}
+.full img{width:100%;border:1px solid var(--line);margin-top:6px;display:block;cursor:zoom-in}
+
+.howto{font-size:13.5px;color:var(--dim);margin:8px 0 0}
+.howto b{color:var(--text)}
+details.more{margin-top:6px;font-size:13px;color:var(--dim)}
+details.more summary{cursor:pointer;color:var(--purple)}
+.cur-tag{display:inline-block;font-size:12px;color:#fff;background:var(--purple);
+ padding:0 6px;border-radius:2px;margin-left:6px;vertical-align:1px}
+.foot{margin-top:24px;font-size:12px;color:var(--dim);text-align:center}
+
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;z-index:200;
+ align-items:flex-start;justify-content:center;padding:12px;cursor:zoom-out;overflow:auto}
+.lb.on{display:flex}
+.lb img{max-width:100%}
 </style>
 </head>
 <body>
@@ -86,76 +87,62 @@ footer{color:var(--dim);font-size:12.5px;text-align:center;margin-top:30px;
 .ed-tools a:hover{border-color:#e79cc9;color:#fff}
 .ed-tools a.cur{background:linear-gradient(120deg,#c23b8a,#7a4ec2);color:#fff;border-color:transparent}
 </style><div class="ed-topbar"><div class="ed-games">GAME：<a href="../../">慾神幻想</a>⇄<span class="cur">愛慾轉生</span>⇄<a href="../../sa/">星慾姬絆</a>⇄<a href="../../majo/">魔女之夜</a>⇄<a href="../../cherrytale/">櫻境物語</a>⇄<a href="../../gsa/">黑色基因</a></div><nav class="ed-tools"><a href="../../enemyfinder/">收集冊</a><a href="../../erodex/">角色圖鑑</a><a href="../../tierlist/">Tier 表</a><a href="../../enemies/">敵人圖鑑</a><a href="../../calc/">傷害計算</a><a href="../../puzzle/" class="cur">接龍攻略</a></nav></div><script src="../../assets/report.js" defer></script>
-<div class="wrap">
-  <div class="periods">
-  <a class="back" href="../">全部期數</a>
-  <a href="../2026-10/">2026-10・本期</a>
-  <span class="cur">2026-09</span>
-  <a href="../2026-08/">2026-08</a>
-  </div>
-  <h1>吉克接龍 攻略 <span class="tag">往期 2026-09</span></h1>
-  <p class="sub">這一期每關的<b>最少步數</b>解法。</p>
+<div class="page">
 
-  <section class="card">
-    <h2>怎麼看這份攻略</h2>
-    <ul>
-      <li><b>編號＝格子位置</b>，不是圖塊。左上到右下依序 1、2、3…，位置編號固定不變。</li>
-      <li>「開始盤面」就是你進關卡時的初始畫面；若你已經動過，請重開關卡再照著做。</li>
-      <li>照<b>順序</b>做，不可跳步或對調 —— 前面的步驟負責把散塊拼成大組，後面才搬得動。</li>
-      <li>拖曳<b>已黏合的組</b>時，點組內任何一格都會整組一起移動。</li>
-      <li><b>計時不夠看攻略？</b>每移動完一步，可點右上角 <b>X</b> 暫停計時，對照下一步確認好再繼續。</li>
-    </ul>
-    <div class="note">
-      機制：相鄰兩塊只要在原圖中也相鄰就會自動黏合成一組；一次拖曳＝整組平移，
-      與落點區域的內容互換。先拼大組再整組搬運，步數遠少於逐格對調
-      （5×5 逐格對調要 24 步，善用黏合只要 12～14 步）。
-    </div>
-  </section>
+<div class="head">
+ <h1>吉克接龍 攻略<small>愛慾轉生 ／ 2026-09</small></h1>
+ <div class="meta"><span>收錄 <b>2 關</b></span><span>更新 <b>2026-09-24</b></span></div>
+</div>
+<div class="tabs"><a href="../">全部</a><a href="../2026-10/">2026-10</a><span>2026-09</span><a href="../2026-08/">2026-08</a></div>
+<h2 class="flush">該期步數一覽</h2>
+<div class="box">
+ <table class="sum"><tr><th>關卡</th><th>盤面</th><th>最少步數</th><th></th></tr><tr><td>Stage 9</td><td>5×5</td><td class="big">13 步</td><td><a href="#s9">看解法</a></td></tr><tr><td>Stage 10</td><td>5×5</td><td class="big">14 步</td><td><a href="#s10">看解法</a></td></tr></table>
 
-    <section class="card">
-      <h2>Stage 9 <span class="badge">5×5</span> <span class="badge alt">最少 13 步</span></h2>
-      <div class="grid2">
-        <figure>
-          <img class="shot" src="../img/p2026-09_stage9_goal.webp" alt="Stage 9 目標配置" loading="lazy">
-          <figcaption>目標配置：每格數字＝該格要放「開始盤面」的第幾塊</figcaption>
-        </figure>
-        <div>
-          <div class="tblwrap"><table class="goal"><tr><th></th><th>c1</th><th>c2</th><th>c3</th><th>c4</th><th>c5</th></tr><tr><th>r1</th><td>4</td><td>15</td><td>20</td><td>9</td><td>18</td></tr><tr><th>r2</th><td>17</td><td>5</td><td>21</td><td>7</td><td>24</td></tr><tr><th>r3</th><td>10</td><td>3</td><td>16</td><td>14</td><td>19</td></tr><tr><th>r4</th><td>23</td><td>22</td><td>11</td><td>2</td><td>1</td></tr><tr><th>r5</th><td>13</td><td>25</td><td>8</td><td>6</td><td>12</td></tr></table></div>
-          <table class="steps"><tr><th></th><th>拖曳（綠框）</th><th>放到（紅框）</th></tr><tr><td class="n">1</td><td><code>15</code></td><td class="to"><code>19</code></td></tr><tr><td class="n">2</td><td><code>19、20</code></td><td class="to"><code>2、3</code></td></tr><tr><td class="n">3</td><td><code>5</code></td><td class="to"><code>18</code></td></tr><tr><td class="n">4</td><td><code>17、18</code></td><td class="to"><code>9、10</code></td></tr><tr><td class="n">5</td><td><code>4、9、10</code></td><td class="to"><code>1、6、7</code></td></tr><tr><td class="n">6</td><td><code>18、23</code></td><td class="to"><code>11、16</code></td></tr><tr><td class="n">7</td><td><code>20</code></td><td class="to"><code>22</code></td></tr><tr><td class="n">8</td><td><code>22、23</code></td><td class="to"><code>12、13</code></td></tr><tr><td class="n">9</td><td><code>8、9</code></td><td class="to"><code>23、24</code></td></tr><tr><td class="n">10</td><td><code>20、25</code></td><td class="to"><code>4、9</code></td></tr><tr><td class="n">11</td><td><code>4、8、9</code></td><td class="to"><code>17、21、22</code></td></tr><tr><td class="n">12</td><td><code>9</code></td><td class="to"><code>10</code></td></tr><tr><td class="n">13</td><td><code>10</code></td><td class="to"><code>25</code></td></tr></table>
-        </div>
-      </div>
-      <figure style="margin-top:16px">
-        <img class="shot" src="../img/p2026-09_stage9_steps.webp" alt="Stage 9 逐步圖解" loading="lazy">
-        <figcaption>逐步圖解（點圖放大）：<b style="color:#5fd75f">綠框</b>＝要拖的組，<b style="color:#ff6b6b">紅框</b>＝落點</figcaption>
-      </figure>
-    </section>
-    <section class="card">
-      <h2>Stage 10 <span class="badge">5×5</span> <span class="badge alt">最少 14 步</span></h2>
-      <div class="grid2">
-        <figure>
-          <img class="shot" src="../img/p2026-09_stage10_goal.webp" alt="Stage 10 目標配置" loading="lazy">
-          <figcaption>目標配置：每格數字＝該格要放「開始盤面」的第幾塊</figcaption>
-        </figure>
-        <div>
-          <div class="tblwrap"><table class="goal"><tr><th></th><th>c1</th><th>c2</th><th>c3</th><th>c4</th><th>c5</th></tr><tr><th>r1</th><td>7</td><td>22</td><td>15</td><td>19</td><td>3</td></tr><tr><th>r2</th><td>13</td><td>24</td><td>9</td><td>1</td><td>17</td></tr><tr><th>r3</th><td>14</td><td>8</td><td>2</td><td>12</td><td>11</td></tr><tr><th>r4</th><td>25</td><td>21</td><td>23</td><td>10</td><td>6</td></tr><tr><th>r5</th><td>20</td><td>18</td><td>16</td><td>4</td><td>5</td></tr></table></div>
-          <table class="steps"><tr><th></th><th>拖曳（綠框）</th><th>放到（紅框）</th></tr><tr><td class="n">1</td><td><code>10</code></td><td class="to"><code>17</code></td></tr><tr><td class="n">2</td><td><code>4、5</code></td><td class="to"><code>2、3</code></td></tr><tr><td class="n">3</td><td><code>2、3</code></td><td class="to"><code>22、23</code></td></tr><tr><td class="n">4</td><td><code>12、17、22、23</code></td><td class="to"><code>14、19、24、25</code></td></tr><tr><td class="n">5</td><td><code>13</code></td><td class="to"><code>21</code></td></tr><tr><td class="n">6</td><td><code>21、22</code></td><td class="to"><code>6、7</code></td></tr><tr><td class="n">7</td><td><code>8、13、18</code></td><td class="to"><code>12、17、22</code></td></tr><tr><td class="n">8</td><td><code>1</code></td><td class="to"><code>18</code></td></tr><tr><td class="n">9</td><td><code>13、18</code></td><td class="to"><code>4、9</code></td></tr><tr><td class="n">10</td><td><code>8</code></td><td class="to"><code>18</code></td></tr><tr><td class="n">11</td><td><code>18、23</code></td><td class="to"><code>11、16</code></td></tr><tr><td class="n">12</td><td><code>20</code></td><td class="to"><code>21</code></td></tr><tr><td class="n">13</td><td><code>3</code></td><td class="to"><code>15</code></td></tr><tr><td class="n">14</td><td><code>15</code></td><td class="to"><code>18</code></td></tr></table>
-        </div>
-      </div>
-      <figure style="margin-top:16px">
-        <img class="shot" src="../img/p2026-09_stage10_steps.webp" alt="Stage 10 逐步圖解" loading="lazy">
-        <figcaption>逐步圖解（點圖放大）：<b style="color:#5fd75f">綠框</b>＝要拖的組，<b style="color:#ff6b6b">紅框</b>＝落點</figcaption>
-      </figure>
-    </section>
-  <footer>解法由影像比對（Hungarian 全域配對）＋ beam search 求得，每組皆已驗證「最終盤面＝目標圖」。<br>
-  圖片版權屬 EROLABS。</footer>
+ <p class="howto"><b>綠＝拖曳的格子，紅＝放到的位置</b>，數字是格子位置（左上 1 → 右下）。
+  依序操作勿跳步；黏在一起的組整組拖。時間不夠時，每步做完可點右上 <b>X</b> 暫停再看下一步。</p>
+ <details class="more"><summary>為什麼是這個步數？</summary>
+  相鄰兩塊在原圖也相鄰時會自動黏合，一次拖曳會整組移動並與落點互換。先拼成大組再整組搬，
+  5×5 從逐格對調的 24 步降到 12～14 步。解法以影像比對＋搜尋求得，每關都驗證過能回到完成圖。
+ </details>
 </div>
 
+<h2 id="s9">Stage 9 <span class="n">5×5 ／ 最少 13 步</span></h2>
+<div class="box">
+ <div class="cols">
+  <table class="steps"><tr><th>#</th><th>拖曳</th><th></th><th>放到</th></tr><tr><td class="k">1</td><td class="f">15</td><td class="ar">→</td><td class="t">19</td></tr><tr><td class="k">2</td><td class="f">19・20</td><td class="ar">→</td><td class="t">2・3</td></tr><tr><td class="k">3</td><td class="f">5</td><td class="ar">→</td><td class="t">18</td></tr><tr><td class="k">4</td><td class="f">17・18</td><td class="ar">→</td><td class="t">9・10</td></tr><tr><td class="k">5</td><td class="f">4・9・10</td><td class="ar">→</td><td class="t">1・6・7</td></tr><tr><td class="k">6</td><td class="f">18・23</td><td class="ar">→</td><td class="t">11・16</td></tr><tr><td class="k">7</td><td class="f">20</td><td class="ar">→</td><td class="t">22</td></tr><tr><td class="k">8</td><td class="f">22・23</td><td class="ar">→</td><td class="t">12・13</td></tr><tr><td class="k">9</td><td class="f">8・9</td><td class="ar">→</td><td class="t">23・24</td></tr><tr><td class="k">10</td><td class="f">20・25</td><td class="ar">→</td><td class="t">4・9</td></tr><tr><td class="k">11</td><td class="f">4・8・9</td><td class="ar">→</td><td class="t">17・21・22</td></tr><tr><td class="k">12</td><td class="f">9</td><td class="ar">→</td><td class="t">10</td></tr><tr><td class="k">13</td><td class="f">10</td><td class="ar">→</td><td class="t">25</td></tr></table>
+  <div class="goal">
+   <img src="../img/p2026-09_stage9_goal.webp" alt="Stage 9 完成配置" loading="lazy">
+   <p class="cap">完成配置（格內數字＝開始盤面的位置）</p>
+   <table class="gt"><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr><tr><th>1</th><td>4</td><td>15</td><td>20</td><td>9</td><td>18</td></tr><tr><th>2</th><td>17</td><td>5</td><td>21</td><td>7</td><td>24</td></tr><tr><th>3</th><td>10</td><td>3</td><td>16</td><td>14</td><td>19</td></tr><tr><th>4</th><td>23</td><td>22</td><td>11</td><td>2</td><td>1</td></tr><tr><th>5</th><td>13</td><td>25</td><td>8</td><td>6</td><td>12</td></tr></table>
+  </div>
+ </div>
+ <details class="full" open><summary>逐步圖解（13 步，點圖放大）</summary>
+  <img src="../img/p2026-09_stage9_steps.webp" alt="Stage 9 逐步圖解" loading="lazy">
+ </details>
+</div>
+<h2 id="s10">Stage 10 <span class="n">5×5 ／ 最少 14 步</span></h2>
+<div class="box">
+ <div class="cols">
+  <table class="steps"><tr><th>#</th><th>拖曳</th><th></th><th>放到</th></tr><tr><td class="k">1</td><td class="f">10</td><td class="ar">→</td><td class="t">17</td></tr><tr><td class="k">2</td><td class="f">4・5</td><td class="ar">→</td><td class="t">2・3</td></tr><tr><td class="k">3</td><td class="f">2・3</td><td class="ar">→</td><td class="t">22・23</td></tr><tr><td class="k">4</td><td class="f">12・17・22・23</td><td class="ar">→</td><td class="t">14・19・24・25</td></tr><tr><td class="k">5</td><td class="f">13</td><td class="ar">→</td><td class="t">21</td></tr><tr><td class="k">6</td><td class="f">21・22</td><td class="ar">→</td><td class="t">6・7</td></tr><tr><td class="k">7</td><td class="f">8・13・18</td><td class="ar">→</td><td class="t">12・17・22</td></tr><tr><td class="k">8</td><td class="f">1</td><td class="ar">→</td><td class="t">18</td></tr><tr><td class="k">9</td><td class="f">13・18</td><td class="ar">→</td><td class="t">4・9</td></tr><tr><td class="k">10</td><td class="f">8</td><td class="ar">→</td><td class="t">18</td></tr><tr><td class="k">11</td><td class="f">18・23</td><td class="ar">→</td><td class="t">11・16</td></tr><tr><td class="k">12</td><td class="f">20</td><td class="ar">→</td><td class="t">21</td></tr><tr><td class="k">13</td><td class="f">3</td><td class="ar">→</td><td class="t">15</td></tr><tr><td class="k">14</td><td class="f">15</td><td class="ar">→</td><td class="t">18</td></tr></table>
+  <div class="goal">
+   <img src="../img/p2026-09_stage10_goal.webp" alt="Stage 10 完成配置" loading="lazy">
+   <p class="cap">完成配置（格內數字＝開始盤面的位置）</p>
+   <table class="gt"><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr><tr><th>1</th><td>7</td><td>22</td><td>15</td><td>19</td><td>3</td></tr><tr><th>2</th><td>13</td><td>24</td><td>9</td><td>1</td><td>17</td></tr><tr><th>3</th><td>14</td><td>8</td><td>2</td><td>12</td><td>11</td></tr><tr><th>4</th><td>25</td><td>21</td><td>23</td><td>10</td><td>6</td></tr><tr><th>5</th><td>20</td><td>18</td><td>16</td><td>4</td><td>5</td></tr></table>
+  </div>
+ </div>
+ <details class="full" open><summary>逐步圖解（14 步，點圖放大）</summary>
+  <img src="../img/p2026-09_stage10_steps.webp" alt="Stage 10 逐步圖解" loading="lazy">
+ </details>
+</div>
+
+<p class="foot">圖片版權屬 EROLABS</p>
+</div>
 <div class="lb" id="lb"><img id="lbi" alt=""></div>
 <script>
 (function(){
   var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
   if(!lb) return;
-  document.querySelectorAll('img.shot').forEach(function(im){
+  document.querySelectorAll('.full img,.goal img').forEach(function(im){
     im.addEventListener('click',function(){lbi.src=im.src;lb.classList.add('on');});
   });
   lb.addEventListener('click',function(){lb.classList.remove('on');lbi.src='';});
