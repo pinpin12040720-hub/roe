@@ -1,0 +1,42 @@
+/* 全站頂部切換列（GAME 列＋工具列）——淺色，配色取自遊戲 UI
+ * 2026-10-12 起單一來源：各頁在自己的樣式之後載入本檔，覆蓋原本複製在各處的深色規則。
+ * 涵蓋四種既有寫法：
+ *   .ed-topbar/.ed-games/.ed-tools  愛慾轉生工具頁、魔女之夜、櫻境物語、黑色基因、週期表、計算器、接龍
+ *   .ed-tools（獨立列）             enemyfinder 的 ED-NAV 工具列
+ *   .game-switch/.gs                首頁、enemyfinder
+ *   .back-to-roe                    星慾姬絆 wiki 標題列內的遊戲按鈕
+ */
+:root{--gb-bg:#fff;--gb-line:#c1c6d9;--gb-text:#3d4456;--gb-dim:#6b7285;
+ --gb-navy:#123354;--gb-purple:#7d68c8;--gb-hover:#eef3fc}
+
+/* ---- ed-topbar ---- */
+.ed-topbar{position:sticky;top:0;z-index:60;background:var(--gb-bg);backdrop-filter:none;
+ border-bottom:2px solid var(--gb-navy);box-shadow:0 1px 0 rgba(18,51,84,.06);
+ padding:5px 12px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;
+ font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif}
+.ed-games{font-size:13px;font-weight:bold;color:var(--gb-dim);display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px}
+.ed-games a{color:var(--gb-text);text-decoration:none;padding:2px 8px;border-radius:3px;border:1px solid transparent;background:none}
+.ed-games a:hover{border-color:var(--gb-line);background:var(--gb-hover);color:var(--gb-navy)}
+.ed-games .cur{color:#fff;background:var(--gb-navy);padding:2px 10px;border-radius:3px}
+.ed-tools{display:flex;flex-wrap:wrap;gap:4px;margin-left:auto}
+.ed-tools a{font-size:13px;font-weight:bold;color:var(--gb-text);text-decoration:none;padding:3px 10px;
+ border-radius:3px;border:1px solid var(--gb-line);background:var(--gb-bg);white-space:nowrap;transition:none}
+.ed-tools a:hover{border-color:var(--gb-purple);color:var(--gb-purple);background:var(--gb-bg)}
+.ed-tools a.cur{background:var(--gb-purple);color:#fff;border-color:var(--gb-purple)}
+
+/* enemyfinder 的工具列是單獨一列（不在 .ed-topbar 裡） */
+body > .ed-tools{margin:0;padding:5px 12px;background:var(--gb-bg);border-bottom:1px solid var(--gb-line)}
+
+/* ---- game-switch（首頁、enemyfinder） ---- */
+.game-switch{background:var(--gb-bg);backdrop-filter:none;border-bottom:2px solid var(--gb-navy)}
+.game-switch .gs-inner{padding:5px 16px;gap:4px;flex-wrap:wrap;font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif}
+.game-switch .gs-label{color:var(--gb-dim);font-size:12px;font-weight:bold;letter-spacing:1px}
+.game-switch .gs{padding:2px 10px;border-radius:3px;font-weight:bold;font-size:13px;color:var(--gb-text);
+ border:1px solid transparent;background:none;transition:none;text-decoration:none}
+.game-switch .gs.active{background:var(--gb-navy);color:#fff;border-color:var(--gb-navy)}
+.game-switch a.gs:hover{color:var(--gb-navy);border-color:var(--gb-line);background:var(--gb-hover);transform:none}
+
+/* ---- 星慾姬絆 wiki 標題列裡的遊戲按鈕 ---- */
+.back-to-roe{border-radius:3px;border-color:var(--gb-line);background:var(--gb-bg);color:var(--gb-text);font-weight:bold}
+.back-to-roe:hover{color:var(--gb-navy);border-color:var(--gb-navy);background:var(--gb-hover)}
+.back-to-roe.cur-game{background:var(--gb-navy);color:#fff;border-color:var(--gb-navy)}
